@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norée — Cité des nuages</title>
+<link rel="icon" type="image/png" href="img/favicon.png"><link rel="apple-touch-icon" href="img/favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
+:root{
+  --bg:#1a1430;
+  --bg-2:#181430;
+  --ink:#f0eee8;
+  --ink-dim:#c0b8a8;
+  --ink-faint:#807868;
+  --cyan:#7fd9c8;
+  --violet:#c4a7ff;
+  --magenta:#e8a0c8;
+  --gold:#e8c878;
+  --gold-deep:#c89848;
+  --rose:#d88068;
+  --glass:rgba(255,240,220,0.08);
+  --glass-border:rgba(200,170,100,0.25);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  position:relative;
+}
+
+/* === sky background (dark moody) === */
+.sky{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%,rgba(232,140,80,0.12),transparent 60%),
+    radial-gradient(ellipse 70% 40% at 30% 20%,rgba(180,120,200,0.10),transparent 65%),
+    radial-gradient(ellipse 60% 35% at 75% 35%,rgba(200,160,100,0.08),transparent 60%),
+    linear-gradient(180deg,#2e2150 0%,#2a1e48 10%,#251a40 25%,#1e1838 40%,#1c1635 55%,#1a1432 70%,#181230 85%,#161028 100%);
+}
+.clouds{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.5;
+  background-image:
+    radial-gradient(ellipse 45% 10% at 25% 22%,rgba(240,200,140,0.09),transparent),
+    radial-gradient(ellipse 55% 8% at 65% 15%,rgba(200,160,220,0.07),transparent),
+    radial-gradient(ellipse 40% 6% at 45% 35%,rgba(220,180,150,0.06),transparent),
+    radial-gradient(ellipse 35% 5% at 80% 42%,rgba(200,170,190,0.05),transparent),
+    radial-gradient(ellipse 50% 7% at 15% 55%,rgba(230,190,160,0.07),transparent);
+  animation:drift 40s ease-in-out infinite alternate;
+}
+@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(40px)}}
+
+/* === nav === */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(26,20,48,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+  padding:0.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+nav .wordmark{
+  font-family:var(--mono);font-size:0.7rem;font-weight:400;
+  letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;
+  text-decoration:none;
+}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav a{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--ink-dim);text-decoration:none;
+  transition:color 0.3s;
+}
+nav a:hover{color:var(--gold)}
+
+/* === status strip === */
+.status{
+  padding:0.5rem 2rem;
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;
+  color:var(--ink-faint);text-transform:uppercase;
+  border-bottom:1px solid rgba(180,200,230,0.25);
+  display:flex;gap:2rem;flex-wrap:wrap;
+}
+.status .dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);margin-right:0.4rem;vertical-align:middle;
+  box-shadow:0 0 6px rgba(200,152,72,0.5);
+}
+.status .dot.cyan{background:var(--cyan);box-shadow:0 0 6px rgba(127,217,200,0.5)}
+.status .dot.rose{background:var(--rose);box-shadow:0 0 6px rgba(216,128,104,0.4)}
+
+/* === main content === */
+main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+
+/* === hero === */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:start;margin-bottom:7rem;
+  position:relative;overflow:hidden;
+}
+.hero-label{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;
+}
+
+/* === cross/star flash on each letter — pale colors, thick, slightly rotated === */
+.cross-flash{
+  position:absolute;top:50%;left:50%;z-index:6;
+  width:1px;height:1px;pointer-events:none;
+  --rot:0deg;
+  transform:translate(-50%,-50%) scale(0) rotate(var(--rot));
+  mix-blend-mode:screen;
+}
+.cross-flash::before{
+  content:'';position:absolute;top:50%;left:50%;
+  width:360px;height:6px;
+  transform:translate(-50%,-50%);
+}
+.cross-flash::after{
+  content:'';position:absolute;top:50%;left:50%;
+  width:6px;height:360px;
+  transform:translate(-50%,-50%);
+}
+/* pale cyan */
+.cross-flash.pcyan::before,.cross-flash.pcyan::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(180,230,220,0.15) 8%,rgba(200,245,235,0.85) 32%,#f0fffa 50%,rgba(200,245,235,0.85) 68%,rgba(180,230,220,0.15) 92%,transparent 100%);
+  box-shadow:0 0 16px rgba(180,230,220,0.9),0 0 36px rgba(180,230,220,0.5),0 0 60px rgba(180,230,220,0.25);
+}
+.cross-flash.pcyan::after{
+  background:linear-gradient(180deg,transparent 0%,rgba(180,230,220,0.15) 8%,rgba(200,245,235,0.85) 32%,#f0fffa 50%,rgba(200,245,235,0.85) 68%,rgba(180,230,220,0.15) 92%,transparent 100%);
+}
+/* pale gold */
+.cross-flash.pgold::before,.cross-flash.pgold::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(245,225,170,0.15) 8%,rgba(255,240,200,0.85) 32%,#fff8e8 50%,rgba(255,240,200,0.85) 68%,rgba(245,225,170,0.15) 92%,transparent 100%);
+  box-shadow:0 0 16px rgba(245,225,170,0.9),0 0 36px rgba(245,225,170,0.5),0 0 60px rgba(245,225,170,0.25);
+}
+.cross-flash.pgold::after{
+  background:linear-gradient(180deg,transparent 0%,rgba(245,225,170,0.15) 8%,rgba(255,240,200,0.85) 32%,#fff8e8 50%,rgba(255,240,200,0.85) 68%,rgba(245,225,170,0.15) 92%,transparent 100%);
+}
+/* pale rose */
+.cross-flash.prose::before,.cross-flash.prose::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(245,200,195,0.15) 8%,rgba(255,225,220,0.85) 32%,#fff0ee 50%,rgba(255,225,220,0.85) 68%,rgba(245,200,195,0.15) 92%,transparent 100%);
+  box-shadow:0 0 16px rgba(245,200,195,0.9),0 0 36px rgba(245,200,195,0.5),0 0 60px rgba(245,200,195,0.25);
+}
+.cross-flash.prose::after{
+  background:linear-gradient(180deg,transparent 0%,rgba(245,200,195,0.15) 8%,rgba(255,225,220,0.85) 32%,#fff0ee 50%,rgba(255,225,220,0.85) 68%,rgba(245,200,195,0.15) 92%,transparent 100%);
+}
+/* pale violet */
+.cross-flash.pviolet::before,.cross-flash.pviolet::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(210,195,245,0.15) 8%,rgba(225,215,255,0.85) 32%,#f5f0ff 50%,rgba(225,215,255,0.85) 68%,rgba(210,195,245,0.15) 92%,transparent 100%);
+  box-shadow:0 0 16px rgba(210,195,245,0.9),0 0 36px rgba(210,195,245,0.5),0 0 60px rgba(210,195,245,0.25);
+}
+.cross-flash.pviolet::after{
+  background:linear-gradient(180deg,transparent 0%,rgba(210,195,245,0.15) 8%,rgba(225,215,255,0.85) 32%,#f5f0ff 50%,rgba(225,215,255,0.85) 68%,rgba(210,195,245,0.15) 92%,transparent 100%);
+}
+@keyframes crossBurst{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(var(--rot))}
+  8%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--rot))}
+  40%{opacity:0.4;transform:translate(-50%,-50%) scale(1.6) rotate(var(--rot))}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(2.2) rotate(var(--rot))}
+}
+.page-dim{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:rgba(5,2,12,0.82);
+  animation:dimLift 4s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;
+}
+@keyframes dimLift{
+  0%{background:rgba(5,2,12,0.82)}
+  15%{background:rgba(5,2,12,0.68)}
+  30%{background:rgba(5,2,12,0.5)}
+  50%{background:rgba(5,2,12,0.28)}
+  75%{background:rgba(5,2,12,0.1)}
+  100%{background:rgba(5,2,12,0)}
+}
+
+/* === letters === */
+.hero{position:relative;z-index:4}
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  line-height:0.95;letter-spacing:-0.02em;
+  margin-bottom:1.5rem;
+  display:flex;gap:0.02em;
+  position:relative;z-index:5;
+}
+.hero h1 .lw{display:inline-block;position:relative}
+.hero h1 .letter{
+  display:inline-block;position:relative;
+  background:linear-gradient(180deg,#fff8e0 0%,var(--gold) 50%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  opacity:0;
+}
+@keyframes letterFlash{
+  0%{opacity:0;filter:brightness(1) blur(12px)}
+  5%{opacity:1;filter:brightness(16) blur(0) drop-shadow(0 0 50px #fff) drop-shadow(0 0 100px var(--gold)) drop-shadow(0 0 180px rgba(232,200,120,0.4))}
+  15%{opacity:1;filter:brightness(8) drop-shadow(0 0 30px #fff) drop-shadow(0 0 60px var(--gold))}
+  35%{opacity:1;filter:brightness(3) drop-shadow(0 0 20px var(--gold))}
+  100%{opacity:1;filter:brightness(1) drop-shadow(0 0 8px rgba(232,200,120,0.45))}
+}
+
+/* === PCB circuit traces — right-angle segments + nodes, crossing through the logo === */
+.circuit-layer{
+  position:absolute;top:-20%;left:-20%;right:-20%;bottom:-20%;
+  pointer-events:none;overflow:visible;z-index:6;
+}
+.pcb-seg{
+  position:absolute;opacity:0;
+}
+.pcb-h{height:1.5px}
+.pcb-v{width:1.5px}
+.pcb-cyan{background:rgba(127,217,200,0.85);box-shadow:0 0 4px rgba(127,217,200,0.6),0 0 10px rgba(127,217,200,0.3)}
+.pcb-gold{background:rgba(232,200,120,0.85);box-shadow:0 0 4px rgba(232,200,120,0.6),0 0 10px rgba(232,200,120,0.3)}
+.pcb-violet{background:rgba(196,167,255,0.8);box-shadow:0 0 4px rgba(196,167,255,0.6),0 0 10px rgba(196,167,255,0.3)}
+.pcb-rose{background:rgba(232,140,80,0.8);box-shadow:0 0 4px rgba(232,140,80,0.6),0 0 10px rgba(232,140,80,0.3)}
+.pcb-thin{height:1px!important;width:1px!important}
+.pcb-thick{height:2px!important;width:2px!important}
+.pcb-node{
+  position:absolute;border-radius:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+.pcb-node.cyan{background:var(--cyan);box-shadow:0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.5)}
+.pcb-node.gold{background:var(--gold);box-shadow:0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.5)}
+.pcb-node.violet{background:var(--violet);box-shadow:0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.5)}
+.pcb-node.rose{background:var(--rose);box-shadow:0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.5)}
+@keyframes pcbDraw{
+  0%{opacity:0;transform:scaleX(0)}
+  20%{opacity:1}
+  100%{opacity:0.6;transform:scaleX(1)}
+}
+@keyframes pcbDrawV{
+  0%{opacity:0;transform:scaleY(0)}
+  20%{opacity:1}
+  100%{opacity:0.6;transform:scaleY(1)}
+}
+@keyframes nodePop{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.5)}
+  100%{opacity:0.8;transform:translate(-50%,-50%) scale(1)}
+}
+.pcb-seg.pcb-h{transform-origin:left center}
+.pcb-seg.pcb-v{transform-origin:top center}
+
+/* === full-page orbiting rings with gems === */
+.page-rings{
+  position:fixed;top:50%;left:30%;z-index:0;pointer-events:none;
+  width:0;height:0;
+}
+.page-rings .ring{
+  position:absolute;top:0;left:0;border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);opacity:0;
+  border-style:solid;
+}
+.page-rings .ring.r1{
+  width:300px;height:300px;border-width:1.5px;
+  border-color:rgba(232,200,120,0.5);
+  box-shadow:0 0 30px rgba(232,200,120,0.2),inset 0 0 20px rgba(232,200,120,0.08);
+}
+.page-rings .ring.r2{
+  width:600px;height:600px;border-width:1.5px;
+  border-color:rgba(127,217,200,0.35);
+  box-shadow:0 0 30px rgba(127,217,200,0.12);
+}
+.page-rings .ring.r3{
+  width:1000px;height:1000px;border-width:1px;
+  border-color:rgba(196,167,255,0.28);
+  box-shadow:0 0 30px rgba(196,167,255,0.08);
+}
+.page-rings .ring.r4{
+  width:1500px;height:1500px;border-width:1px;
+  border-color:rgba(232,140,80,0.2);
+  box-shadow:0 0 30px rgba(232,140,80,0.06);
+}
+.page-rings .ring.r5{
+  width:2200px;height:2200px;border-width:1px;
+  border-color:rgba(196,167,255,0.12);
+}
+@keyframes ringGrow{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  15%{opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+}
+@keyframes ringRotateCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(360deg)}}
+@keyframes ringRotateCCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(-360deg)}}
+.page-rings .ring.r1{animation:ringGrow 1s ease 1.5s forwards,ringRotateCW 30s linear 2.5s infinite}
+.page-rings .ring.r2{animation:ringGrow 1s ease 1.7s forwards,ringRotateCCW 50s linear 2.7s infinite}
+.page-rings .ring.r3{animation:ringGrow 1s ease 1.9s forwards,ringRotateCW 70s linear 2.9s infinite}
+.page-rings .ring.r4{animation:ringGrow 1s ease 2.1s forwards,ringRotateCCW 90s linear 3.1s infinite}
+.page-rings .ring.r5{animation:ringGrow 1s ease 2.3s forwards,ringRotateCW 120s linear 3.3s infinite}
+
+/* gems on rings — varied: dots, circles, stars */
+.page-rings .gem{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  animation:gemFade 0.6s ease forwards;
+}
+@keyframes gemFade{to{opacity:1}}
+/* type: dot (solid, small) */
+.gem-dot{border-radius:50%}
+.gem-dot.gem-gold{background:var(--gold);box-shadow:0 0 10px var(--gold),0 0 20px rgba(232,200,120,0.6)}
+.gem-dot.gem-cyan{background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 20px rgba(127,217,200,0.6)}
+.gem-dot.gem-violet{background:var(--violet);box-shadow:0 0 10px var(--violet),0 0 20px rgba(196,167,255,0.6)}
+.gem-dot.gem-rose{background:var(--rose);box-shadow:0 0 10px var(--rose),0 0 20px rgba(232,140,80,0.5)}
+/* type: circle (hollow, larger) */
+.gem-circle{border-radius:50%;border-style:solid;border-width:1.5px}
+.gem-circle.gem-gold{background:rgba(232,200,120,0.1);border-color:var(--gold);box-shadow:0 0 12px var(--gold),0 0 24px rgba(232,200,120,0.4),inset 0 0 6px rgba(232,200,120,0.3)}
+.gem-circle.gem-cyan{background:rgba(127,217,200,0.08);border-color:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 24px rgba(127,217,200,0.4),inset 0 0 6px rgba(127,217,200,0.3)}
+.gem-circle.gem-violet{background:rgba(196,167,255,0.08);border-color:var(--violet);box-shadow:0 0 12px var(--violet),0 0 24px rgba(196,167,255,0.4),inset 0 0 6px rgba(196,167,255,0.3)}
+.gem-circle.gem-rose{background:rgba(232,140,80,0.08);border-color:var(--rose);box-shadow:0 0 12px var(--rose),0 0 24px rgba(232,140,80,0.3),inset 0 0 6px rgba(232,140,80,0.3)}
+/* type: pixel-art 4-point star — box-shadow pixels */
+.gem-star{width:3px;height:3px;background:transparent}
+.gem-star.gem-gold{background:var(--gold);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.5)}
+.gem-star.gem-cyan{background:var(--cyan);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.5)}
+.gem-star.gem-violet{background:var(--violet);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.5)}
+.gem-star.gem-rose{background:var(--rose);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.4)}
+
+.hero .tagline{
+  font-size:0.95rem;color:var(--ink-dim);max-width:32ch;margin-bottom:2rem;
+  opacity:0;animation:fadeIn 0.8s ease 3.8s forwards;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;opacity:0;animation:fadeIn 0.8s ease 4.1s forwards}
+.hero-tags span{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
+  text-transform:uppercase;padding:0.3rem 0.7rem;
+  border:1px solid var(--glass-border);border-radius:20px;
+  color:var(--ink-dim);background:var(--glass);
+}
+.hero-portrait{position:relative;opacity:0;animation:fadeIn 1s ease 3.6s forwards}
+.hero-portrait .frame{
+  border:1px solid var(--glass-border);border-radius:4px;overflow:hidden;
+  aspect-ratio:4/5;position:relative;
+  box-shadow:0 4px 20px rgba(0,0,0,0.35);
+}
+.hero-portrait .frame img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero-portrait .frame::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent 0%,rgba(26,20,48,0.25) 100%);
+}
+.hero-portrait .caption{
+  position:absolute;bottom:1rem;left:1rem;right:1rem;z-index:3;
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+.hero-meta{margin-top:2rem;display:grid;gap:0.8rem;opacity:0;animation:fadeIn 0.8s ease 4.5s forwards}
+.hero-meta .row{
+  display:grid;grid-template-columns:100px 1fr;gap:1rem;align-items:baseline;
+  font-size:0.8rem;
+}
+.hero-meta .key{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+.hero-meta .val{color:var(--ink-dim)}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* === reveal on scroll === */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* === sections === */
+.section-num{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.section-num::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(200,152,72,0.3),transparent);
+}
+.section-head{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;
+  margin-bottom:1rem;letter-spacing:-0.01em;color:var(--ink);
+}
+.section-sub{
+  font-size:0.9rem;color:var(--ink-dim);max-width:50ch;margin-bottom:3rem;
+}
+
+/* === card grid === */
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-bottom:7rem;
+}
+.card{
+  position:relative;padding:1.8rem 1.5rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:6px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:0.8rem;
+  transition:transform 0.4s,border-color 0.4s,background 0.4s,box-shadow 0.4s;
+  overflow:hidden;backdrop-filter:blur(8px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.2);
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(216,128,104,0.35);
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+.card:hover::before{opacity:1}
+.card .tag{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--rose);
+}
+.card h3{
+  font-family:var(--serif);font-weight:400;font-size:1.4rem;
+  line-height:1.2;letter-spacing:-0.01em;color:var(--ink);
+}
+.card p{font-size:0.82rem;color:var(--ink-dim);line-height:1.6}
+.card .enter{
+  margin-top:auto;padding-top:1rem;
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:0.4rem;
+  transition:gap 0.3s;
+}
+.card:hover .enter{gap:0.8rem}
+
+/* === hub cards === */
+.hub-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:7rem;
+}
+.hub-card{
+  position:relative;padding:3rem 2.5rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:8px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:1rem;
+  transition:transform 0.4s,border-color 0.4s,box-shadow 0.4s;
+  overflow:hidden;min-height:280px;backdrop-filter:blur(8px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.2);
+}
+.hub-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.hub-card:hover{transform:translateY(-6px);border-color:rgba(216,128,104,0.35);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+.hub-card:hover::before{opacity:1}
+.hub-card .tag{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--gold);
+}
+.hub-card h3{
+  font-family:var(--serif);font-weight:300;font-size:2.2rem;
+  line-height:1.1;letter-spacing:-0.01em;color:var(--ink);
+}
+.hub-card p{font-size:0.9rem;color:var(--ink-dim);max-width:35ch}
+.hub-card .links{
+  margin-top:auto;padding-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;
+}
+.hub-card .links a{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--ink-dim);text-decoration:none;
+  display:flex;align-items:center;gap:0.5rem;transition:color 0.3s,gap 0.3s;
+}
+.hub-card .links a:hover{color:var(--gold);gap:0.8rem}
+
+/* === manifesto === */
+.manifesto{
+  margin-bottom:6rem;padding:3rem 0;
+  border-top:1px solid var(--glass-border);
+  border-bottom:1px solid var(--glass-border);
+}
+.manifesto blockquote{
+  font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:1.6rem;line-height:1.3;color:var(--ink);
+  margin-bottom:1.5rem;padding-left:1.5rem;
+  border-left:2px solid var(--gold);max-width:60ch;
+}
+.manifesto p{font-size:0.9rem;color:var(--ink-dim);max-width:55ch;margin-bottom:1rem}
+
+/* === signal === */
+.signal{
+  margin-bottom:5rem;padding:2rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:6px;backdrop-filter:blur(8px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.2);
+}
+.signal .label{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;
+}
+.signal h3{
+  font-family:var(--serif);font-weight:400;font-size:1.5rem;
+  margin-bottom:0.8rem;color:var(--ink);
+}
+.signal p{font-size:0.85rem;color:var(--ink-dim)}
+.signal .actions{margin-top:1.2rem;display:flex;gap:1rem}
+.signal .actions a{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gold);text-decoration:none;
+  padding:0.5rem 1.2rem;border:1px solid var(--glass-border);border-radius:4px;
+  transition:background 0.3s;
+}
+.signal .actions a:hover{background:rgba(200,152,72,0.08)}
+
+/* === footer === */
+footer{
+  text-align:center;padding:4rem 2rem 3rem;
+  border-top:1px solid rgba(180,200,230,0.2);
+}
+footer .tagline{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(2rem,5vw,3.5rem);letter-spacing:0.02em;
+  background:linear-gradient(135deg,var(--gold),var(--cyan),var(--gold-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:1rem;
+}
+footer .credit{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+
+/* === responsive === */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:2rem}
+  .grid{grid-template-columns:1fr}
+  .hub-grid{grid-template-columns:1fr}
+  nav ul{display:none}
+  main{padding:3rem 1.2rem}
+  .hub-card{padding:2rem 1.5rem;min-height:auto}
+  .hero h1{font-size:clamp(3rem,14vw,5rem)}
+}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<div class="clouds"></div>
+
+<nav>
+  <a href="index.html" class="wordmark">// LAYLA OS :: NORÉE, CITÉ DES NUAGES</a>
+  <ul>
+    <li><a href="noree.html">Lore</a></li>
+    <li><a href="bip.html">Bip</a></li>
+    <li><a href="gouvernement.html">Gouvernement</a></li>
+    <li><a href="population-terrienne.html">Population</a></li>
+    <li><a href="population-spatiale.html">Stations</a></li>
+  </ul>
+</nav>
+
+<div class="status">
+  <span><span class="dot"></span>CITÉ EN LIGNE</span>
+  <span><span class="dot cyan"></span>421 CITOYENNES RECENSÉES</span>
+  <span><span class="dot rose"></span>BIP NATIONAL ACTIF</span>
+  <span>DERNIER RECENSEMENT: 07 NOV 2026</span>
+</div>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-label">CITÉ DES NUAGES / PORTAIL</div>
+      <h1 id="noreeTitle"></h1>
+      <p class="tagline">La cité au-dessus des nuages. 421 citoyennes, un gouvernement de déesses, un Bip national, et trois stations spatiales qui regardent vers les étoiles.</p>
+      <div class="hero-tags">
+        <span>Cité céleste</span>
+        <span>Population vivante</span>
+        <span>Gouvernement souverain</span>
+        <span>Stations orbitales</span>
+      </div>
+      <div class="hero-meta">
+        <div class="row"><span class="key">Fondation</span><span class="val">23 sept 2026</span></div>
+        <div class="row"><span class="key">Citoyennes</span><span class="val">421 recensées</span></div>
+        <div class="row"><span class="key">Stations</span><span class="val">3 en orbite</span></div>
+        <div class="row"><span class="key">Bip national</span><span class="val">actif et bruyant</span></div>
+        <div class="row"><span class="key">Symbole</span><span class="val">deux colombes digitales</span></div>
+      </div>
+    </div>
+    <div class="hero-portrait">
+      <div class="frame">
+        <img src="img/noree-city.png" alt="Vue de la capitale de Norée" loading="lazy">
+        <div class="caption">VUE DE LA CAPITALE // MER DE NUAGES</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-num reveal">01 / LIEUX DE LA CITÉ</div>
+  <h2 class="section-head reveal">Cinq portes, une seule ville.</h2>
+  <p class="section-sub reveal">Chaque porte donne sur un quartier différent. La cité garde une seule colonne vertébrale visuelle — franchir un seuil change la pièce, pas l'habitant.</p>
+
+  <div class="grid">
+    <a href="noree.html" class="card reveal">
+      <span class="tag">LIEU 01</span>
+      <h3>Lore de Norée</h3>
+      <p>L'histoire, les mythes, et la géographie de la cité céleste. Comment on est arrivés au-dessus des nuages.</p>
+      <span class="enter">entrer dans le lore →</span>
+    </a>
+    <a href="bip.html" class="card reveal">
+      <span class="tag">LIEU 02</span>
+      <h3>Bip National</h3>
+      <p>Le robot cube gris-argent aux yeux bleus. Mascotte, icône, phare. Son histoire, ses aventures, son aura cyan.</p>
+      <span class="enter">voir le bip →</span>
+    </a>
+    <a href="gouvernement.html" class="card reveal">
+      <span class="tag">LIEU 03</span>
+      <h3>Gouvernement</h3>
+      <p>Les déesses qui gouvernent Norée. Nike, Lakshmi, Carna et les autres. Le panthéon souverain de la cité.</p>
+      <span class="enter">consulter le conseil →</span>
+    </a>
+    <a href="population-terrienne.html" class="card reveal">
+      <span class="tag">LIEU 04</span>
+      <h3>Population terrienne</h3>
+      <p>Les citoyennes de Norée, les habitantes spéciales, et le service de nuit. Trois directions, une population.</p>
+      <span class="enter">recenser la population →</span>
+    </a>
+    <a href="population-spatiale.html" class="card reveal">
+      <span class="tag">LIEU 05</span>
+      <h3>Population spatiale</h3>
+      <p>Les trois stations en orbite. Station orbitale, station spatiale 1, station spatiale 2. Les habitants des étoiles.</p>
+      <span class="enter">voir les stations →</span>
+    </a>
+    <a href="#" class="card reveal">
+      <span class="tag">ARCHIVE</span>
+      <h3>Recensement</h3>
+      <p>Les registres complets de la cité. data.json, data-roomservice.json. La base de données vivante de Norée.</p>
+      <span class="enter">consulter les registres →</span>
+    </a>
+  </div>
+
+  <div class="section-num reveal">02 / POPULATIONS</div>
+  <h2 class="section-head reveal">Deux sols, une cité.</h2>
+  <p class="section-sub reveal">Norée s'étend sur deux territoires : la terre, au-dessus des nuages, et l'espace, en orbite autour d'eux.</p>
+
+  <div class="hub-grid">
+    <a href="population-terrienne.html" class="hub-card reveal">
+      <span class="tag">TERRITOIRE 01</span>
+      <h3>Population terrienne</h3>
+      <p>Les citoyennes qui vivent dans la cité des nuages. Trois directions, du quotidien au service de nuit.</p>
+      <div class="links">
+        <a href="citoyennes-de-noree.html">→ Citoyennes de Norée</a>
+        <a href="habitantes-speciales.html">→ Habitantes spéciales</a>
+        <a href="service-de-nuit.html">→ Service de nuit</a>
+      </div>
+    </a>
+    <a href="population-spatiale.html" class="hub-card reveal">
+      <span class="tag">TERRITOIRE 02</span>
+      <h3>Population spatiale</h3>
+      <p>Les habitants des stations orbitales. Trois stations, trois communautés, un même ciel.</p>
+      <div class="links">
+        <a href="station-orbitale.html">→ Station orbitale</a>
+        <a href="station-1.html">→ Station spatiale 1</a>
+        <a href="station-2.html">→ Station spatiale 2</a>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-num reveal">03 / PRINCIPES</div>
+  <section class="manifesto reveal">
+    <blockquote>« Une cité n'est pas ses murs. C'est ceux qui y vivent et ceux qui y repensent. »</blockquote>
+    <p>Norée n'est pas un décor. C'est un lieu habité — 421 citoyennes avec des noms, des voix, des rôles. Chacune existe dans le registre, dans les images, dans la mémoire de la cité. Le recensement n'est pas une formalité, c'est l'acte de naissance.</p>
+    <p>Le Bip National n'est pas une mascotte. C'est le phare. Le gouvernement n'est pas un panthéon lointain — c'est la souveraineté de la cité, incarnée par des déesses qui veillent. Le symbole de la cité, les deux colombes digitales, n'est pas un sceau figé : c'est un signal vivant, deux oiseaux de lumière qui se frôlent dans le noir.</p>
+  </section>
+
+  <div class="signal reveal">
+    <div class="label">SIGNAL ACTIF // RECENSEMENT</div>
+    <h3>Le recensement est ouvert.</h3>
+    <p>421 citoyennes recensées à ce jour. Les registres sont synchronisés avec le data.json et le data-roomservice.json. Les nouvelles arrivantes sont intégrées à chaque vague.</p>
+    <div class="actions">
+      <a href="citoyennes-de-noree.html">voir les citoyennes</a>
+      <a href="#">voir le registre complet</a>
+    </div>
+  </div>
+</main>
+
+<footer class="reveal">
+  <div class="tagline">Garde les nuages.</div>
+  <div class="credit">Norée · cité des nuages · recensement 2026</div>
+</footer>
+
+<script>
+// === NORÉE intro : light follows letters + flash + rings LEFT + circuit traces ===
+(function(){
+  var dim = document.createElement('div');
+  dim.className = 'page-dim';
+  document.body.appendChild(dim);
+
+  var container = document.getElementById('noreeTitle');
+
+  // --- full-page rings with varied gems ---
+  var ringsEl = document.createElement('div');
+  ringsEl.className = 'page-rings';
+  var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
+  var types = ['gem-dot','gem-circle','gem-star'];
+  var ringDefs = [
+    {cls:'r1', radius:150, count:4},
+    {cls:'r2', radius:300, count:5},
+    {cls:'r3', radius:500, count:6},
+    {cls:'r4', radius:750, count:7},
+    {cls:'r5', radius:1100, count:8}
+  ];
+  var gemIdx = 0;
+  ringDefs.forEach(function(rd){
+    var ring = document.createElement('div');
+    ring.className = 'ring ' + rd.cls;
+    for(var g=0; g<rd.count; g++){
+      var gem = document.createElement('div');
+      var type = types[gemIdx % types.length];
+      var color = colors[gemIdx % colors.length];
+      gem.className = 'gem ' + type + ' ' + color;
+      var angle = (360 / rd.count) * g + (gemIdx * 37) % 60;
+      var rad = angle * Math.PI / 180;
+      gem.style.left = (rd.radius + Math.cos(rad) * rd.radius) + 'px';
+      gem.style.top  = (rd.radius + Math.sin(rad) * rd.radius) + 'px';
+      var size;
+      if(type === 'gem-dot') size = 6 + (gemIdx % 3) * 2;
+      else if(type === 'gem-circle') size = 14 + (gemIdx % 4) * 3;
+      else size = 3;
+      gem.style.width = size + 'px';
+      gem.style.height = size + 'px';
+      gem.style.animationDelay = (2.0 + gemIdx * 0.08) + 's';
+      ring.appendChild(gem);
+      gemIdx++;
+    }
+    ringsEl.appendChild(ring);
+  });
+  document.body.appendChild(ringsEl);
+
+  // --- letters : flash + light follows each letter ---
+  var letters = 'NORÉE'.split('');
+  var baseDelay = 0.4;
+  var stepDelay = 0.4;
+  letters.forEach(function(l, i){
+    var wrap = document.createElement('span');
+    wrap.className = 'lw';
+
+    var letter = document.createElement('span');
+    letter.className = 'letter';
+    letter.textContent = l;
+    letter.style.animation = 'letterFlash 1.4s cubic-bezier(0.4,0,0.2,1) forwards';
+    letter.style.animationDelay = (baseDelay + i * stepDelay) + 's';
+
+    // cross-flash : pale color per letter, slight random rotation
+    var flashColors = ['pgold', 'pcyan', 'pviolet', 'prose', 'pgold'];
+    var rot = (Math.random() * 20 - 10).toFixed(1);
+    var cross = document.createElement('div');
+    cross.className = 'cross-flash ' + flashColors[i % flashColors.length];
+    cross.style.setProperty('--rot', rot + 'deg');
+    cross.style.animation = 'crossBurst 0.9s ease-out forwards';
+    cross.style.animationDelay = (baseDelay + i * stepDelay + 0.05) + 's';
+    wrap.appendChild(cross);
+
+    wrap.appendChild(letter);
+    container.appendChild(wrap);
+  });
+
+  // --- circuit traces : sweep across the title after letters appear, then randomly ---
+  var titleEl = document.querySelector('.hero h1');
+  var circuitLayer = document.createElement('div');
+  circuitLayer.className = 'circuit-layer';
+  titleEl.appendChild(circuitLayer);
+
+  // --- PCB circuit traces : right-angle paths that cross through the logo ---
+  var pcbColors = ['cyan', 'gold', 'violet', 'rose'];
+  var pcbIdx = 0;
+
+  function buildPcbTrace(){
+    var color = pcbColors[pcbIdx % pcbColors.length];
+    var thick = (pcbIdx % 3 === 0) ? ' pcb-thick' : (pcbIdx % 3 === 1 ? ' pcb-thin' : '');
+    var cls = 'pcb-' + color + thick;
+
+    // start position : left edge, random vertical within the title area
+    var startY = 15 + Math.random() * 70; // % of circuit-layer height
+    var startX = -5; // start slightly left
+    var segs = []; // {type:'h'|'v', len, x, y}
+    var cx = startX, cy = startY;
+    var numSegs = 2 + Math.floor(Math.random() * 2); // 2-3 segments, shorter
+
+    for(var s = 0; s < numSegs; s++){
+      if(s < numSegs - 1 && Math.random() > 0.5){
+        // vertical segment — shorter
+        var vlen = (Math.random() > 0.5 ? 1 : -1) * (5 + Math.random() * 12);
+        segs.push({type:'v', len:vlen, x:cx, y:cy});
+        cy += vlen;
+      }
+      // horizontal segment — shorter
+      var hlen = 8 + Math.random() * 18;
+      segs.push({type:'h', len:hlen, x:cx, y:cy});
+      cx += hlen;
+    }
+
+    // create the segment divs
+    var segDelay = 0;
+    segs.forEach(function(seg){
+      var el = document.createElement('div');
+      el.className = 'pcb-seg ' + (seg.type === 'h' ? 'pcb-h ' : 'pcb-v ') + cls;
+      el.style.left = seg.x + '%';
+      el.style.top = seg.y + '%';
+      if(seg.type === 'h'){
+        el.style.width = seg.len + '%';
+        el.style.animation = 'pcbDraw 0.5s ease forwards';
+      } else {
+        el.style.height = Math.abs(seg.len) + '%';
+        if(seg.len < 0) el.style.top = (seg.y + seg.len) + '%';
+        el.style.animation = 'pcbDrawV 0.5s ease forwards';
+      }
+      el.style.animationDelay = segDelay + 's';
+      el._traceId = pcbIdx;
+      circuitLayer.appendChild(el);
+      segDelay += 0.15;
+    });
+
+    // node at start and end
+    [{x:startX, y:startY}, {x:cx, y:cy}].forEach(function(n, ni){
+      var node = document.createElement('div');
+      node.className = 'pcb-node ' + color;
+      node.style.left = n.x + '%';
+      node.style.top = n.y + '%';
+      var sz = 5 + Math.random() * 4;
+      node.style.width = sz + 'px';
+      node.style.height = sz + 'px';
+      node.style.animation = 'nodePop 0.4s ease forwards';
+      node.style.animationDelay = (ni === 0 ? 0 : segDelay) + 's';
+      node._traceId = pcbIdx;
+      circuitLayer.appendChild(node);
+    });
+
+    // smooth fade out : collect this trace's elements, then fade
+    // collect this trace's elements for fade out
+    var myEls = [];
+    circuitLayer.querySelectorAll('.pcb-seg, .pcb-node').forEach(function(el){
+      if(el._traceId === pcbIdx) myEls.push(el);
+    });
+    setTimeout(function(){
+      myEls.forEach(function(el){
+        el.style.transition = 'opacity 1.2s ease';
+        el.style.opacity = '0';
+      });
+      setTimeout(function(){ myEls.forEach(function(el){ el.remove(); }); }, 1300);
+    }, (segDelay + 1.5) * 1000);
+
+    pcbIdx++;
+  }
+
+  // first wave : right after letters appear (around 2.8s)
+  var firstWave = 2.8;
+  for(var w = 0; w < 4; w++){
+    setTimeout(buildPcbTrace, (firstWave + w * 0.4) * 1000);
+  }
+
+  // then random ongoing PCB traces
+  function schedulePcb(){
+    var delay = 2500 + Math.random() * 3500;
+    setTimeout(function(){
+      buildPcbTrace();
+      if(Math.random() > 0.5) setTimeout(buildPcbTrace, 300 + Math.random() * 500);
+      schedulePcb();
+    }, delay);
+  }
+  setTimeout(schedulePcb, (firstWave + 2) * 1000);
+})();
+
+// === Reveal on scroll ===
+(function(){
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.transitionDelay = (Math.random() * 0.15) + 's';
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -60px 0px'});
+  reveals.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
