@@ -88,6 +88,23 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 @keyframes fadeIn{to{opacity:1}}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.circuit-layer{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:visible;z-index:0}
+.pcb-seg{position:absolute;opacity:0}
+.pcb-h{height:1.5px}.pcb-v{width:1.5px}
+.pcb-cyan{background:rgba(127,217,200,0.85);box-shadow:0 0 4px rgba(127,217,200,0.6),0 0 10px rgba(127,217,200,0.3)}
+.pcb-gold{background:rgba(232,200,120,0.85);box-shadow:0 0 4px rgba(232,200,120,0.6),0 0 10px rgba(232,200,120,0.3)}
+.pcb-violet{background:rgba(196,167,255,0.8);box-shadow:0 0 4px rgba(196,167,255,0.6),0 0 10px rgba(196,167,255,0.3)}
+.pcb-rose{background:rgba(232,140,80,0.8);box-shadow:0 0 4px rgba(232,140,80,0.6),0 0 10px rgba(232,140,80,0.3)}
+.pcb-thin{height:1px!important;width:1px!important}.pcb-thick{height:2px!important;width:2px!important}
+.pcb-node{position:absolute;border-radius:50%;transform:translate(-50%,-50%);opacity:0}
+.pcb-node.cyan{background:var(--cyan);box-shadow:0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.5)}
+.pcb-node.gold{background:var(--gold);box-shadow:0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.5)}
+.pcb-node.violet{background:var(--violet);box-shadow:0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.5)}
+.pcb-node.rose{background:var(--rose);box-shadow:0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.5)}
+@keyframes pcbDraw{0%{opacity:0;transform:scaleX(0)}20%{opacity:1}100%{opacity:0.6;transform:scaleX(1)}}
+@keyframes pcbDrawV{0%{opacity:0;transform:scaleY(0)}20%{opacity:1}100%{opacity:0.6;transform:scaleY(1)}}
+@keyframes nodePop{0%{opacity:0;transform:translate(-50%,-50%) scale(0)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.5)}100%{opacity:0.8;transform:translate(-50%,-50%) scale(1)}}
+.pcb-seg.pcb-h{transform-origin:left center}.pcb-seg.pcb-v{transform-origin:top center}
 </style>
 </head>
 <body>
@@ -252,5 +269,6 @@ lb.addEventListener('click',()=>lb.classList.remove('on'));
   reveals.forEach(function(el){ io.observe(el); });
 })();
 </script>
+<script src="pcb.js"></script>
 </body>
 </html>

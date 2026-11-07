@@ -874,10 +874,11 @@ footer .credit{
 
   // then random ongoing PCB traces
   function schedulePcb(){
-    var delay = 2500 + Math.random() * 3500;
+    var delay = 800 + Math.random() * 1600;
     setTimeout(function(){
       buildPcbTrace();
-      if(Math.random() > 0.5) setTimeout(buildPcbTrace, 300 + Math.random() * 500);
+      if(Math.random() > 0.3) setTimeout(buildPcbTrace, 200 + Math.random() * 400);
+      if(Math.random() > 0.7) setTimeout(buildPcbTrace, 500 + Math.random() * 600);
       schedulePcb();
     }, delay);
   }
