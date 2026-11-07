@@ -139,34 +139,32 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [
-    {cls:'r1', radius:150, count:4},
-    {cls:'r2', radius:300, count:5},
-    {cls:'r3', radius:500, count:6},
-    {cls:'r4', radius:750, count:7},
-    {cls:'r5', radius:1100, count:8}
+    {cls:'r1', radius:150, count:3+Math.floor(Math.random()*3)},
+    {cls:'r2', radius:300, count:3+Math.floor(Math.random()*4)},
+    {cls:'r3', radius:500, count:4+Math.floor(Math.random()*4)},
+    {cls:'r4', radius:750, count:5+Math.floor(Math.random()*4)},
+    {cls:'r5', radius:1100, count:6+Math.floor(Math.random()*4)}
   ];
-  var gemIdx = 0;
   ringDefs.forEach(function(rd){
     var ring = document.createElement('div');
     ring.className = 'ring ' + rd.cls;
     for(var g=0; g<rd.count; g++){
       var gem = document.createElement('div');
-      var type = types[gemIdx % types.length];
-      var color = colors[gemIdx % colors.length];
+      var type = types[Math.floor(Math.random()*types.length)];
+      var color = colors[Math.floor(Math.random()*colors.length)];
       gem.className = 'gem ' + type + ' ' + color;
-      var angle = (360 / rd.count) * g + (gemIdx * 37) % 60;
+      var angle = (360 / rd.count) * g + Math.random()*60;
       var rad = angle * Math.PI / 180;
       gem.style.left = (rd.radius + Math.cos(rad) * rd.radius) + 'px';
       gem.style.top  = (rd.radius + Math.sin(rad) * rd.radius) + 'px';
       var size;
-      if(type === 'gem-dot') size = 6 + (gemIdx % 3) * 2;
-      else if(type === 'gem-circle') size = 14 + (gemIdx % 4) * 3;
-      else { size = 16 + (gemIdx % 3) * 4; gem.style.fontSize = size + 'px'; }
+      if(type === 'gem-dot') size = 5 + Math.floor(Math.random()*5);
+      else if(type === 'gem-circle') size = 10 + Math.floor(Math.random()*12);
+      else { size = 14 + Math.floor(Math.random()*8); gem.style.fontSize = size + 'px'; }
       gem.style.width = size + 'px';
       gem.style.height = size + 'px';
-      gem.style.animationDelay = (2.0 + gemIdx * 0.08) + 's';
+      gem.style.animationDelay = (1.5 + Math.random()*3) + 's';
       ring.appendChild(gem);
-      gemIdx++;
     }
     ringsEl.appendChild(ring);
   });

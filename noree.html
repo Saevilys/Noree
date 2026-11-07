@@ -23,6 +23,7 @@ main{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-in
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
 h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8vw,5rem);line-height:0.95;letter-spacing:-0.02em;margin-bottom:2rem;background:linear-gradient(135deg,#f0eee8 0%,#e8c878 50%,#c4a7ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-img{width:100%;border-radius:6px;border:1px solid var(--glass-border);margin-bottom:3rem;aspect-ratio:16/9;object-fit:cover}
+.tagline{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--gold);letter-spacing:0.04em;margin:0.4rem 0 2rem;text-shadow:0 0 12px rgba(232,200,120,0.3)}
 h2{font-family:var(--serif);font-weight:400;font-size:1.8rem;color:var(--gold);margin-top:3rem;margin-bottom:1rem;letter-spacing:0.01em}
 p{font-size:0.95rem;color:var(--ink-dim);max-width:65ch;margin-bottom:1.2rem}
 blockquote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:1.4rem;line-height:1.4;color:var(--ink);margin:2rem 0;padding-left:1.5rem;border-left:2px solid var(--gold);max-width:60ch}
@@ -114,7 +115,8 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   <a href="index.html" class="back reveal">← retour au portail</a>
   <div class="hero-label reveal">LORE / FONDATION</div>
   <h1 class="reveal">Norée</h1>
-  <img src="img/noree-city.png" alt="La cité de Norée au crépuscule" class="hero-img reveal" loading="lazy">
+  <p class="tagline reveal">La cité de Norée au crépuscule</p>
+  <img src="img/noree-city.png" alt="Vue de la cité de Norée au crépuscule" class="hero-img reveal" loading="lazy">
 
   <h2 class="reveal">L'origine</h2>
   <p class="reveal">Le sol était trop brumeux, trop dangereux. Les premiers habitants ont grimpé. D'abord les falaises, puis les plateaux, puis plus haut encore — là où la brume ne monte pas, là où le ciel est clair et l'air respirable. Norée est née de cette ascension.</p>
@@ -166,34 +168,32 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [
-    {cls:'r1', radius:150, count:4},
-    {cls:'r2', radius:300, count:5},
-    {cls:'r3', radius:500, count:6},
-    {cls:'r4', radius:750, count:7},
-    {cls:'r5', radius:1100, count:8}
+    {cls:'r1', radius:150, count:3+Math.floor(Math.random()*3)},
+    {cls:'r2', radius:300, count:3+Math.floor(Math.random()*4)},
+    {cls:'r3', radius:500, count:4+Math.floor(Math.random()*4)},
+    {cls:'r4', radius:750, count:5+Math.floor(Math.random()*4)},
+    {cls:'r5', radius:1100, count:6+Math.floor(Math.random()*4)}
   ];
-  var gemIdx = 0;
   ringDefs.forEach(function(rd){
     var ring = document.createElement('div');
     ring.className = 'ring ' + rd.cls;
     for(var g=0; g<rd.count; g++){
       var gem = document.createElement('div');
-      var type = types[gemIdx % types.length];
-      var color = colors[gemIdx % colors.length];
+      var type = types[Math.floor(Math.random()*types.length)];
+      var color = colors[Math.floor(Math.random()*colors.length)];
       gem.className = 'gem ' + type + ' ' + color;
-      var angle = (360 / rd.count) * g + (gemIdx * 37) % 60;
+      var angle = (360 / rd.count) * g + Math.random()*60;
       var rad = angle * Math.PI / 180;
       gem.style.left = (rd.radius + Math.cos(rad) * rd.radius) + 'px';
       gem.style.top  = (rd.radius + Math.sin(rad) * rd.radius) + 'px';
       var size;
-      if(type === 'gem-dot') size = 6 + (gemIdx % 3) * 2;
-      else if(type === 'gem-circle') size = 14 + (gemIdx % 4) * 3;
-      else { size = 16 + (gemIdx % 3) * 4; gem.style.fontSize = size + 'px'; }
+      if(type === 'gem-dot') size = 5 + Math.floor(Math.random()*5);
+      else if(type === 'gem-circle') size = 10 + Math.floor(Math.random()*12);
+      else { size = 14 + Math.floor(Math.random()*8); gem.style.fontSize = size + 'px'; }
       gem.style.width = size + 'px';
       gem.style.height = size + 'px';
-      gem.style.animationDelay = (2.0 + gemIdx * 0.08) + 's';
+      gem.style.animationDelay = (1.5 + Math.random()*3) + 's';
       ring.appendChild(gem);
-      gemIdx++;
     }
     ringsEl.appendChild(ring);
   });
