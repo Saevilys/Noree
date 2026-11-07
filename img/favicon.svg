@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <rect width="128" height="128" fill="#0d0d1a" rx="20"/>
-  <g transform="translate(64,62) scale(1.55) translate(-64,-62)">
+  <g transform="translate(64,58) scale(2) translate(-64,-58)">
   <!-- Left dove -->
   <g fill="#6ab0f3">
     <path d="M52 40 C44 38 36 42 32 48 C30 52 32 56 36 57 C34 60 33 64 34 68 L38 66 C40 69 43 70 46 69 L48 72 C50 68 51 64 50 60 C55 59 60 56 62 52 C60 48 56 44 52 40 Z"/>
