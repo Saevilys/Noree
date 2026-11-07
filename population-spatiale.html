@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem}
@@ -35,6 +35,44 @@ p.intro{font-size:0.95rem;color:var(--ink-dim);max-width:55ch;margin-bottom:2rem
 footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
 footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
 @media(max-width:768px){nav ul{display:none}main{padding:3rem 1.2rem}}
+
+/* === full-page orbiting rings with gems === */
+.page-rings{position:fixed;top:50%;left:30%;z-index:0;pointer-events:none;width:0;height:0}
+.page-rings .ring{position:absolute;top:0;left:0;border-radius:50%;transform:translate(-50%,-50%) scale(0);opacity:0;border-style:solid}
+.page-rings .ring.r1{width:300px;height:300px;border-width:1.5px;border-color:rgba(232,200,120,0.5);box-shadow:0 0 30px rgba(232,200,120,0.2),inset 0 0 20px rgba(232,200,120,0.08)}
+.page-rings .ring.r2{width:600px;height:600px;border-width:1.5px;border-color:rgba(127,217,200,0.35);box-shadow:0 0 30px rgba(127,217,200,0.12)}
+.page-rings .ring.r3{width:1000px;height:1000px;border-width:1px;border-color:rgba(196,167,255,0.28);box-shadow:0 0 30px rgba(196,167,255,0.08)}
+.page-rings .ring.r4{width:1500px;height:1500px;border-width:1px;border-color:rgba(232,140,80,0.2);box-shadow:0 0 30px rgba(232,140,80,0.06)}
+.page-rings .ring.r5{width:2200px;height:2200px;border-width:1px;border-color:rgba(196,167,255,0.12)}
+@keyframes ringGrow{0%{transform:translate(-50%,-50%) scale(0);opacity:0}15%{opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+@keyframes ringRotateCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(360deg)}}
+@keyframes ringRotateCCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(-360deg)}}
+.page-rings .ring.r1{animation:ringGrow 1s ease 0.8s forwards,ringRotateCW 30s linear 1.8s infinite}
+.page-rings .ring.r2{animation:ringGrow 1s ease 1.0s forwards,ringRotateCCW 50s linear 2.0s infinite}
+.page-rings .ring.r3{animation:ringGrow 1s ease 1.2s forwards,ringRotateCW 70s linear 2.2s infinite}
+.page-rings .ring.r4{animation:ringGrow 1s ease 1.4s forwards,ringRotateCCW 90s linear 2.4s infinite}
+.page-rings .ring.r5{animation:ringGrow 1s ease 1.6s forwards,ringRotateCW 120s linear 2.6s infinite}
+.page-rings .gem{position:absolute;transform:translate(-50%,-50%);opacity:0;animation:gemFade 0.6s ease forwards}
+@keyframes gemFade{to{opacity:1}}
+.gem-dot{border-radius:50%}
+.gem-dot.gem-gold{background:var(--gold);box-shadow:0 0 10px var(--gold),0 0 20px rgba(232,200,120,0.6)}
+.gem-dot.gem-cyan{background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 20px rgba(127,217,200,0.6)}
+.gem-dot.gem-violet{background:var(--violet);box-shadow:0 0 10px var(--violet),0 0 20px rgba(196,167,255,0.6)}
+.gem-dot.gem-rose{background:var(--rose);box-shadow:0 0 10px var(--rose),0 0 20px rgba(232,140,80,0.5)}
+.gem-circle{border-radius:50%;border-style:solid;border-width:1.5px}
+.gem-circle.gem-gold{background:rgba(232,200,120,0.1);border-color:var(--gold);box-shadow:0 0 12px var(--gold),0 0 24px rgba(232,200,120,0.4),inset 0 0 6px rgba(232,200,120,0.3)}
+.gem-circle.gem-cyan{background:rgba(127,217,200,0.08);border-color:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 24px rgba(127,217,200,0.4),inset 0 0 6px rgba(127,217,200,0.3)}
+.gem-circle.gem-violet{background:rgba(196,167,255,0.08);border-color:var(--violet);box-shadow:0 0 12px var(--violet),0 0 24px rgba(196,167,255,0.4),inset 0 0 6px rgba(196,167,255,0.3)}
+.gem-circle.gem-rose{background:rgba(232,140,80,0.08);border-color:var(--rose);box-shadow:0 0 12px var(--rose),0 0 24px rgba(232,140,80,0.3),inset 0 0 6px rgba(232,140,80,0.3)}
+.gem-star{display:flex;align-items:center;justify-content:center;line-height:1}
+.gem-star::before{content:'\2726';font-family:serif}
+.gem-star.gem-gold{color:var(--gold);text-shadow:0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.6)}
+.gem-star.gem-cyan{color:var(--cyan);text-shadow:0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.6)}
+.gem-star.gem-violet{color:var(--violet);text-shadow:0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.6)}
+.gem-star.gem-rose{color:var(--rose);text-shadow:0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.5)}
+@keyframes fadeIn{to{opacity:1}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -80,5 +118,61 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 <footer>
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
+
+<script>
+// === Orbiting rings + gems (no flash, no letters — those are index-only) ===
+(function(){
+  var ringsEl = document.createElement('div');
+  ringsEl.className = 'page-rings';
+  var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
+  var types = ['gem-dot','gem-circle','gem-star'];
+  var ringDefs = [
+    {cls:'r1', radius:150, count:4},
+    {cls:'r2', radius:300, count:5},
+    {cls:'r3', radius:500, count:6},
+    {cls:'r4', radius:750, count:7},
+    {cls:'r5', radius:1100, count:8}
+  ];
+  var gemIdx = 0;
+  ringDefs.forEach(function(rd){
+    var ring = document.createElement('div');
+    ring.className = 'ring ' + rd.cls;
+    for(var g=0; g<rd.count; g++){
+      var gem = document.createElement('div');
+      var type = types[gemIdx % types.length];
+      var color = colors[gemIdx % colors.length];
+      gem.className = 'gem ' + type + ' ' + color;
+      var angle = (360 / rd.count) * g + (gemIdx * 37) % 60;
+      var rad = angle * Math.PI / 180;
+      gem.style.left = (rd.radius + Math.cos(rad) * rd.radius) + 'px';
+      gem.style.top  = (rd.radius + Math.sin(rad) * rd.radius) + 'px';
+      var size;
+      if(type === 'gem-dot') size = 6 + (gemIdx % 3) * 2;
+      else if(type === 'gem-circle') size = 14 + (gemIdx % 4) * 3;
+      else { size = 16 + (gemIdx % 3) * 4; gem.style.fontSize = size + 'px'; }
+      gem.style.width = size + 'px';
+      gem.style.height = size + 'px';
+      gem.style.animationDelay = (2.0 + gemIdx * 0.08) + 's';
+      ring.appendChild(gem);
+      gemIdx++;
+    }
+    ringsEl.appendChild(ring);
+  });
+  document.body.appendChild(ringsEl);
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.transitionDelay = (Math.random() * 0.15) + 's';
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -60px 0px'});
+  reveals.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
