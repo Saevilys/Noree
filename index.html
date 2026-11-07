@@ -704,6 +704,8 @@ footer .credit{
   // --- full-page rings with varied gems ---
   var ringsEl = document.createElement('div');
   ringsEl.className = 'page-rings';
+  var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if(navEntry && navEntry.type === 'reload'){ sessionStorage.removeItem('noreeRingsReady'); }
   if(sessionStorage.getItem('noreeRingsReady')){ ringsEl.classList.add('instant'); }
   else { sessionStorage.setItem('noreeRingsReady','1'); }
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
@@ -851,11 +853,13 @@ footer .credit{
       myEls.forEach(function(el){
         var compOpacity = window.getComputedStyle(el).opacity;
         el.style.animation = 'none';
-        void el.offsetWidth;
         el.style.opacity = compOpacity;
-        el.style.transition = 'opacity 1.5s ease';
-        void el.offsetWidth;
-        el.style.opacity = '0';
+        requestAnimationFrame(function(){
+          el.style.transition = 'opacity 1.5s ease';
+          requestAnimationFrame(function(){
+            el.style.opacity = '0';
+          });
+        });
       });
       setTimeout(function(){ myEls.forEach(function(el){ el.remove(); }); }, 1600);
     }, (segDelay + 1.5) * 1000);
