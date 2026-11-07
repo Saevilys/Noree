@@ -103,7 +103,7 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 .hero{
   display:grid;grid-template-columns:1fr 1fr;gap:4rem;
   align-items:start;margin-bottom:7rem;
-  position:relative;overflow:hidden;
+  position:relative;
 }
 .hero-label{
   font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;
@@ -120,12 +120,12 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 }
 .cross-flash::before{
   content:'';position:absolute;top:50%;left:50%;
-  width:360px;height:6px;
+  width:800px;height:10px;filter:brightness(1.6);
   transform:translate(-50%,-50%);
 }
 .cross-flash::after{
   content:'';position:absolute;top:50%;left:50%;
-  width:6px;height:360px;
+  width:10px;height:800px;filter:brightness(1.6);
   transform:translate(-50%,-50%);
 }
 /* pale cyan */
@@ -162,9 +162,9 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 }
 @keyframes crossBurst{
   0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(var(--rot))}
-  8%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--rot))}
-  40%{opacity:0.4;transform:translate(-50%,-50%) scale(1.6) rotate(var(--rot))}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(2.2) rotate(var(--rot))}
+  6%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--rot))}
+  50%{opacity:0.5;transform:translate(-50%,-50%) scale(1.8) rotate(var(--rot))}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(3) rotate(var(--rot))}
 }
 .page-dim{
   position:fixed;inset:0;z-index:1;pointer-events:none;
@@ -290,11 +290,11 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 }
 @keyframes ringRotateCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(360deg)}}
 @keyframes ringRotateCCW{from{transform:translate(-50%,-50%) scale(1) rotate(0)}to{transform:translate(-50%,-50%) scale(1) rotate(-360deg)}}
-.page-rings .ring.r1{animation:ringGrow 1s ease 1.5s forwards,ringRotateCW 30s linear 2.5s infinite}
-.page-rings .ring.r2{animation:ringGrow 1s ease 1.7s forwards,ringRotateCCW 50s linear 2.7s infinite}
-.page-rings .ring.r3{animation:ringGrow 1s ease 1.9s forwards,ringRotateCW 70s linear 2.9s infinite}
-.page-rings .ring.r4{animation:ringGrow 1s ease 2.1s forwards,ringRotateCCW 90s linear 3.1s infinite}
-.page-rings .ring.r5{animation:ringGrow 1s ease 2.3s forwards,ringRotateCW 120s linear 3.3s infinite}
+.page-rings .ring.r1{animation:ringGrow 1s ease 0.8s forwards,ringRotateCW 30s linear 1.8s infinite}
+.page-rings .ring.r2{animation:ringGrow 1s ease 1.0s forwards,ringRotateCCW 50s linear 2.0s infinite}
+.page-rings .ring.r3{animation:ringGrow 1s ease 1.2s forwards,ringRotateCW 70s linear 2.2s infinite}
+.page-rings .ring.r4{animation:ringGrow 1s ease 1.4s forwards,ringRotateCCW 90s linear 2.4s infinite}
+.page-rings .ring.r5{animation:ringGrow 1s ease 1.6s forwards,ringRotateCW 120s linear 2.6s infinite}
 
 /* gems on rings — varied: dots, circles, stars */
 .page-rings .gem{
@@ -316,25 +316,26 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 .gem-circle.gem-cyan{background:rgba(127,217,200,0.08);border-color:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 24px rgba(127,217,200,0.4),inset 0 0 6px rgba(127,217,200,0.3)}
 .gem-circle.gem-violet{background:rgba(196,167,255,0.08);border-color:var(--violet);box-shadow:0 0 12px var(--violet),0 0 24px rgba(196,167,255,0.4),inset 0 0 6px rgba(196,167,255,0.3)}
 .gem-circle.gem-rose{background:rgba(232,140,80,0.08);border-color:var(--rose);box-shadow:0 0 12px var(--rose),0 0 24px rgba(232,140,80,0.3),inset 0 0 6px rgba(232,140,80,0.3)}
-/* type: pixel-art 4-point star — box-shadow pixels */
-.gem-star{width:3px;height:3px;background:transparent}
-.gem-star.gem-gold{background:var(--gold);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.5)}
-.gem-star.gem-cyan{background:var(--cyan);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.5)}
-.gem-star.gem-violet{background:var(--violet);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.5)}
-.gem-star.gem-rose{background:var(--rose);box-shadow:-3px 0,3px 0,0 -3px,0 3px,-1px -1px,-2px -1px,1px -1px,2px -1px,-1px 1px,-2px 1px,1px 1px,2px 1px,-1px -2px,1px -2px,-1px 2px,1px 2px,0 -4px,0 4px,-4px 0,4px 0,0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.4)}
+/* type: gemini-style 4-point star — ✦ unicode */
+.gem-star{display:flex;align-items:center;justify-content:center;line-height:1}
+.gem-star::before{content:'✦';font-family:serif}
+.gem-star.gem-gold{color:var(--gold);text-shadow:0 0 8px var(--gold),0 0 16px rgba(232,200,120,0.6)}
+.gem-star.gem-cyan{color:var(--cyan);text-shadow:0 0 8px var(--cyan),0 0 16px rgba(127,217,200,0.6)}
+.gem-star.gem-violet{color:var(--violet);text-shadow:0 0 8px var(--violet),0 0 16px rgba(196,167,255,0.6)}
+.gem-star.gem-rose{color:var(--rose);text-shadow:0 0 8px var(--rose),0 0 16px rgba(232,140,80,0.5)}
 
 .hero .tagline{
   font-size:0.95rem;color:var(--ink-dim);max-width:32ch;margin-bottom:2rem;
-  opacity:0;animation:fadeIn 0.8s ease 3.8s forwards;
+  opacity:0;animation:fadeIn 0.8s ease 2.5s forwards;
 }
-.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;opacity:0;animation:fadeIn 0.8s ease 4.1s forwards}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;opacity:0;animation:fadeIn 0.8s ease 2.8s forwards}
 .hero-tags span{
   font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
   text-transform:uppercase;padding:0.3rem 0.7rem;
   border:1px solid var(--glass-border);border-radius:20px;
   color:var(--ink-dim);background:var(--glass);
 }
-.hero-portrait{position:relative;opacity:0;animation:fadeIn 1s ease 3.6s forwards}
+.hero-portrait{position:relative;opacity:0;animation:fadeIn 1s ease 2.3s forwards}
 .hero-portrait .frame{
   border:1px solid var(--glass-border);border-radius:4px;overflow:hidden;
   aspect-ratio:4/5;position:relative;
@@ -352,7 +353,7 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
   font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--ink-faint);
 }
-.hero-meta{margin-top:2rem;display:grid;gap:0.8rem;opacity:0;animation:fadeIn 0.8s ease 4.5s forwards}
+.hero-meta{margin-top:2rem;display:grid;gap:0.8rem;opacity:0;animation:fadeIn 0.8s ease 3.2s forwards}
 .hero-meta .row{
   display:grid;grid-template-columns:100px 1fr;gap:1rem;align-items:baseline;
   font-size:0.8rem;
@@ -721,7 +722,7 @@ footer .credit{
       var size;
       if(type === 'gem-dot') size = 6 + (gemIdx % 3) * 2;
       else if(type === 'gem-circle') size = 14 + (gemIdx % 4) * 3;
-      else size = 3;
+      else { size = 16 + (gemIdx % 3) * 4; gem.style.fontSize = size + 'px'; }
       gem.style.width = size + 'px';
       gem.style.height = size + 'px';
       gem.style.animationDelay = (2.0 + gemIdx * 0.08) + 's';
@@ -734,8 +735,8 @@ footer .credit{
 
   // --- letters : flash + light follows each letter ---
   var letters = 'NORÉE'.split('');
-  var baseDelay = 0.4;
-  var stepDelay = 0.4;
+  var baseDelay = 0.2;
+  var stepDelay = 0.15;
   letters.forEach(function(l, i){
     var wrap = document.createElement('span');
     wrap.className = 'lw';
@@ -743,7 +744,7 @@ footer .credit{
     var letter = document.createElement('span');
     letter.className = 'letter';
     letter.textContent = l;
-    letter.style.animation = 'letterFlash 1.4s cubic-bezier(0.4,0,0.2,1) forwards';
+    letter.style.animation = 'letterFlash 1.0s cubic-bezier(0.4,0,0.2,1) forwards';
     letter.style.animationDelay = (baseDelay + i * stepDelay) + 's';
 
     // cross-flash : pale color per letter, slight random rotation
@@ -849,7 +850,7 @@ footer .credit{
   }
 
   // first wave : right after letters appear (around 2.8s)
-  var firstWave = 2.8;
+  var firstWave = 1.8;
   for(var w = 0; w < 4; w++){
     setTimeout(buildPcbTrace, (firstWave + w * 0.4) * 1000);
   }
