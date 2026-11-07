@@ -208,8 +208,8 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 
 /* === PCB circuit traces — right-angle segments + nodes, crossing through the logo === */
 .circuit-layer{
-  position:absolute;top:-20%;left:-20%;right:-20%;bottom:-20%;
-  pointer-events:none;overflow:visible;z-index:6;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  pointer-events:none;overflow:visible;z-index:3;
 }
 .pcb-seg{
   position:absolute;opacity:0;
@@ -770,10 +770,9 @@ footer .credit{
   });
 
   // --- circuit traces : sweep across the title after letters appear, then randomly ---
-  var titleEl = document.querySelector('.hero h1');
   var circuitLayer = document.createElement('div');
   circuitLayer.className = 'circuit-layer';
-  titleEl.appendChild(circuitLayer);
+  document.body.appendChild(circuitLayer);
 
   // --- PCB circuit traces : right-angle paths that cross through the logo ---
   var pcbColors = ['cyan', 'gold', 'violet', 'rose'];
@@ -784,22 +783,22 @@ footer .credit{
     var thick = (pcbIdx % 3 === 0) ? ' pcb-thick' : (pcbIdx % 3 === 1 ? ' pcb-thin' : '');
     var cls = 'pcb-' + color + thick;
 
-    // start position : left edge, random vertical within the title area
-    var startY = 15 + Math.random() * 70; // % of circuit-layer height
-    var startX = -5; // start slightly left
-    var segs = []; // {type:'h'|'v', len, x, y}
+    // start position : anywhere on the page
+    var pw = window.innerWidth;
+    var ph = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    var startX = Math.random() * pw * 0.8;
+    var startY = Math.random() * ph;
+    var segs = [];
     var cx = startX, cy = startY;
-    var numSegs = 2 + Math.floor(Math.random() * 2); // 2-3 segments, shorter
+    var numSegs = 2 + Math.floor(Math.random() * 2);
 
     for(var s = 0; s < numSegs; s++){
       if(s < numSegs - 1 && Math.random() > 0.5){
-        // vertical segment — shorter
-        var vlen = (Math.random() > 0.5 ? 1 : -1) * (5 + Math.random() * 12);
+        var vlen = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 80);
         segs.push({type:'v', len:vlen, x:cx, y:cy});
         cy += vlen;
       }
-      // horizontal segment — shorter
-      var hlen = 8 + Math.random() * 18;
+      var hlen = 50 + Math.random() * 150;
       segs.push({type:'h', len:hlen, x:cx, y:cy});
       cx += hlen;
     }
@@ -809,14 +808,14 @@ footer .credit{
     segs.forEach(function(seg){
       var el = document.createElement('div');
       el.className = 'pcb-seg ' + (seg.type === 'h' ? 'pcb-h ' : 'pcb-v ') + cls;
-      el.style.left = seg.x + '%';
-      el.style.top = seg.y + '%';
+      el.style.left = seg.x + 'px';
+      el.style.top = seg.y + 'px';
       if(seg.type === 'h'){
-        el.style.width = seg.len + '%';
+        el.style.width = seg.len + 'px';
         el.style.animation = 'pcbDraw 0.5s ease forwards';
       } else {
-        el.style.height = Math.abs(seg.len) + '%';
-        if(seg.len < 0) el.style.top = (seg.y + seg.len) + '%';
+        el.style.height = Math.abs(seg.len) + 'px';
+        if(seg.len < 0) el.style.top = (seg.y + seg.len) + 'px';
         el.style.animation = 'pcbDrawV 0.5s ease forwards';
       }
       el.style.animationDelay = segDelay + 's';
@@ -829,8 +828,8 @@ footer .credit{
     [{x:startX, y:startY}, {x:cx, y:cy}].forEach(function(n, ni){
       var node = document.createElement('div');
       node.className = 'pcb-node ' + color;
-      node.style.left = n.x + '%';
-      node.style.top = n.y + '%';
+      node.style.left = n.x + 'px';
+      node.style.top = n.y + 'px';
       var sz = 5 + Math.random() * 4;
       node.style.width = sz + 'px';
       node.style.height = sz + 'px';

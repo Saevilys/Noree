@@ -172,7 +172,8 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   });
   document.body.appendChild(ringsEl);
 
-  // Reveal on scroll
+  // Reveal on scroll — add reveal to content containers that don't have it yet
+  document.querySelectorAll('.pop-card').forEach(function(el){ el.classList.add('reveal'); });
   var reveals = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){

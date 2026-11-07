@@ -237,7 +237,8 @@ lb.addEventListener('click',()=>lb.classList.remove('on'));
   });
   document.body.appendChild(ringsEl);
 
-  // Reveal on scroll
+  // Reveal on scroll — add reveal to content containers that don't have it yet
+  document.querySelectorAll('.card, .stat, .bd-wrap, .bd-note, .hero img').forEach(function(el){ el.classList.add('reveal'); });
   var reveals = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
