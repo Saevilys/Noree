@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .stub{text-align:center;padding:4rem 2rem}
@@ -81,16 +81,16 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="population-spatiale.html" class="back">← stations spatiales</a>
-  <div class="stub">
+  <a href="population-spatiale.html" class="back reveal">← stations spatiales</a>
+  <div class="stub reveal">
     <div class="label">STATION ORBITALE · 02</div>
-    <h1>Station Beta</h1>
+    <h1 class="reveal">Station Beta</h1>
     <div class="planet">ORBITE MOYENNE · NORÉE</div>
     <p class="desc">Deuxième station orbitale de Norée. En construction. Les détails arriveront quand la cité sera prête à lever les yeux.</p>
     <span class="pending">⊕ EN ATTENTE</span>
   </div>
 </main>
-<footer>
+<footer class="reveal">
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
 

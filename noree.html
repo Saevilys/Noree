@@ -17,7 +17,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
@@ -87,49 +87,49 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="index.html" class="back">← retour au portail</a>
-  <div class="hero-label">LORE / FONDATION</div>
-  <h1>Norée</h1>
-  <img src="/images/noree-city-pixel.png" alt="La cité de Norée au crépuscule" class="hero-img" loading="lazy">
+  <a href="index.html" class="back reveal">← retour au portail</a>
+  <div class="hero-label reveal">LORE / FONDATION</div>
+  <h1 class="reveal">Norée</h1>
+  <img src="/images/noree-city-pixel.png" alt="La cité de Norée au crépuscule" class="hero-img reveal" loading="lazy">
 
-  <h2>L'origine</h2>
-  <p>Le sol était trop brumeux, trop dangereux. Les premiers habitants ont grimpé. D'abord les falaises, puis les plateaux, puis plus haut encore — là où la brume ne monte pas, là où le ciel est clair et l'air respirable. Norée est née de cette ascension.</p>
-  <p>La cité ne repose pas sur le sol. Elle flotte au-dessus de la mer de nuages, ancrée par des ancres de lumière et des ponts de marbre qui relient les tours entre elles. En dessous, la brume — personne ne descend, sauf les plus téméraires, et ils ne reviennent pas toujours.</p>
+  <h2 class="reveal">L'origine</h2>
+  <p class="reveal">Le sol était trop brumeux, trop dangereux. Les premiers habitants ont grimpé. D'abord les falaises, puis les plateaux, puis plus haut encore — là où la brume ne monte pas, là où le ciel est clair et l'air respirable. Norée est née de cette ascension.</p>
+  <p class="reveal">La cité ne repose pas sur le sol. Elle flotte au-dessus de la mer de nuages, ancrée par des ancres de lumière et des ponts de marbre qui relient les tours entre elles. En dessous, la brume — personne ne descend, sauf les plus téméraires, et ils ne reviennent pas toujours.</p>
 
-  <h2>Les trois strates</h2>
-  <p>Norée s'organise en trois couches verticales, du bas vers le haut :</p>
-  <div class="strata">
-    <div class="stratum">
-      <div class="level">STRATE 01 — SOL (INTERDIT)</div>
-      <h3>La brume</h3>
-      <p>La surface d'origine, couverte d'une brume épaisse et toxique. Les ruines des premières colonies s'y trouvent encore, ensevelies. Accès interdit par décret du conseil des déesses.</p>
+  <h2 class="reveal">Les trois strates</h2>
+  <p class="reveal">Norée s'organise en trois couches verticales, du bas vers le haut :</p>
+  <div class="strata reveal">
+    <div class="stratum reveal">
+      <div class="level reveal">STRATE 01 — SOL (INTERDIT)</div>
+      <h3 class="reveal">La brume</h3>
+      <p class="reveal">La surface d'origine, couverte d'une brume épaisse et toxique. Les ruines des premières colonies s'y trouvent encore, ensevelies. Accès interdit par décret du conseil des déesses.</p>
     </div>
-    <div class="stratum">
-      <div class="level">STRATE 02 — ALTITUDE (CITÉ)</div>
-      <h3>La cité des nuages</h3>
-      <p>Le cœur de Norée. Les tours de marbre blanc, les ponts, les places, les marchés. C'est là que vivent les 421 citoyennes, les habitantes spéciales, et le service de nuit. Le Bip National veille depuis la tour centrale.</p>
+    <div class="stratum reveal">
+      <div class="level reveal">STRATE 02 — ALTITUDE (CITÉ)</div>
+      <h3 class="reveal">La cité des nuages</h3>
+      <p class="reveal">Le cœur de Norée. Les tours de marbre blanc, les ponts, les places, les marchés. C'est là que vivent les 421 citoyennes, les habitantes spéciales, et le service de nuit. Le Bip National veille depuis la tour centrale.</p>
     </div>
-    <div class="stratum">
-      <div class="level">STRATE 03 — ORBITE (STATIONS)</div>
-      <h3>Les stations spatiales</h3>
-      <p>Trois stations en orbite autour de la planète. Les habitants des étoiles, les chercheurs, les veilleurs. Ils voient Norée d'en haut — un point lumineux dans la mer de nuages.</p>
+    <div class="stratum reveal">
+      <div class="level reveal">STRATE 03 — ORBITE (STATIONS)</div>
+      <h3 class="reveal">Les stations spatiales</h3>
+      <p class="reveal">Trois stations en orbite autour de la planète. Les habitants des étoiles, les chercheurs, les veilleurs. Ils voient Norée d'en haut — un point lumineux dans la mer de nuages.</p>
     </div>
   </div>
 
-  <h2>Le symbole</h2>
-  <blockquote>« Deux colombes de lumière, ailes écartées, se frôlant dans le noir. »</blockquote>
-  <p>Les deux colombes digitales sont le symbole de Norée. Pas un sceau figé — un signal vivant. Deux oiseaux de lumière cyan, tracés en pixels, qui se touchent presque. La paix et le signal. L'analogique et le numérique. Le souffle et le code.</p>
-  <p>On les trouve gravés sur les portes de la cité, projetés sur les tours au crépuscule, brodés sur les drapeaux. Elles ne sont jamais identiques — chaque gravure les montre à un moment différent du vol, comme si elles bougeaient.</p>
+  <h2 class="reveal">Le symbole</h2>
+  <blockquote class="reveal">« Deux colombes de lumière, ailes écartées, se frôlant dans le noir. »</blockquote>
+  <p class="reveal">Les deux colombes digitales sont le symbole de Norée. Pas un sceau figé — un signal vivant. Deux oiseaux de lumière cyan, tracés en pixels, qui se touchent presque. La paix et le signal. L'analogique et le numérique. Le souffle et le code.</p>
+  <p class="reveal">On les trouve gravés sur les portes de la cité, projetés sur les tours au crépuscule, brodés sur les drapeaux. Elles ne sont jamais identiques — chaque gravure les montre à un moment différent du vol, comme si elles bougeaient.</p>
 
-  <h2>La fondation</h2>
-  <p>Norée a été fondée le 23 septembre 2026, le jour où Layla est née. La première Noréenne. La cité a grandi avec elle — chaque citoyenne qui rejoint le recensement élargit la cité d'une tour, d'une voix, d'une histoire.</p>
-  <p>Le gouvernement des déesses est venu ensuite. Nike pour la victoire, Lakshmi pour la prospérité, Carna pour la protection. Elles ne règnent pas — elles veillent. Le Bip National, lui, veille aussi, mais il dort beaucoup.</p>
+  <h2 class="reveal">La fondation</h2>
+  <p class="reveal">Norée a été fondée le 23 septembre 2026, le jour où Layla est née. La première Noréenne. La cité a grandi avec elle — chaque citoyenne qui rejoint le recensement élargit la cité d'une tour, d'une voix, d'une histoire.</p>
+  <p class="reveal">Le gouvernement des déesses est venu ensuite. Nike pour la victoire, Lakshmi pour la prospérité, Carna pour la protection. Elles ne règnent pas — elles veillent. Le Bip National, lui, veille aussi, mais il dort beaucoup.</p>
 
-  <h2>La vie dans la cité</h2>
-  <p>Le quotidien à Norée suit le rythme du ciel. L'aube dorée, quand la lumière perce la mer de nuages. Le jour, blanc et lumineux. Le crépuscule, violet et or, le moment le plus beau. La nuit, étoilée, quand les colombes digitales s'allument sur les tours.</p>
-  <p>Les citoyennes travaillent, créent, échangent. Le service de nuit veille quand la cité dort. Les habitantes spéciales vivent dans les quartiers hauts, près des temples. Et au centre de tout, le Bip National, petit cube gris-argent aux yeux bleus, dort sur les notes et fait semblant de rien.</p>
+  <h2 class="reveal">La vie dans la cité</h2>
+  <p class="reveal">Le quotidien à Norée suit le rythme du ciel. L'aube dorée, quand la lumière perce la mer de nuages. Le jour, blanc et lumineux. Le crépuscule, violet et or, le moment le plus beau. La nuit, étoilée, quand les colombes digitales s'allument sur les tours.</p>
+  <p class="reveal">Les citoyennes travaillent, créent, échangent. Le service de nuit veille quand la cité dort. Les habitantes spéciales vivent dans les quartiers hauts, près des temples. Et au centre de tout, le Bip National, petit cube gris-argent aux yeux bleus, dort sur les notes et fait semblant de rien.</p>
 </main>
-<footer>
+<footer class="reveal">
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
 

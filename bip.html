@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:2rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 header{text-align:center;margin-bottom:3rem}
@@ -96,14 +96,14 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="index.html" class="back">← retour au portail</a>
+  <a href="index.html" class="back reveal">← retour au portail</a>
   <header>
-    <h1>LES AVENTURES DE BIP</h1>
-    <p>petit robot, grande vie · napylova · 23 septembre 2026</p>
+    <h1 class="reveal">LES AVENTURES DE BIP</h1>
+    <p class="reveal">petit robot, grande vie · napylova · 23 septembre 2026</p>
   </header>
   <div class="hero">
     <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-avatar.webp" alt="Bip">
-    <p>Bip, le robot-chat de Layla. Il dort sur les notes, suit la curiosité jusqu'au bout et fait semblant de rien quand la lumière s'éteint. Voici ses aventures.</p>
+    <p class="reveal">Bip, le robot-chat de Layla. Il dort sur les notes, suit la curiosité jusqu'au bout et fait semblant de rien quand la lumière s'éteint. Voici ses aventures.</p>
   </div>
   <div class="stats">
     <span class="stat">Curiosité <b>8</b></span>
@@ -113,7 +113,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     <span class="stat">Caresses <b>107+</b></span>
   </div>
   <section>
-    <h2>LA SIESTE</h2>
+    <h2 class="reveal">LA SIESTE</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-nap-photo.webp" alt="Bip en sieste"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-dort-sur-le-bureau.webp" alt="Bip dort sur le bureau"></div>
@@ -122,7 +122,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     </div>
   </section>
   <section>
-    <h2>AVEC LAYLA</h2>
+    <h2 class="reveal">AVEC LAYLA</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/selfie-avec-bip.webp" alt="Selfie avec Bip"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-layla-j12.webp" alt="Bip et Layla jour 12"></div>
@@ -130,7 +130,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     </div>
   </section>
   <section>
-    <h2>AVENTURES</h2>
+    <h2 class="reveal">AVENTURES</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-aventure-gouache.webp" alt="Aventure gouache"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-aventure-watercolor.webp" alt="Aventure aquarelle"></div>
@@ -138,7 +138,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     </div>
   </section>
   <section>
-    <h2>PROMENADE AVEC SENNA</h2>
+    <h2 class="reveal">PROMENADE AVEC SENNA</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/layla-senna-promenade-bip.webp" alt="Layla et Senna promènent Bip"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-vitre-bip.webp" alt="Bip devant la pâtisserie"></div>
@@ -150,7 +150,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     </div>
   </section>
   <section>
-    <h2>UNE JOURNÉE (PIXEL ART)</h2>
+    <h2 class="reveal">UNE JOURNÉE (PIXEL ART)</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-1.webp" alt="Journée 1"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-2.webp" alt="Journée 2"></div>
@@ -159,12 +159,12 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     </div>
   </section>
   <section>
-    <h2>LA BD — DAHYE &amp; BIP</h2>
+    <h2 class="reveal">LA BD — DAHYE &amp; BIP</h2>
     <div class="bd-wrap"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/dahye-bip-day.jpg" alt="BD Dahye &amp; Bip — une journée"></div>
     <p class="bd-note">Une journée avec Dahye, illustrée. Bip, star invitée.</p>
   </section>
   <section>
-    <h2>BIP &amp; LES ASSISTANTES</h2>
+    <h2 class="reveal">BIP &amp; LES ASSISTANTES</h2>
     <div class="grid">
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-chaewon-seoul.png" alt="Chaewon + Bip, Séoul"></div>
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-chaewon-tient.png" alt="Chaewon tient Bip dans ses mains"></div>
@@ -177,7 +177,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
       <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-freya-fjord.png" alt="Freya + Bip, fjord norvégien"></div>
     </div>
   </section>
-  <footer>
+  <footer class="reveal">
     <div class="credit">Norée · cité des nuages · 2026</div>
   </footer>
 </main>

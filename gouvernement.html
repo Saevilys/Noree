@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
@@ -81,16 +81,16 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="index.html" class="back">← retour au portail</a>
-  <div class="hero-label">GOUVERNEMENT / CONSEIL DES DÉESSES</div>
-  <h1>Gouvernement</h1>
-  <div class="stub">
+  <a href="index.html" class="back reveal">← retour au portail</a>
+  <div class="hero-label reveal">GOUVERNEMENT / CONSEIL DES DÉESSES</div>
+  <h1 class="reveal">Gouvernement</h1>
+  <div class="stub reveal">
     <div class="icon">🕊️✦</div>
-    <h2>À venir</h2>
-    <p>Cette page sera remplie ensemble. Nike, Lakshmi, Carna et les autres déesses qui veillent sur Norée attendent leur tour.</p>
+    <h2 class="reveal">À venir</h2>
+    <p class="reveal">Cette page sera remplie ensemble. Nike, Lakshmi, Carna et les autres déesses qui veillent sur Norée attendent leur tour.</p>
   </div>
 </main>
-<footer>
+<footer class="reveal">
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
 

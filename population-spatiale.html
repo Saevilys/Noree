@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem}
@@ -88,34 +88,34 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="index.html" class="back">← retour au portail</a>
-  <div class="hero-label">POPULATION / TERRITOIRE 02</div>
-  <h1>Population spatiale</h1>
+  <a href="index.html" class="back reveal">← retour au portail</a>
+  <div class="hero-label reveal">POPULATION / TERRITOIRE 02</div>
+  <h1 class="reveal">Population spatiale</h1>
   <p class="intro">Les habitants des étoiles. Trois stations en orbite, trois communautés, un même ciel. De là-haut, Norée n'est qu'un point lumineux dans la mer de nuages.</p>
-  <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-stations.png" alt="Les stations spatiales en orbite" class="hero-img" loading="lazy">
+  <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-stations.png" alt="Les stations spatiales en orbite" class="hero-img reveal" loading="lazy">
 
   <div class="sta-grid">
     <a href="station-alpha.html" class="sta-card">
       <span class="tag">STATION 01</span>
-      <h3>Station Alpha</h3>
-      <p>La plus ancienne des trois. Point d'ancrage entre la cité et l'espace. Docking, communication, observation.</p>
+      <h3 class="reveal">Station Alpha</h3>
+      <p class="reveal">La plus ancienne des trois. Point d'ancrage entre la cité et l'espace. Docking, communication, observation.</p>
       <span class="enter">visiter la station →</span>
     </a>
     <a href="station-beta.html" class="sta-card">
       <span class="tag">STATION 02</span>
-      <h3>Station Beta</h3>
-      <p>Recherche et développement. Les laboratoires de la frontière. Ce qui se passe ici ne descend pas toujours.</p>
+      <h3 class="reveal">Station Beta</h3>
+      <p class="reveal">Recherche et développement. Les laboratoires de la frontière. Ce qui se passe ici ne descend pas toujours.</p>
       <span class="enter">visiter la station →</span>
     </a>
     <a href="station-gamma.html" class="sta-card">
       <span class="tag">STATION 03</span>
-      <h3>Station Gamma</h3>
-      <p>La plus récente, la plus loin. Veilleurs et pionniers. Ils voient ce que personne d'autre ne voit.</p>
+      <h3 class="reveal">Station Gamma</h3>
+      <p class="reveal">La plus récente, la plus loin. Veilleurs et pionniers. Ils voient ce que personne d'autre ne voit.</p>
       <span class="enter">visiter la station →</span>
     </a>
   </div>
 </main>
-<footer>
+<footer class="reveal">
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
 

@@ -16,7 +16,7 @@ nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;col
 nav ul{display:flex;gap:1.8rem;list-style:none}
 nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
 nav a:hover{color:var(--gold)}
-main{opacity:0;animation:fadeIn 0.8s ease 0.3s forwards;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
 .back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
 .back:hover{color:var(--gold)}
 .hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
@@ -92,34 +92,34 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   </ul>
 </nav>
 <main>
-  <a href="index.html" class="back">← retour au portail</a>
-  <div class="hero-label">POPULATION / TERRITOIRE 01</div>
-  <h1>Population terrienne</h1>
+  <a href="index.html" class="back reveal">← retour au portail</a>
+  <div class="hero-label reveal">POPULATION / TERRITOIRE 01</div>
+  <h1 class="reveal">Population terrienne</h1>
   <p class="intro">Les habitantes de la cité des nuages. Trois directions, du quotidien au service de nuit. Chacune garde son rôle, son tag, son quartier.</p>
 
   <div class="pop-grid">
     <a href="https://assistantescloudflare.pages.dev/casting.html" class="pop-card" target="_blank" rel="noopener">
       <span class="tag cit">CITOYENNES</span>
-      <h3>Citoyennes de Norée</h3>
-      <p>Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
+      <h3 class="reveal">Citoyennes de Norée</h3>
+      <p class="reveal">Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
       <span class="count">421 RECENSÉES</span>
       <span class="enter">voir les citoyennes →</span>
     </a>
     <a href="https://assistantescloudflare.pages.dev/specials.html" class="pop-card" target="_blank" rel="noopener">
       <span class="tag spec">SPÉCIALES</span>
-      <h3>Habitantes spéciales</h3>
-      <p>Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
+      <h3 class="reveal">Habitantes spéciales</h3>
+      <p class="reveal">Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
       <span class="enter">voir les spéciales →</span>
     </a>
     <a href="https://assistantescloudflare.pages.dev/roomservice.html" class="pop-card" target="_blank" rel="noopener">
       <span class="tag nuit">SERVICE DE NUIT</span>
-      <h3>Service de nuit</h3>
-      <p>Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
+      <h3 class="reveal">Service de nuit</h3>
+      <p class="reveal">Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
       <span class="enter">voir le service de nuit →</span>
     </a>
   </div>
 </main>
-<footer>
+<footer class="reveal">
   <div class="credit">Norée · cité des nuages · 2026</div>
 </footer>
 
