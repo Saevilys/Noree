@@ -295,12 +295,6 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 .page-rings .ring.r3{animation:ringGrow 1s ease 1.2s forwards,ringRotateCW 70s linear 2.2s infinite}
 .page-rings .ring.r4{animation:ringGrow 1s ease 1.4s forwards,ringRotateCCW 90s linear 2.4s infinite}
 .page-rings .ring.r5{animation:ringGrow 1s ease 1.6s forwards,ringRotateCW 120s linear 2.6s infinite}
-.page-rings.instant .ring{opacity:1!important}
-.page-rings.instant .ring.r1{animation:ringRotateCW 30s linear infinite!important}
-.page-rings.instant .ring.r2{animation:ringRotateCCW 50s linear infinite!important}
-.page-rings.instant .ring.r3{animation:ringRotateCW 70s linear infinite!important}
-.page-rings.instant .ring.r4{animation:ringRotateCCW 90s linear infinite!important}
-.page-rings.instant .ring.r5{animation:ringRotateCW 120s linear infinite!important}
 .page-rings.instant .gem{opacity:1!important;animation:none!important}
 
 /* gems on rings — varied: dots, circles, stars */
@@ -704,8 +698,6 @@ footer .credit{
   // --- full-page rings with varied gems ---
   var ringsEl = document.createElement('div');
   ringsEl.className = 'page-rings';
-  if(sessionStorage.getItem('noreeRingsReady')){ ringsEl.classList.add('instant'); }
-  else { sessionStorage.setItem('noreeRingsReady','1'); }
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [
