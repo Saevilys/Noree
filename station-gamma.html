@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norée — Station Orbitale Gamma</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}html,body{overflow-x:hidden}
+:root{--bg:#1a1430;--ink:#f0eee8;--ink-dim:#c0b8a8;--ink-faint:#807868;--cyan:#7fd9c8;--violet:#c4a7ff;--gold:#e8c878;--glass:rgba(255,240,220,0.08);--glass-border:rgba(200,170,100,0.25);--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7}
+.sky{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 90% 50% at 50% 100%,rgba(232,140,80,0.12),transparent 60%),linear-gradient(180deg,#2e2150 0%,#1a1432 70%,#161028 100%)}
+nav{position:sticky;top:0;z-index:100;background:rgba(26,20,48,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,170,100,0.15);padding:0.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;text-decoration:none}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
+nav a:hover{color:var(--gold)}
+main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+.back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
+.back:hover{color:var(--gold)}
+.stub{text-align:center;padding:4rem 2rem}
+.stub .label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.stub h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.5rem,6vw,4rem);line-height:0.95;margin-bottom:1rem;background:linear-gradient(135deg,#f0eee8 0%,#e8c878 50%,#7fd9c8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stub .planet{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3rem}
+.stub .pending{display:inline-block;padding:0.6rem 1.5rem;border:1px solid var(--glass-border);border-radius:30px;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:var(--glass)}
+.stub p.desc{color:var(--ink-dim);max-width:45ch;margin:2rem auto;font-size:0.9rem}
+footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
+footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
+@media(max-width:768px){nav ul{display:none}main{padding:3rem 1.2rem}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<nav>
+  <a href="index.html" class="wordmark">// NORÉE_OS</a>
+  <ul>
+    <li><a href="noree.html">Lore</a></li>
+    <li><a href="bip.html">Bip</a></li>
+    <li><a href="gouvernement.html">Gouvernement</a></li>
+    <li><a href="population-terrienne.html">Population</a></li>
+    <li><a href="population-spatiale.html">Stations</a></li>
+  </ul>
+</nav>
+<main>
+  <a href="population-spatiale.html" class="back">← stations spatiales</a>
+  <div class="stub">
+    <div class="label">STATION ORBITALE · 03</div>
+    <h1>Station Gamma</h1>
+    <div class="planet">ORBITE HAUTE · NORÉE</div>
+    <p class="desc">Troisième station orbitale de Norée. En construction. Les détails arriveront quand la cité sera prête à lever les yeux.</p>
+    <span class="pending">⊕ EN ATTENTE</span>
+  </div>
+</main>
+<footer>
+  <div class="credit">Norée · cité des nuages · 2026</div>
+</footer>
+</body>
+</html>

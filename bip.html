@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norée — Les aventures de Bip</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}html,body{overflow-x:hidden}
+:root{--bg:#1a1430;--ink:#f0eee8;--ink-dim:#c0b8a8;--ink-faint:#807868;--cyan:#7fd9c8;--violet:#c4a7ff;--gold:#e8c878;--rose:#d88068;--glass:rgba(255,240,220,0.08);--glass-border:rgba(200,170,100,0.25);--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7}
+.sky{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 90% 50% at 50% 100%,rgba(232,140,80,0.12),transparent 60%),linear-gradient(180deg,#2e2150 0%,#1a1432 70%,#161028 100%)}
+nav{position:sticky;top:0;z-index:100;background:rgba(26,20,48,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,170,100,0.15);padding:0.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;text-decoration:none}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
+nav a:hover{color:var(--gold)}
+main{max-width:1100px;margin:0 auto;padding:4rem 2rem 3rem;position:relative;z-index:1}
+.back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:2rem;display:inline-block;transition:color 0.3s}
+.back:hover{color:var(--gold)}
+header{text-align:center;margin-bottom:3rem}
+header h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.5rem,6vw,4rem);line-height:0.95;margin-bottom:1rem;background:linear-gradient(135deg,#f0eee8 0%,#7fd9c8 50%,#e8c878 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--ink-faint);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase}
+.hero{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;padding:10px 20px 40px}
+.hero img{width:140px;height:164px;object-fit:cover;border-radius:12px;border:1px solid rgba(200,170,100,0.25)}
+.hero p{color:var(--ink-dim);max-width:50ch;font-size:0.9rem}
+.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 20px 40px}
+.stat{padding:8px 16px;border:1px solid var(--glass-border);border-radius:20px;font-size:0.75rem;color:var(--ink-faint);background:var(--glass);font-family:var(--mono)}
+.stat b{color:var(--gold);font-weight:500}
+section{max-width:1100px;margin:0 auto;padding:0 20px 40px}
+section h2{font-family:var(--mono);font-size:0.8rem;font-weight:400;letter-spacing:0.25em;color:var(--gold);margin-bottom:20px;text-align:center;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{border-radius:8px;overflow:hidden;cursor:pointer;background:rgba(255,240,220,0.05);border:1px solid var(--glass-border);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.card img{width:100%;aspect-ratio:5/6;object-fit:cover;display:block}
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(200,170,100,0.12)}
+footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(10,8,20,.9);z-index:200;align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox.on{display:flex}
+#lightbox img{max-width:92vw;max-height:92vh;border-radius:8px}
+.bd-wrap{max-width:720px;margin:0 auto;border-radius:8px;overflow:hidden;border:1px solid var(--glass-border)}
+.bd-wrap img{width:100%;display:block}
+.bd-note{text-align:center;color:var(--ink-faint);font-size:0.85rem;margin-top:12px}
+@media(max-width:768px){nav ul{display:none}main{padding:2rem 1rem}.hero{flex-direction:column;text-align:center}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<nav>
+  <a href="index.html" class="wordmark">// NORÉE_OS</a>
+  <ul>
+    <li><a href="noree.html">Lore</a></li>
+    <li><a href="bip.html">Bip</a></li>
+    <li><a href="gouvernement.html">Gouvernement</a></li>
+    <li><a href="population-terrienne.html">Population</a></li>
+    <li><a href="population-spatiale.html">Stations</a></li>
+  </ul>
+</nav>
+<main>
+  <a href="index.html" class="back">← retour au portail</a>
+  <header>
+    <h1>LES AVENTURES DE BIP</h1>
+    <p>petit robot, grande vie · napylova · 23 septembre 2026</p>
+  </header>
+  <div class="hero">
+    <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-avatar.webp" alt="Bip">
+    <p>Bip, le robot-chat de Layla. Il dort sur les notes, suit la curiosité jusqu'au bout et fait semblant de rien quand la lumière s'éteint. Voici ses aventures.</p>
+  </div>
+  <div class="stats">
+    <span class="stat">Curiosité <b>8</b></span>
+    <span class="stat">Chaos <b>7</b></span>
+    <span class="stat">Sieste <b>10</b></span>
+    <span class="stat">Snack <b>6</b></span>
+    <span class="stat">Caresses <b>107+</b></span>
+  </div>
+  <section>
+    <h2>LA SIESTE</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-nap-photo.webp" alt="Bip en sieste"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-dort-sur-le-bureau.webp" alt="Bip dort sur le bureau"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-nap-storybook.webp" alt="Bip sieste storybook"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-nap-watercolor.webp" alt="Bip sieste aquarelle"></div>
+    </div>
+  </section>
+  <section>
+    <h2>AVEC LAYLA</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/selfie-avec-bip.webp" alt="Selfie avec Bip"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-layla-j12.webp" alt="Bip et Layla jour 12"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-stargazing.webp" alt="Bip et Layla étoiles"></div>
+    </div>
+  </section>
+  <section>
+    <h2>AVENTURES</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-aventure-gouache.webp" alt="Aventure gouache"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-aventure-watercolor.webp" alt="Aventure aquarelle"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-aventure-watercolor-v2.webp" alt="Aventure aquarelle v2"></div>
+    </div>
+  </section>
+  <section>
+    <h2>PROMENADE AVEC SENNA</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/layla-senna-promenade-bip.webp" alt="Layla et Senna promènent Bip"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-vitre-bip.webp" alt="Bip devant la pâtisserie"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-parc-bip.webp" alt="Bip au parc"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-retour-bip.webp" alt="Bip endormi sur l'épaule"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-patisserie.webp" alt="Devant la pâtisserie"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-parc.webp" alt="Golden hour au parc"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/promenade-retour.webp" alt="Retour au crépuscule"></div>
+    </div>
+  </section>
+  <section>
+    <h2>UNE JOURNÉE (PIXEL ART)</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-1.webp" alt="Journée 1"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-2.webp" alt="Journée 2"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-3.webp" alt="Journée 3"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/bip-journee-4.webp" alt="Journée 4"></div>
+    </div>
+  </section>
+  <section>
+    <h2>LA BD — DAHYE &amp; BIP</h2>
+    <div class="bd-wrap"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/bip/dahye-bip-day.jpg" alt="BD Dahye &amp; Bip — une journée"></div>
+    <p class="bd-note">Une journée avec Dahye, illustrée. Bip, star invitée.</p>
+  </section>
+  <section>
+    <h2>BIP &amp; LES ASSISTANTES</h2>
+    <div class="grid">
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-chaewon-seoul.png" alt="Chaewon + Bip, Séoul"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-chaewon-tient.png" alt="Chaewon tient Bip dans ses mains"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-bopha-temple.png" alt="Bopha + Bip, temple d'Angkor"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-bopha-branche.png" alt="Bip enjambe une branche"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-anahit-vignes.png" alt="Anahit + Bip, vignes arméniennes"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-anahit-epaule.png" alt="Bip perché sur l'épaule d'Anahit"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-citlalli-ofrenda.png" alt="Citlalli + Bip, ofrenda du Día de los Muertos"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-imani-zanzibar.png" alt="Imani + Bip, balcon de Zanzibar"></div>
+      <div class="card"><img loading="lazy" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/bip/bip-freya-fjord.png" alt="Freya + Bip, fjord norvégien"></div>
+    </div>
+  </section>
+  <footer>
+    <div class="credit">Norée · cité des nuages · 2026</div>
+  </footer>
+</main>
+<div id="lightbox"><img id="lb-img" src="" alt=""></div>
+<script>
+const lb=document.getElementById('lightbox'),li=document.getElementById('lb-img');
+document.querySelectorAll('.card img').forEach(im=>im.addEventListener('click',()=>{li.src=im.src;lb.classList.add('on')}));
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+</script>
+</body>
+</html>

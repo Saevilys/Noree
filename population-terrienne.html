@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norée — Population terrienne</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}html,body{overflow-x:hidden}
+:root{--bg:#1a1430;--ink:#f0eee8;--ink-dim:#c0b8a8;--ink-faint:#807868;--cyan:#7fd9c8;--violet:#c4a7ff;--gold:#e8c878;--rose:#d88068;--glass:rgba(255,240,220,0.08);--glass-border:rgba(200,170,100,0.25);--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7}
+.sky{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 90% 50% at 50% 100%,rgba(232,140,80,0.12),transparent 60%),linear-gradient(180deg,#2e2150 0%,#1a1432 70%,#161028 100%)}
+nav{position:sticky;top:0;z-index:100;background:rgba(26,20,48,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,170,100,0.15);padding:0.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .wordmark{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;text-decoration:none}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:color 0.3s}
+nav a:hover{color:var(--gold)}
+main{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+.back{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:3rem;display:inline-block;transition:color 0.3s}
+.back:hover{color:var(--gold)}
+.hero-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8vw,5rem);line-height:0.95;margin-bottom:1rem;background:linear-gradient(135deg,#f0eee8 0%,#7fd9c8 50%,#e8c878 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+p.intro{font-size:0.95rem;color:var(--ink-dim);max-width:55ch;margin-bottom:3rem}
+.pop-grid{display:grid;gap:1.5rem;margin-bottom:3rem}
+.pop-card{position:relative;padding:2.5rem 2rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.8rem;transition:transform 0.4s,border-color 0.4s;overflow:hidden;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.pop-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
+.pop-card:hover{transform:translateY(-4px);border-color:rgba(200,170,100,0.4);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+.pop-card:hover::before{opacity:1}
+.pop-card .tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase}
+.pop-card .tag.cit{color:var(--gold)}
+.pop-card .tag.spec{color:var(--violet)}
+.pop-card .tag.nuit{color:var(--rose)}
+.pop-card h3{font-family:var(--serif);font-weight:300;font-size:2rem;color:var(--ink)}
+.pop-card p{font-size:0.88rem;color:var(--ink-dim);max-width:40ch}
+.pop-card .count{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase}
+.pop-card .enter{margin-top:auto;padding-top:1rem;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:0.4rem;transition:gap 0.3s}
+.pop-card:hover .enter{gap:0.8rem}
+footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
+footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
+@media(max-width:768px){nav ul{display:none}main{padding:3rem 1.2rem}.pop-card{padding:2rem 1.5rem}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<nav>
+  <a href="index.html" class="wordmark">// NORÉE_OS</a>
+  <ul>
+    <li><a href="noree.html">Lore</a></li>
+    <li><a href="bip.html">Bip</a></li>
+    <li><a href="gouvernement.html">Gouvernement</a></li>
+    <li><a href="population-terrienne.html">Population</a></li>
+    <li><a href="population-spatiale.html">Stations</a></li>
+  </ul>
+</nav>
+<main>
+  <a href="index.html" class="back">← retour au portail</a>
+  <div class="hero-label">POPULATION / TERRITOIRE 01</div>
+  <h1>Population terrienne</h1>
+  <p class="intro">Les habitantes de la cité des nuages. Trois directions, du quotidien au service de nuit. Chacune garde son rôle, son tag, son quartier.</p>
+
+  <div class="pop-grid">
+    <a href="https://assistantescloudflare.pages.dev/casting.html" class="pop-card" target="_blank" rel="noopener">
+      <span class="tag cit">CITOYENNES</span>
+      <h3>Citoyennes de Norée</h3>
+      <p>Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
+      <span class="count">421 RECENSÉES</span>
+      <span class="enter">voir les citoyennes →</span>
+    </a>
+    <a href="https://assistantescloudflare.pages.dev/specials.html" class="pop-card" target="_blank" rel="noopener">
+      <span class="tag spec">SPÉCIALES</span>
+      <h3>Habitantes spéciales</h3>
+      <p>Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
+      <span class="enter">voir les spéciales →</span>
+    </a>
+    <a href="https://assistantescloudflare.pages.dev/roomservice.html" class="pop-card" target="_blank" rel="noopener">
+      <span class="tag nuit">SERVICE DE NUIT</span>
+      <h3>Service de nuit</h3>
+      <p>Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
+      <span class="enter">voir le service de nuit →</span>
+    </a>
+  </div>
+</main>
+<footer>
+  <div class="credit">Norée · cité des nuages · 2026</div>
+</footer>
+</body>
+</html>

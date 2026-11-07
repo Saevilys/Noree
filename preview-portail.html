@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norée — Portail</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300;400&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; overflow-x:hidden; }
+
+  body {
+    background:#07091a;
+    color:#e8eaf6;
+    font-family:'Inter',sans-serif;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* --- ciel : gradients qui respirent --- */
+  .sky {
+    position:fixed; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse 80% 50% at 70% -10%, rgba(124,77,255,.28), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(0,188,212,.18), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 50% 110%, rgba(255,64,129,.12), transparent 60%),
+      linear-gradient(180deg, #0a0c22 0%, #101334 40%, #1a1140 75%, #241243 100%);
+  }
+  .glow {
+    position:fixed; z-index:0; border-radius:50%;
+    filter:blur(90px); opacity:.5;
+    animation:breathe 14s ease-in-out infinite alternate;
+  }
+  .glow.a { width:45vw; height:45vw; left:-10vw; top:-15vw; background:rgba(124,77,255,.35); }
+  .glow.b { width:35vw; height:35vw; right:-8vw; top:20vh; background:rgba(0,229,255,.18); animation-delay:-7s; }
+  @keyframes breathe { from{transform:scale(1);opacity:.4} to{transform:scale(1.15);opacity:.65} }
+
+  /* --- mer de nuages --- */
+  .clouds {
+    position:fixed; left:-20%; width:140%; height:38vh; bottom:-6vh; z-index:1;
+    background:
+      radial-gradient(ellipse 30% 55% at 15% 60%, rgba(255,255,255,.07), transparent 70%),
+      radial-gradient(ellipse 35% 60% at 45% 50%, rgba(255,255,255,.09), transparent 70%),
+      radial-gradient(ellipse 28% 55% at 72% 55%, rgba(255,255,255,.07), transparent 70%),
+      radial-gradient(ellipse 40% 65% at 95% 50%, rgba(255,255,255,.06), transparent 70%);
+    filter:blur(6px);
+    animation:drift 60s linear infinite alternate;
+  }
+  @keyframes drift { from{transform:translateX(-3%)} to{transform:translateX(3%)} }
+
+  /* --- portail central --- */
+  .gate {
+    position:fixed; left:50%; top:52%; transform:translate(-50%,-50%);
+    width:min(78vw,900px); aspect-ratio:1/1.35; z-index:1; pointer-events:none;
+    opacity:.9;
+  }
+  .gate .frame {
+    position:absolute; inset:0;
+    border:solid 1px rgba(255,255,255,.14);
+    border-radius:50% 50% 46% 46% / 58% 58% 42% 42%;
+    background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+    box-shadow:
+      inset 0 0 80px rgba(124,77,255,.22),
+      0 0 120px rgba(124,77,255,.18);
+  }
+  .gate .membrane {
+    position:absolute; inset:14px;
+    border-radius:inherit;
+    background:
+      repeating-linear-gradient(115deg,
+        rgba(0,229,255,.05) 0 2px, transparent 2px 26px),
+      repeating-linear-gradient(65deg,
+        rgba(255,64,129,.04) 0 2px, transparent 2px 34px),
+      linear-gradient(180deg, rgba(10,12,34,.1), rgba(124,77,255,.10));
+    animation:striae 9s linear infinite;
+  }
+  @keyframes striae { from{background-position:0 0,0 0,0 0} to{background-position:260px 0,-260px 0,0 0} }
+  .gate .core {
+    position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+    width:38%; height:30%; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,214,145,.5), rgba(255,167,38,.18) 45%, transparent 70%);
+    filter:blur(18px);
+    animation:breathe 8s ease-in-out infinite alternate;
+  }
+
+  /* --- contenu --- */
+  main { position:relative; z-index:2; max-width:1060px; margin:0 auto; padding:11vh 6vw 14vh; }
+
+  .eyebrow {
+    font-weight:200; letter-spacing:.55em; text-transform:uppercase;
+    font-size:.72rem; color:rgba(232,234,246,.55); text-align:center;
+  }
+  h1 {
+    font-family:'Cormorant Garamond',serif; font-weight:300;
+    font-size:clamp(4.2rem,13vw,9.5rem); line-height:.95;
+    text-align:center; letter-spacing:.06em;
+    margin-top:.25em;
+    background:linear-gradient(180deg,#ffffff 20%, #b39ddb 60%, #7986cb 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 90px rgba(179,157,219,.25);
+  }
+  .tagline {
+    text-align:center; font-weight:200; font-size:clamp(.95rem,2vw,1.15rem);
+    color:rgba(232,234,246,.65); margin-top:1.4em; letter-spacing:.12em;
+  }
+  .tagline em { font-style:normal; color:rgba(255,214,145,.85); }
+
+  /* --- cartes verre --- */
+  nav {
+    display:grid; gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    margin-top:9vh;
+  }
+  a.card {
+    text-decoration:none; color:inherit;
+    position:relative; padding:26px 24px 22px;
+    border-radius:18px;
+    background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.10);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s, box-shadow .5s;
+    overflow:hidden;
+  }
+  a.card::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle 180px at var(--mx,50%) var(--my,0%), rgba(179,157,219,.16), transparent 70%);
+    opacity:0; transition:opacity .5s;
+  }
+  a.card:hover { transform:translateY(-6px); border-color:rgba(179,157,219,.45); box-shadow:0 18px 60px rgba(124,77,255,.22); }
+  a.card:hover::before { opacity:1; }
+  .card .glyph {
+    font-size:1.5rem; opacity:.85; margin-bottom:14px; display:block;
+  }
+  .card h2 {
+    font-family:'Cormorant Garamond',serif; font-weight:400;
+    font-size:1.55rem; letter-spacing:.05em; color:#fff;
+  }
+  .card p {
+    margin-top:8px; font-weight:200; font-size:.86rem; line-height:1.55;
+    color:rgba(232,234,246,.55);
+  }
+  .card .count {
+    display:inline-block; margin-top:14px; font-size:.68rem; font-weight:300;
+    letter-spacing:.25em; text-transform:uppercase; color:rgba(0,229,255,.75);
+  }
+
+  footer {
+    margin-top:12vh; text-align:center;
+    font-weight:200; font-size:.72rem; letter-spacing:.3em;
+    color:rgba(232,234,246,.35); text-transform:uppercase;
+  }
+
+  /* apparition en nuage */
+  main > * { animation:rise 1.2s cubic-bezier(.2,.8,.2,1) backwards; }
+  main > *:nth-child(2){animation-delay:.15s} main > *:nth-child(3){animation-delay:.3s}
+  main > *:nth-child(4){animation-delay:.45s} main > *:nth-child(5){animation-delay:.6s}
+  @keyframes rise { from{opacity:0; transform:translateY(28px); filter:blur(8px)} to{opacity:1; transform:none; filter:none} }
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="glow a"></div><div class="glow b"></div><div class="clouds"></div>
+<div class="gate"><div class="frame"></div><div class="membrane"></div><div class="core"></div></div>
+
+<main>
+  <div class="eyebrow">Neminorea · ciel unique</div>
+  <h1>Norée</h1>
+  <p class="tagline">La cité au-dessus des nuages — <em>421 citoyennes</em>, un bip national, un gouvernement.</p>
+  <nav>
+    <a class="card" href="#">
+      <span class="glyph">◈</span>
+      <h2>Lore de Norée</h2>
+      <p>D'où vient la cité, ce qui flotte au-dessus de la mer de nuages.</p>
+      <span class="count">Explorer</span>
+    </a>
+    <a class="card" href="#">
+      <span class="glyph">▣</span>
+      <h2>Bip national</h2>
+      <p>Trésor gris-argent, yeux bleus, antenne rouge. Notre monument.</p>
+      <span class="count">Visiter</span>
+    </a>
+    <a class="card" href="#">
+      <span class="glyph">✦</span>
+      <h2>Gouvernement</h2>
+      <p>Celles qui tiennent la cité. Ministères à venir.</p>
+      <span class="count">Rencontrer</span>
+    </a>
+    <a class="card" href="#">
+      <span class="glyph">◍</span>
+      <h2>Population terrienne</h2>
+      <p>Citoyennes de Norée, habitantes spéciales, service de nuit.</p>
+      <span class="count">421 citoyennes</span>
+    </a>
+    <a class="card" href="#">
+      <span class="glyph">◎</span>
+      <h2>Population spatiale</h2>
+      <p>Station orbitale, stations 1 et 2. Les noms viendront.</p>
+      <span class="count">En orbite</span>
+    </a>
+  </nav>
+  <footer>Norée · au-dessus de tout</footer>
+</main>
+<script>
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+</script>
+</body>
+</html>
