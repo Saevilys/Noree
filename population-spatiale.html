@@ -52,6 +52,13 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 .page-rings .ring.r3{animation:ringGrow 1s ease 1.2s forwards,ringRotateCW 70s linear 2.2s infinite}
 .page-rings .ring.r4{animation:ringGrow 1s ease 1.4s forwards,ringRotateCCW 90s linear 2.4s infinite}
 .page-rings .ring.r5{animation:ringGrow 1s ease 1.6s forwards,ringRotateCW 120s linear 2.6s infinite}
+.page-rings.instant .ring{animation:none!important;opacity:1!important;transform:translate(-50%,-50%) scale(1)!important}
+.page-rings.instant .ring.r1{animation:ringRotateCW 30s linear infinite!important}
+.page-rings.instant .ring.r2{animation:ringRotateCCW 50s linear infinite!important}
+.page-rings.instant .ring.r3{animation:ringRotateCW 70s linear infinite!important}
+.page-rings.instant .ring.r4{animation:ringRotateCCW 90s linear infinite!important}
+.page-rings.instant .ring.r5{animation:ringRotateCW 120s linear infinite!important}
+.page-rings.instant .gem{opacity:1!important;animation:none!important}
 .page-rings .gem{position:absolute;transform:translate(-50%,-50%);opacity:0;animation:gemFade 0.6s ease forwards}
 @keyframes gemFade{to{opacity:1}}
 .gem-dot{border-radius:50%}
@@ -91,7 +98,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   <a href="index.html" class="back reveal">← retour au portail</a>
   <div class="hero-label reveal">POPULATION / TERRITOIRE 02</div>
   <h1 class="reveal">Population spatiale</h1>
-  <p class="intro">Les habitants des étoiles. Trois stations en orbite, trois communautés, un même ciel. De là-haut, Norée n'est qu'un point lumineux dans la mer de nuages.</p>
+  <p class="intro reveal">Les habitants des étoiles. Trois stations en orbite, trois communautés, un même ciel. De là-haut, Norée n'est qu'un point lumineux dans la mer de nuages.</p>
   <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-stations.png" alt="Les stations spatiales en orbite" class="hero-img reveal" loading="lazy">
 
   <div class="sta-grid">
@@ -124,6 +131,8 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 (function(){
   var ringsEl = document.createElement('div');
   ringsEl.className = 'page-rings';
+  if(sessionStorage.getItem('noreeRingsReady')){ ringsEl.classList.add('instant'); }
+  else { sessionStorage.setItem('noreeRingsReady','1'); }
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [
