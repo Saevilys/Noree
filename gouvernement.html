@@ -25,9 +25,10 @@ h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8vw,5rem);line-
 .stub .icon{font-size:2.5rem;margin-bottom:1.5rem;opacity:0.5}
 .stub h2{font-family:var(--serif);font-weight:300;font-size:1.8rem;color:var(--ink);margin-bottom:1rem}
 .stub p{font-size:0.9rem;color:var(--ink-dim);max-width:40ch;margin:0 auto}
+.hero-img{width:100%;border-radius:6px;border:1px solid var(--glass-border);margin-bottom:3rem;aspect-ratio:16/9;object-fit:cover}
 footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
 footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
-@media(max-width:768px){nav ul{display:none}main{padding:3rem 1.2rem}}
+@media(max-width:768px){nav ul{display:none}main{padding:3rem 1.2rem}.hero-img{aspect-ratio:4/3}}
 
 /* === full-page orbiting rings with gems === */
 .page-rings{position:fixed;top:50%;left:30%;z-index:0;pointer-events:none;width:0;height:0}
@@ -108,6 +109,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   <a href="index.html" class="back reveal">← retour au portail</a>
   <div class="hero-label reveal">GOUVERNEMENT / CONSEIL DES DÉESSES</div>
   <h1 class="reveal">Gouvernement</h1>
+  <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-council.png" alt="La chambre du conseil des déesses" class="hero-img reveal" loading="lazy">
   <div class="stub reveal">
     <div class="icon">🕊️✦</div>
     <h2 class="reveal">À venir</h2>
