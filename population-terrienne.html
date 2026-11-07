@@ -135,10 +135,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 (function(){
   var ringsEl = document.createElement('div');
   ringsEl.className = 'page-rings';
-  var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-  if(navEntry && navEntry.type === 'reload'){ sessionStorage.removeItem('noreeRingsReady'); }
-  if(sessionStorage.getItem('noreeRingsReady')){ ringsEl.classList.add('instant'); }
-  else { sessionStorage.setItem('noreeRingsReady','1'); }
+  ringsEl.classList.add('instant');
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [

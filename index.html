@@ -704,10 +704,7 @@ footer .credit{
   // --- full-page rings with varied gems ---
   var ringsEl = document.createElement('div');
   ringsEl.className = 'page-rings';
-  var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-  if(navEntry && navEntry.type === 'reload'){ sessionStorage.removeItem('noreeRingsReady'); }
-  if(sessionStorage.getItem('noreeRingsReady')){ ringsEl.classList.add('instant'); }
-  else { sessionStorage.setItem('noreeRingsReady','1'); }
+  // index.html = landing page, always play the grow animation
   var colors = ['gem-gold','gem-cyan','gem-violet','gem-rose'];
   var types = ['gem-dot','gem-circle','gem-star'];
   var ringDefs = [
@@ -851,12 +848,15 @@ footer .credit{
     });
     setTimeout(function(){
       myEls.forEach(function(el){
-        var compOpacity = window.getComputedStyle(el).opacity;
         el.style.animation = 'none';
-        el.style.opacity = compOpacity;
-        requestAnimationFrame(function(){
+        el.style.opacity = el.classList.contains('pcb-node') ? '1' : '0.6';
+      });
+      requestAnimationFrame(function(){
+        myEls.forEach(function(el){
           el.style.transition = 'opacity 1.5s ease';
-          requestAnimationFrame(function(){
+        });
+        requestAnimationFrame(function(){
+          myEls.forEach(function(el){
             el.style.opacity = '0';
           });
         });
