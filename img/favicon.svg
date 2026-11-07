@@ -1,19 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <rect width="128" height="128" fill="#0d0d1a" rx="20"/>
-  <g transform="translate(64,58) scale(2) translate(-64,-58)">
-  <!-- Left dove -->
-  <g fill="#6ab0f3">
-    <path d="M52 40 C44 38 36 42 32 48 C30 52 32 56 36 57 C34 60 33 64 34 68 L38 66 C40 69 43 70 46 69 L48 72 C50 68 51 64 50 60 C55 59 60 56 62 52 C60 48 56 44 52 40 Z"/>
-    <circle cx="40" cy="48" r="2.5" fill="#0d0d1a"/>
-  </g>
-  <!-- Right dove (mirror) -->
-  <g fill="#6ab0f3">
-    <path d="M76 40 C84 38 92 42 96 48 C98 52 96 56 92 57 C94 60 95 64 94 68 L90 66 C88 69 85 70 82 69 L80 72 C78 68 77 64 78 60 C73 59 68 56 66 52 C68 48 72 44 76 40 Z"/>
+  <g transform="translate(64,64) scale(3) translate(-81,-56)">
+    <path fill="#6ab0f3" d="M76 40 C84 38 92 42 96 48 C98 52 96 56 92 57 C94 60 95 64 94 68 L90 66 C88 69 85 70 82 69 L80 72 C78 68 77 64 78 60 C73 59 68 56 66 52 C68 48 72 44 76 40 Z"/>
     <circle cx="88" cy="48" r="2.5" fill="#0d0d1a"/>
-  </g>
-  <!-- Cloud/wave beneath -->
-  <g fill="#4a7fb5" opacity="0.5">
-    <path d="M30 86 Q40 82 50 86 Q64 80 78 86 Q88 82 98 86 L98 90 Q88 94 78 90 Q64 96 50 90 Q40 94 30 90 Z"/>
-  </g>
   </g>
 </svg>
