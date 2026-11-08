@@ -1,0 +1,7 @@
+## Image (resized) by Layla - 2026-11-08 17:49 UTC
+### Context
+A smaller copy of /photos-assistante-du-jour/2026-11-08/noree-resto-citoyennes.png (1024×1200 → 1024×1200, png) — the same picture; the original is untouched.
+### Vision
+A warm, painterly digital illustration with visible impasto-like brush strokes and soft edges depicts three young women seated around a small round wooden table on an elevated open-air terrace. The woman on the left has blue-black shoulder-length hair, wears a cream knit cardigan over a white top, and holds chopsticks over a steaming bowl. The woman in the center has black hair with blunt bangs, an off-the-shoulder cream top, and holds a small cup while smiling toward her companions. The woman on the right has olive skin, black hair tied in a ponytail, and a white button-up blouse; she gestures with an open hand as if speaking. The table holds several noodle bowls, a plate of round dumplings or steamed buns, a plate of red peppers or vegetables, and small condiment bowls.
+
+Above them a wooden canopy hangs with round glowing paper lanterns and trailing potted plants and vines at its corners. Beyond the glass railing, a floating city spreads across the scene: teal and beige multi-story buildings, spires, and rooftops rise from a sea or gap of open space, with low drifting clouds in violet, pink, and orange tones under a soft golden sky. The lighting is warm and golden, casting gentle shadows across the faces and table, giving the whole composition a cozy, leisurely mood.
