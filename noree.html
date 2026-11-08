@@ -38,6 +38,13 @@ blockquote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:
 .capitale-card .cap-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);padding:0.8rem 1rem 0.2rem}
 .capitale-card .cap-title{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--ink);padding:0 1rem 0.6rem}
 .capitale-card .cap-desc{font-size:0.8rem;color:var(--ink-dim);padding:0 1rem 1rem;line-height:1.6}
+.capitale-card{cursor:pointer;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.capitale-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(232,200,120,0.15)}
+.lightbox{position:fixed;inset:0;background:rgba(10,8,24,0.92);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:6px;border:1px solid var(--glass-border);box-shadow:0 0 60px rgba(232,200,120,0.2)}
+.lightbox .lb-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--ink-dim);cursor:pointer;line-height:1}
+.lightbox .lb-close:hover{color:var(--gold)}
 @media(max-width:768px){.capitale-gallery{grid-template-columns:1fr}}
 footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
 footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint)}
@@ -195,8 +202,8 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     <div class="capitale-card reveal">
       <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/minorea-cathedrale.png" alt="Cathédrale de Minorea" loading="lazy">
       <div class="cap-label">QUARTIER 05 // CATHÉDRALE</div>
-      <div class="cap-title">La cathédrale de verre</div>
-      <div class="cap-desc">Une flèche de verre et d'acier au coeur de la ville, vitrail qui capte la lumière dorée, arches modernes qui s'élèvent dans les nuages. Le lieu de recueillement de Minorea.</div>
+      <div class="cap-title">La cathédrale</div>
+      <div class="cap-desc">Une cathédrale de marbre et de lumière dorée au coeur de la ville, flèche gothique qui s'élève dans les nuages, arches et portails lumineux. Le lieu de recueillement de Minorea.</div>
     </div>
     <div class="capitale-card reveal">
       <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/minorea-spaceport.png" alt="Spaceport de Minorea" loading="lazy">
@@ -262,6 +269,28 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
     });
   }, {threshold: 0.1, rootMargin: '0px 0px -60px 0px'});
   reveals.forEach(function(el){ io.observe(el); });
+})();
+
+// === Lightbox for capitale gallery ===
+(function(){
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = '<span class="lb-close">&times;</span><img>';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var cards = document.querySelectorAll('.capitale-card');
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var img = card.querySelector('img');
+      if(!img) return;
+      lbImg.src = img.src;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') lb.classList.remove('open');
+  });
 })();
 </script>
 <script src="pcb.js"></script>
