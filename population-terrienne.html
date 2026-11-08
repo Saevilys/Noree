@@ -32,7 +32,7 @@ p.intro{font-size:0.95rem;color:var(--ink-dim);max-width:55ch;margin-bottom:3rem
 .pop-grid{display:grid;gap:1.5rem;margin-bottom:3rem}
 .pop-card{position:relative;padding:2.5rem 2rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;text-decoration:none;color:inherit;display:flex;flex-direction:row;align-items:center;gap:2rem;transition:transform 0.4s,border-color 0.4s;overflow:hidden;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,0.2)}
 .pop-card .card-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:0.8rem}
-.pop-card img.card-illust{width:220px;height:150px;object-fit:cover;border-radius:6px;border:1px solid var(--glass-border);flex-shrink:0}
+.pop-card img.card-illust{width:340px;height:240px;object-fit:cover;border-radius:6px;border:1px solid var(--glass-border);flex-shrink:0}
 @media(max-width:600px){.pop-card{flex-direction:column}.pop-card img.card-illust{width:100%;height:200px}}
 .pop-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
 .pop-card:hover{transform:translateY(-4px);border-color:rgba(200,170,100,0.4);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
