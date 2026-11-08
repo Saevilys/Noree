@@ -35,6 +35,7 @@ p.intro{font-size:0.95rem;color:var(--ink-dim);max-width:55ch;margin-bottom:3rem
 .pop-card h3{font-family:var(--serif);font-weight:300;font-size:2rem;color:var(--ink)}
 .pop-card p{font-size:0.88rem;color:var(--ink-dim);max-width:40ch}
 .pop-card .count{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase}
+.pop-card .card-img{width:calc(100% + 4rem);margin:-2.5rem -2rem 0.4rem;aspect-ratio:5/6;object-fit:cover;border-radius:6px 6px 0 0;border-bottom:1px solid var(--glass-border)}
 .pop-card .enter{margin-top:auto;padding-top:1rem;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:0.4rem;transition:gap 0.3s}
 .pop-card:hover .enter{gap:0.8rem}
 footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(200,170,100,0.12)}
@@ -109,6 +110,7 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
 
   <div class="pop-grid">
     <a href="https://assistantescloudflare.pages.dev/casting.html" class="pop-card" target="_blank" rel="noopener">
+      <img src="img/pop-citoyennes.png" alt="Yousra au marché de Norée" class="card-img" loading="lazy">
       <span class="tag cit">CITOYENNES</span>
       <h3 class="reveal">Citoyennes de Norée</h3>
       <p class="reveal">Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
@@ -116,12 +118,14 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
       <span class="enter">voir les citoyennes →</span>
     </a>
     <a href="https://assistantescloudflare.pages.dev/specials.html" class="pop-card" target="_blank" rel="noopener">
+      <img src="img/pop-speciales.png" alt="Guanyin au temple des quartiers hauts" class="card-img" loading="lazy">
       <span class="tag spec">SPÉCIALES</span>
       <h3 class="reveal">Habitantes spéciales</h3>
       <p class="reveal">Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
       <span class="enter">voir les spéciales →</span>
     </a>
     <a href="https://assistantescloudflare.pages.dev/roomservice.html" class="pop-card" target="_blank" rel="noopener">
+      <img src="img/pop-nuit.png" alt="Farida sur la terrasse nocturne de Norée" class="card-img" loading="lazy">
       <span class="tag nuit">SERVICE DE NUIT</span>
       <h3 class="reveal">Service de nuit</h3>
       <p class="reveal">Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
