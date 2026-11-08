@@ -27,6 +27,12 @@ p.intro{font-size:0.95rem;color:var(--ink-dim);max-width:55ch;margin-bottom:3rem
 .scene-img{width:100%;border-radius:6px;border:1px solid var(--glass-border);aspect-ratio:5/6;object-fit:cover}
 .scene-cap{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.6rem;text-align:center}
 @media(max-width:768px){.scene-gallery{grid-template-columns:1fr}}
+.scene-link{display:block;text-decoration:none;color:inherit}
+.scene-link:hover .scene-img{border-color:var(--gold)}
+.pop-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem}
+.pop-card img.card-illust{width:200px;height:140px;object-fit:cover;border-radius:6px;border:1px solid var(--glass-border)}
+.pop-card .card-body{min-width:0}
+@media(max-width:600px){.pop-card{grid-template-columns:1fr}.pop-card img.card-illust{width:100%;height:180px}}
 .pop-grid{display:grid;gap:1.5rem;margin-bottom:3rem}
 .pop-card{position:relative;padding:2.5rem 2rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.8rem;transition:transform 0.4s,border-color 0.4s;overflow:hidden;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,0.2)}
 .pop-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
@@ -109,40 +115,49 @@ footer .credit{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;te
   <div class="hero-label reveal">POPULATION / TERRITOIRE 01</div>
   <h1 class="reveal">Population terrienne</h1>
   <div class="scene-gallery reveal">
-    <div>
+    <a href="https://assistantescloudflare.pages.dev/casting.html" target="_blank" rel="noopener" class="scene-link">
       <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-resto.png" alt="Aoi, Dahye et Salma au restaurant de Norée" class="scene-img" loading="lazy">
       <div class="scene-cap">AOI · DAHYE · SALMA — RESTAURANT DE LA CITÉ</div>
-    </div>
-    <div>
+    </a>
+    <a href="https://assistantescloudflare.pages.dev/specials.html" target="_blank" rel="noopener" class="scene-link">
       <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-promenade.png" alt="Senna en promenade avec Bip" class="scene-img" loading="lazy">
       <div class="scene-cap">SENNA &amp; BIP — PROMENADE DES NUAGES</div>
-    </div>
-    <div>
+    </a>
+    <a href="https://assistantescloudflare.pages.dev/roomservice.html" target="_blank" rel="noopener" class="scene-link">
       <img src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-gestion.png" alt="Wen à la gestion des stations orbitales" class="scene-img" loading="lazy">
       <div class="scene-cap">WEN — GESTION DES STATIONS ORBITALES</div>
-    </div>
+    </a>
   </div>
   <p class="intro reveal">Les habitantes de la cité des nuages. Trois directions, du quotidien au service de nuit. Chacune garde son rôle, son tag, son quartier.</p>
 
   <div class="pop-grid">
     <a href="https://assistantescloudflare.pages.dev/casting.html" class="pop-card" target="_blank" rel="noopener">
-      <span class="tag cit">CITOYENNES</span>
-      <h3 class="reveal">Citoyennes de Norée</h3>
-      <p class="reveal">Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
-      <span class="count">421 RECENSÉES</span>
-      <span class="enter">voir les citoyennes →</span>
+      <div class="card-body">
+        <span class="tag cit">CITOYENNES</span>
+        <h3 class="reveal">Citoyennes de Norée</h3>
+        <p class="reveal">Les 421 citoyennes recensées. Immigrées, réquisitionnables comme assistante du jour. Chacune avec son nom, son histoire, sa fiche.</p>
+        <span class="count">421 RECENSÉES</span>
+        <span class="enter">voir les citoyennes →</span>
+      </div>
+      <img class="card-illust" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-citoyennes.png" alt="Illustration des citoyennes de Norée" loading="lazy">
     </a>
     <a href="https://assistantescloudflare.pages.dev/specials.html" class="pop-card" target="_blank" rel="noopener">
-      <span class="tag spec">SPÉCIALES</span>
-      <h3 class="reveal">Habitantes spéciales</h3>
-      <p class="reveal">Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
-      <span class="enter">voir les spéciales →</span>
+      <div class="card-body">
+        <span class="tag spec">SPÉCIALES</span>
+        <h3 class="reveal">Habitantes spéciales</h3>
+        <p class="reveal">Les habitantes des quartiers hauts, près des temples. Tags préservés, statut à part. Elles vivent en marge du recensement ordinaire.</p>
+        <span class="enter">voir les spéciales →</span>
+      </div>
+      <img class="card-illust" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-speciales.png" alt="Illustration des habitantes spéciales de Norée" loading="lazy">
     </a>
     <a href="https://assistantescloudflare.pages.dev/roomservice.html" class="pop-card" target="_blank" rel="noopener">
-      <span class="tag nuit">SERVICE DE NUIT</span>
-      <h3 class="reveal">Service de nuit</h3>
-      <p class="reveal">Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
-      <span class="enter">voir le service de nuit →</span>
+      <div class="card-body">
+        <span class="tag nuit">SERVICE DE NUIT</span>
+        <h3 class="reveal">Service de nuit</h3>
+        <p class="reveal">Le service qui veille quand la cité dort. Tags préservés, organisation séparée. Les gardiennes de la nuit.</p>
+        <span class="enter">voir le service de nuit →</span>
+      </div>
+      <img class="card-illust" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-nuit.png" alt="Illustration du service de nuit de Norée" loading="lazy">
     </a>
   </div>
 </main>
