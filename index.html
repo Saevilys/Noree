@@ -61,8 +61,7 @@ body{
 /* === nav === */
 nav{
   position:sticky;top:0;z-index:100;
-  background:rgba(26,20,48,0.85);
-  backdrop-filter:blur(20px);
+  background:rgba(26,20,48,0.92);
   border-bottom:1px solid var(--glass-border);
   padding:0.7rem 2rem;
   display:flex;align-items:center;justify-content:space-between;
@@ -408,7 +407,7 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
   border-radius:6px;text-decoration:none;color:inherit;
   display:flex;flex-direction:column;gap:0.8rem;
   transition:transform 0.4s,border-color 0.4s,background 0.4s,box-shadow 0.4s;
-  overflow:hidden;backdrop-filter:blur(8px);
+  overflow:hidden;
   box-shadow:0 2px 12px rgba(0,0,0,0.2);
 }
 .card::before{
@@ -451,9 +450,10 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
   border-radius:8px;text-decoration:none;color:inherit;
   display:flex;flex-direction:column;gap:1rem;
   transition:transform 0.4s,border-color 0.4s,box-shadow 0.4s;
-  overflow:hidden;min-height:280px;backdrop-filter:blur(8px);
+  overflow:hidden;min-height:280px;
   box-shadow:0 2px 12px rgba(0,0,0,0.2);
 }
+.hub-card.span-2{grid-column:1 / -1}
 .hub-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--rose),transparent);
@@ -499,7 +499,7 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
   margin-bottom:5rem;padding:2rem;
   background:var(--glass);
   border:1px solid var(--glass-border);
-  border-radius:6px;backdrop-filter:blur(8px);
+  border-radius:6px;
   box-shadow:0 2px 12px rgba(0,0,0,0.2);
 }
 .signal .label{
@@ -667,7 +667,7 @@ footer .credit{
         <a href="https://assistantescloudflare.pages.dev/station-nour.html" target="_blank" rel="noopener">→ Station Nour</a>
       </div>
     </a>
-    <a href="https://assistantescloudflare.pages.dev/casting.html" target="_blank" rel="noopener" class="hub-card reveal">
+    <a href="https://assistantescloudflare.pages.dev/casting.html" target="_blank" rel="noopener" class="hub-card span-2 reveal">
       <span class="tag">TERRITOIRE 03</span>
       <h3>Diaspora mondiale</h3>
       <p>Des centaines de citoyennes noréennes vivent partout dans le monde. Lagos, Hilo, Plovdiv, Almaty, Édimbourg. Chaque ville où s'installe une Noréenne est un fragment de l'État.</p>
