@@ -20,6 +20,7 @@ html,body{overflow-x:hidden}
   --violet:#c4a7ff;
   --magenta:#e8a0c8;
   --gold:#e8c878;
+  --gold-light:#f0d890;
   --gold-deep:#c89848;
   --rose:#d88068;
   --glass:rgba(255,240,220,0.08);
@@ -893,6 +894,19 @@ footer .credit{
 // === Reveal on scroll ===
 (function(){
   var reveals = document.querySelectorAll('.reveal');
+  // Fallback : afficher les éléments déjà dans le viewport après 1.5s
+  setTimeout(function(){
+    reveals.forEach(function(el){
+      if(!el.classList.contains('visible')){
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      }
+    });
+  }, 1500);
+  if(!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
