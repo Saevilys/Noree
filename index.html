@@ -462,6 +462,13 @@ main{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-i
 }
 .hub-card:hover{transform:translateY(-6px);border-color:rgba(216,128,104,0.35);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
 .hub-card:hover::before{opacity:1}
+.hub-card .card-img{
+  width:calc(100% + 4rem);height:200px;object-fit:cover;
+  margin:-2rem -2rem 0;border-radius:8px 8px 0 0;
+  filter:saturate(0.85) brightness(0.9);
+  transition:filter 0.4s,transform 0.6s;
+}
+.hub-card:hover .card-img{filter:saturate(1) brightness(1);transform:scale(1.03)}
 .hub-card .tag{
   font-family:var(--mono);font-size:0.6rem;letter-spacing:0.25em;
   text-transform:uppercase;color:var(--gold);
@@ -649,7 +656,8 @@ footer .credit{
   <p class="section-sub reveal">Norée n'est pas qu'une ville. C'est un État souverain : Minorea la capitale flottante, les stations en orbite, et les citoyennes expatriées partout dans le monde.</p>
 
   <div class="hub-grid">
-    <a href="population-terrienne.html" class="hub-card reveal">
+    <div class="hub-card reveal">
+      <img class="card-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-territoire-01-minorea.webp" alt="Minorea, la capitale flottante au-dessus des nuages" loading="lazy">
       <span class="tag">TERRITOIRE 01</span>
       <h3>Minorea et son archipel</h3>
       <p>L'île colossale au-dessus du Pacifique, ses îles flottantes, ses tours de marbre. Le siège de la nation, où vivent les citoyennes résidentes, les habitantes spéciales et le service de nuit.</p>
@@ -658,8 +666,9 @@ footer .credit{
         <a href="https://assistantescloudflare.pages.dev/specials.html" target="_blank" rel="noopener">→ Habitantes spéciales</a>
         <a href="https://assistantescloudflare.pages.dev/roomservice.html" target="_blank" rel="noopener">→ Service de nuit</a>
       </div>
-    </a>
-    <a href="population-spatiale.html" class="hub-card reveal">
+    </div>
+    <div class="hub-card reveal">
+      <img class="card-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-territoire-02-stations.webp" alt="Stations orbitales en orbite autour de la Terre" loading="lazy">
       <span class="tag">TERRITOIRE 02</span>
       <h3>Stations orbitales</h3>
       <p>Les stations en orbite autour de la planète. Zineb la doyenne, Nour la scientifique. Les citoyennes affectées vivent au-dessus du monde.</p>
@@ -667,15 +676,16 @@ footer .credit{
         <a href="https://assistantescloudflare.pages.dev/station-zineb.html" target="_blank" rel="noopener">→ Station Zineb</a>
         <a href="https://assistantescloudflare.pages.dev/station-nour.html" target="_blank" rel="noopener">→ Station Nour</a>
       </div>
-    </a>
-    <a href="https://assistantescloudflare.pages.dev/casting.html" target="_blank" rel="noopener" class="hub-card span-2 reveal">
+    </div>
+    <div class="hub-card span-2 reveal">
+      <img class="card-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/noree-territoire-03-diaspora.webp" alt="Diaspora noréenne à travers le monde" loading="lazy">
       <span class="tag">TERRITOIRE 03</span>
       <h3>Diaspora mondiale</h3>
       <p>Des centaines de citoyennes noréennes vivent partout dans le monde. Lagos, Hilo, Plovdiv, Almaty, Édimbourg. Chaque ville où s'installe une Noréenne est un fragment de l'État.</p>
       <div class="links">
         <a href="https://assistantescloudflare.pages.dev/casting.html" target="_blank" rel="noopener">→ Voir les expatriées</a>
       </div>
-    </a>
+    </div>
   </div>
 
   <div class="section-num reveal">03 / PRINCIPES</div>
