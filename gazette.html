@@ -35,12 +35,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .masthead .meta .center{color:var(--red);font-weight:500}
 .masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
 .masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
-.layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:24px;border-top:1px solid var(--rule)}
+.masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
+.layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
 .col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
 .col-center{padding:18px 24px}
 .col-right{padding:18px 0 18px 24px;border-left:1px solid var(--rule)}
 .recap-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
-.section-title{font-family:var(--sans);font-size:0.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px;font-weight:500}
+.section-title{font-family:var(--sans);font-size:0.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px;font-weight:500;position:relative}
+.section-title::after{content:'';position:absolute;bottom:-2px;left:0;width:40px;height:2px;background:var(--red)}
+.une-headline::first-letter{font-size:3.6rem;float:left;line-height:0.85;padding-right:8px;padding-top:4px;color:var(--red);font-weight:700}
 .une-headline{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:14px}
 .une-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
 .une-text p{margin-bottom:0.6em}
@@ -48,23 +51,33 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .recap-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
 .recap-item:last-child{border-bottom:none}
 .recap-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.recap-item h3::before{content:'§ ';color:var(--red-soft);opacity:.6}
 .recap-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
 .story-section{margin-top:20px;border-top:2px solid var(--ink);padding-top:16px}
 .story-img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
 .story-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);margin-bottom:6px}
 .story-citizen{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:10px}
 .story-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.story-text::first-letter{font-size:2.8rem;float:left;line-height:0.85;padding-right:6px;padding-top:3px;color:var(--red);font-weight:700}
 .annonce{font-size:0.95rem;line-height:1.55;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--rule)}
 .annonce:last-child{border-bottom:none}
 .annonce .cat{font-family:var(--sans);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:6px}
-.annonce p{color:var(--ink-dim)}
+.annonce .cat::before{content:'◆ ';color:var(--red-soft);opacity:.5}
+.annonce p{color:var(--ink-dim);font-style:italic}
 .meteo-block{margin-bottom:20px}
 .meteo-city{font-family:var(--sans);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
 .meteo-temp{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1}
 .meteo-line{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--rule)}
 .meteo-line:last-of-type{border-bottom:none}
 footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
-footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft);opacity:.5;margin-bottom:8px}
+footer::before{content:'❦ · ☁ · ❦';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
+.col-divider{display:flex;align-items:center;gap:8px;margin:20px 0 14px;color:var(--red-soft);opacity:.4;font-size:0.9rem}
+.col-divider::before,.col-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.pharma-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.pharma-item:last-child{border-bottom:none}
+.pharma-item h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--red);margin-bottom:5px}
+.pharma-item h4::before{content:'℞ ';color:var(--red-soft);opacity:.6}
+.pharma-item p{font-size:0.98rem;line-height:1.6;color:var(--ink-dim)}
 </style>
 </head>
 <body>
@@ -94,6 +107,7 @@ footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft
       <span class="meta-meteo">Marseille 18°C · Minorea 29°C</span>
     </div>
     <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
+    <div class="masthead-ornament">❦ ❖ ❦</div>
   </div>
   <div class="layout">
     <div class="col-left">
@@ -108,6 +122,11 @@ footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft
       <div class="section-title">La Une</div>
       <div class="une-headline">Tom Laperche remporte la Route du Rhum 2026 et fracasse le record</div>
       <div class="une-text"><p>À 29 ans, le skipper de SVR-Lazartigue a rallié Pointe-à-Pitre en 6 jours, 13 heures et 27 minutes, pulvérisant d'environ six heures le record de Charles Caudrelier établi en 2022. Benjamin de la classe Ultim, Laperche s'est détaché au nord des Açores en profitant des abandons et casses de la flotte, avant de contourner une dépression tropicale avec une gestion prudente des risques. « Mon rêve était de courir dans cette catégorie reine et de jouer la victoire au scratch », a-t-il lâché à l'arrivée, sous les applaudissements d'une foule guadeloupéenne dense. Thomas Coville et Louis Burton complètent le podium Ultim. En Imoca, Corentin Horeau a remporté sa catégorie dans la nuit de mardi à mercredi, atomisant lui aussi le record de la classe.</p></div>
+      <div class="col-divider">❖</div>
+      <div class="section-title">Au Comptoir</div>
+      <div class="pharma-item"><h4>Rappel de lot : paracétamol générique</h4><p>L'ANSM a annoncé le rappel de trois lots de paracétamol 500 mg générique, fabriqués par un laboratoire indien, suite à un défaut de dissolution détecté lors d'un contrôle qualité. Les pharmaciens sont invités à vérifier leurs stocks et à orienter les patients vers les lots alternatifs disponibles.</p></div>
+<div class="pharma-item"><h4>Vaccin grippe : campagne lancée</h4><p>La campagne de vaccination contre la grippe saisonnière a débuté pour les populations éligibles. Le vaccin est disponible en officine sur présentation du bon de prise en charge de l'Assurance Maladie. Les pharmaciens peuvent désormais administrer le vaccin aux patients âgés de 16 ans et plus.</p></div>
+
     </div>
     <div class="col-right">
       <div class="section-title">Vie de la Station</div>
@@ -116,6 +135,7 @@ footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft
       <div class="story-title">Aelith et les champignons de l'aube</div>
       <div class="story-citizen">Aelith — Ísafjörður</div>
       <div class="story-text">Aelith a rapporté cette semaine un spécimen rare à la serre botanique de Minorea : un cortinaire bleuté poussé sur l'écorce d'un bouleau nain, récolté à la lisière de son fjord islandais. « Il pousse seulement quand le gel et le dégel alternent trois jours durant », a-t-elle expliqué aux botanistes de la station, avec son calme habituel. Les analyses sont en cours. Si la culture s'adapte aux serres tropicales de Minorea, ce serait la première espèce boréale transplantée avec succès sur la cité des nuages. Aelith n'a rien promis. Elle a juste posé son panier, salué, et regagné la lisière de forêt d'où elle ne dit jamais qu'elle vient.</div>
+      <div class="col-divider">❖</div>
     </div>
     <div class="recap-full">
       <div class="section-title">Hier en bref</div>
