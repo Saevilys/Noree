@@ -33,8 +33,9 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .masthead h1{font-family:var(--serif);font-size:3.4rem;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase}
 .masthead .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
 .masthead .meta .center{color:var(--red);font-weight:500}
+.masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
 .masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
-.layout{display:grid;grid-template-columns:260px 1fr 260px;gap:0;margin-top:24px;border-top:1px solid var(--rule)}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:0;margin-top:24px;border-top:1px solid var(--rule)}
 .col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
 .col-center{padding:18px 24px}
 .col-right{padding:18px 0 18px 18px;border-left:1px solid var(--rule)}
@@ -48,7 +49,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .recap-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
 .recap-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
 .story-section{margin-top:20px;border-top:2px solid var(--ink);padding-top:16px}
-.story-img{width:100%;height:auto;max-height:560px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
+.story-img{width:100%;height:auto;max-height:680px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
 .story-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);margin-bottom:6px}
 .story-citizen{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:10px}
 .story-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
@@ -89,7 +90,7 @@ footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft
     <div class="meta">
       <span>N° 1</span>
       <span class="center">Mercredi 11 novembre 2026</span>
-      <span>Journal du matin</span>
+      <span class="meta-meteo">Marseille 18°C · Minorea 29°C</span>
     </div>
     <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
   </div>
@@ -122,17 +123,7 @@ footer::before{content:'☁';display:block;font-size:1.2rem;color:var(--red-soft
 
       </div>
     </div>
-    <div class="col-right">
-      <div class="section-title">Météo</div>
-      <div class="meteo-block">
-        <div class="meteo-city">Marseille</div>
-        <div class="meteo-temp">18°C</div>
-        <div class="meteo-line">Pluie faible par intermittence, vent 16 km/h — parapluie prudent</div>
-        <div class="meteo-city">Minorea (Pacifique)</div>
-        <div class="meteo-temp">29°C</div>
-        <div class="meteo-line">Alizé léger, mer calme, ciel dégagé</div>
-      </div>
-    </div>
+
   </div>
 </div>
 <footer>La Gazette de Norée — édition quotidienne · Garde les nuages.</footer>
