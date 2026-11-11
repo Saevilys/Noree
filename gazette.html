@@ -36,6 +36,31 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
 .masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
 .masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
+.weather-widget{display:flex;gap:0;margin:0;padding:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden}
+.w-card{flex:1;padding:12px 10px 14px;text-align:center;font-family:var(--sans);position:relative;min-width:0;border-right:1px solid var(--rule-soft)}
+.w-card:last-child{border-right:none}
+.w-card .w-emoji{font-size:2rem;line-height:1;margin-bottom:6px;display:block}
+.w-card .w-city{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:4px}
+.w-card .w-temp{font-family:var(--serif);font-size:1.8rem;font-weight:700;line-height:1}
+.w-card .w-desc{font-size:0.65rem;color:var(--ink-faint);margin-top:4px;text-transform:capitalize}
+.w-card .w-feels{font-size:0.6rem;color:var(--ink-faint);opacity:0.7;margin-top:2px}
+.w-sunny{background:linear-gradient(135deg,#fff9e6,#fff3d0)}
+.w-sunny .w-temp{color:#c8820a}
+.w-cloudy{background:linear-gradient(135deg,#f0f0f4,#e8e8ee)}
+.w-cloudy .w-temp{color:#5a5a6a}
+.w-overcast{background:linear-gradient(135deg,#e8e8ec,#dcdce4)}
+.w-overcast .w-temp{color:#4a4a5a}
+.w-rain{background:linear-gradient(135deg,#e0ecf5,#d4e0f0)}
+.w-rain .w-temp{color:#2a6a9a}
+.w-drizzle{background:linear-gradient(135deg,#e4ecf2,#dce4ec)}
+.w-drizzle .w-temp{color:#3a7aaa}
+.w-cold{background:linear-gradient(135deg,#e8f0f8,#dce8f4)}
+.w-cold .w-temp{color:#3a7aba}
+.w-hot{background:linear-gradient(135deg,#fff0e0,#ffe8d0)}
+.w-hot .w-temp{color:#c8500a}
+.w-minorea{background:linear-gradient(135deg,#f4ecd6,#f8f0e0);border-right:none}
+.w-minorea .w-city{color:var(--red);font-weight:600}
+.w-minorea .w-temp{color:var(--red)}
 .layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
 .col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
 .col-center{padding:18px 24px}
@@ -97,10 +122,20 @@ footer::before{content:'\2766 \00B7 \2601 \00B7 \2766';display:block;font-size:1
   <div class="masthead">
     <h1>La Gazette de Norée</h1>
     <div class="meta">
-      <span>N° 2 · Mercredi 11 novembre 2026 · Marseille 19°C · Minorea 29°C</span>
+      <span>N° 2 · Mercredi 11 novembre 2026</span>
     </div>
     <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
     <div class="masthead-ornament">❦ ❖ ❦</div>
+  </div>
+  <div class="weather-widget">
+    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Paris</div><div class="w-temp">14°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 13°</div></div>
+    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Marseille</div><div class="w-temp">19°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 19°</div></div>
+    <div class="w-card w-drizzle"><span class="w-emoji">🌦️</span><div class="w-city">Londres</div><div class="w-temp">9°</div><div class="w-desc">Bruine</div><div class="w-feels">Ressenti 7°</div></div>
+    <div class="w-card w-cloudy"><span class="w-emoji">⛅</span><div class="w-city">Tokyo</div><div class="w-temp">16°</div><div class="w-desc">Partiellement nuageux</div><div class="w-feels">Ressenti 14°</div></div>
+    <div class="w-card w-hot"><span class="w-emoji">☁️</span><div class="w-city">Dubaï</div><div class="w-temp">30°</div><div class="w-desc">Couvert</div><div class="w-feels">Ressenti 30°</div></div>
+    <div class="w-card w-sunny"><span class="w-emoji">☀️</span><div class="w-city">Sydney</div><div class="w-temp">19°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 19°</div></div>
+    <div class="w-card w-cold"><span class="w-emoji">☀️</span><div class="w-city">Reykjavik</div><div class="w-temp">-2°</div><div class="w-desc">Ensoleillé</div><div class="w-feels">Ressenti -7°</div></div>
+    <div class="w-card w-minorea"><span class="w-emoji">☀️</span><div class="w-city">Minorea</div><div class="w-temp">29°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 31°</div></div>
   </div>
   <div class="layout">
     <div class="col-left">
