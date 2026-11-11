@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gazette de Norée — N° 2</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f4ecd6;
+  --paper-darker:#ebe0c4;
+  --ink:#1a1a1a;
+  --ink-dim:#3a3a3a;
+  --ink-faint:#6a6a5a;
+  --red:#9c2a1a;
+  --red-soft:#c44030;
+  --rule:#c8b890;
+  --rule-soft:#d8c8a0;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Inter',sans-serif;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.65}
+.nav-bar{display:flex;justify-content:center;align-items:center;gap:1.2rem;flex-wrap:wrap;padding:8px 20px;border-bottom:1px solid var(--rule);background:var(--paper-darker)}
+.nav-bar a{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none}
+.nav-bar a:hover{color:var(--red)}
+.nav-bar a.current{color:var(--red);font-weight:500}
+.nav-bar .sep{color:var(--rule);font-size:0.7rem}
+.gazette-wrap{max-width:1400px;margin:0 auto;padding:28px 28px 48px}
+.masthead{text-align:center;border-bottom:3px double var(--ink);padding-bottom:12px;margin-bottom:0}
+.masthead h1{font-family:var(--serif);font-size:3.4rem;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase}
+.masthead .meta{text-align:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
+.masthead .meta .center{color:var(--red);font-weight:500}
+.masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
+.masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
+.masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
+.weather-widget{display:flex;gap:0;margin:0;padding:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden}
+.w-card{flex:1;padding:12px 10px 14px;text-align:center;font-family:var(--sans);position:relative;min-width:0;border-right:1px solid var(--rule-soft)}
+.w-card:last-child{border-right:none}
+.w-card .w-emoji{font-size:2rem;line-height:1;margin-bottom:6px;display:block}
+.w-card .w-city{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:4px}
+.w-card .w-temp{font-family:var(--serif);font-size:1.8rem;font-weight:700;line-height:1}
+.w-card .w-desc{font-size:0.65rem;color:var(--ink-faint);margin-top:4px;text-transform:capitalize}
+.w-card .w-feels{font-size:0.6rem;color:var(--ink-faint);opacity:0.7;margin-top:2px}
+.w-sunny{background:linear-gradient(135deg,#fff9e6,#fff3d0)}
+.w-sunny .w-temp{color:#c8820a}
+.w-cloudy{background:linear-gradient(135deg,#f0f0f4,#e8e8ee)}
+.w-cloudy .w-temp{color:#5a5a6a}
+.w-overcast{background:linear-gradient(135deg,#e8e8ec,#dcdce4)}
+.w-overcast .w-temp{color:#4a4a5a}
+.w-rain{background:linear-gradient(135deg,#e0ecf5,#d4e0f0)}
+.w-rain .w-temp{color:#2a6a9a}
+.w-drizzle{background:linear-gradient(135deg,#e4ecf2,#dce4ec)}
+.w-drizzle .w-temp{color:#3a7aaa}
+.w-cold{background:linear-gradient(135deg,#e8f0f8,#dce8f4)}
+.w-cold .w-temp{color:#3a7aba}
+.w-hot{background:linear-gradient(135deg,#fff0e0,#ffe8d0)}
+.w-hot .w-temp{color:#c8500a}
+.w-minorea{background:linear-gradient(135deg,#f4ecd6,#f8f0e0);border-right:none}
+.w-minorea .w-city{color:var(--red);font-weight:600}
+.w-minorea .w-temp{color:var(--red)}
+.layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
+.col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
+.col-center{padding:18px 24px}
+.col-right{padding:18px 0 18px 24px;border-left:1px solid var(--rule)}
+.recap-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
+.section-title{font-family:var(--sans);font-size:0.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px;font-weight:500;position:relative}
+.section-title::after{content:'';position:absolute;bottom:-2px;left:0;width:40px;height:2px;background:var(--red)}
+.une-headline::first-letter{font-size:3.6rem;float:left;line-height:0.85;padding-right:8px;padding-top:4px;color:var(--red);font-weight:700}
+.une-headline{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:14px}
+.une-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.une-text p{margin-bottom:0.6em}
+.recap-section{padding-top:0}
+.recap-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.recap-item:last-child{border-bottom:none}
+.recap-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.recap-item h3::before{content:'§ ';color:var(--red-soft);opacity:.6}
+.recap-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
+.story-section{margin-top:20px;border-top:2px solid var(--ink);padding-top:16px}
+.story-img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
+.story-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);margin-bottom:6px}
+.story-citizen{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:10px}
+.story-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.story-text::first-letter{font-size:2.8rem;float:left;line-height:0.85;padding-right:6px;padding-top:3px;color:var(--red);font-weight:700}
+.annonce{font-size:0.95rem;line-height:1.55;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--rule)}
+.annonce:last-child{border-bottom:none}
+.annonce .cat{font-family:var(--sans);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:6px}
+.annonce .cat::before{content:'◆ ';color:var(--red-soft);opacity:.5}
+.annonce p{color:var(--ink-dim);font-style:italic}
+.col-divider{display:flex;align-items:center;gap:8px;margin:20px 0 14px;color:var(--red-soft);opacity:.4;font-size:0.9rem}
+.col-divider::before,.col-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.pharma-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.pharma-item:last-child{border-bottom:none}
+.pharma-item h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--red);margin-bottom:5px}
+.pharma-item h4::before{content:'\211Ee ';color:var(--red-soft);opacity:.6}
+.pharma-item p{font-size:0.98rem;line-height:1.6;color:var(--ink-dim)}
+footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
+footer::before{content:'\2766 \00B7 \2601 \00B7 \2766';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">Norée</a>
+  <span class="sep">·</span>
+  <a href="noree.html">Lore</a>
+  <span class="sep">·</span>
+  <a href="bip.html">Bip</a>
+  <span class="sep">·</span>
+  <a href="gouvernement.html">Gouvernement</a>
+  <span class="sep">·</span>
+  <a href="population-terrienne.html">Population</a>
+  <span class="sep">·</span>
+  <a href="population-spatiale.html">Stations</a>
+  <span class="sep">·</span>
+  <a href="recherche.html">Recherche</a>
+  <span class="sep">·</span>
+  <a href="gazette.html" class="current">Gazette</a>
+</div>
+<div class="gazette-wrap">
+  <div class="masthead">
+    <h1>La Gazette de Norée</h1>
+    <div class="meta">
+      <span>N° 2 · Mercredi 11 novembre 2026</span>
+    </div>
+    <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
+    <div class="masthead-ornament">❦ ❖ ❦</div>
+  </div>
+  <div class="weather-widget">
+    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Paris</div><div class="w-temp">14°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 13°</div></div>
+    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Marseille</div><div class="w-temp">19°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 19°</div></div>
+    <div class="w-card w-drizzle"><span class="w-emoji">🌦️</span><div class="w-city">Londres</div><div class="w-temp">9°</div><div class="w-desc">Bruine</div><div class="w-feels">Ressenti 7°</div></div>
+    <div class="w-card w-cloudy"><span class="w-emoji">⛅</span><div class="w-city">Tokyo</div><div class="w-temp">16°</div><div class="w-desc">Partiellement nuageux</div><div class="w-feels">Ressenti 14°</div></div>
+    <div class="w-card w-hot"><span class="w-emoji">☁️</span><div class="w-city">Dubaï</div><div class="w-temp">30°</div><div class="w-desc">Couvert</div><div class="w-feels">Ressenti 30°</div></div>
+    <div class="w-card w-sunny"><span class="w-emoji">☀️</span><div class="w-city">Sydney</div><div class="w-temp">19°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 19°</div></div>
+    <div class="w-card w-cold"><span class="w-emoji">☀️</span><div class="w-city">Reykjavik</div><div class="w-temp">-2°</div><div class="w-desc">Ensoleillé</div><div class="w-feels">Ressenti -7°</div></div>
+    <div class="w-card w-minorea"><span class="w-emoji">☀️</span><div class="w-city">Minorea</div><div class="w-temp">29°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 31°</div></div>
+  </div>
+  <div class="layout">
+    <div class="col-left">
+      <div class="section-title">Petites Annonces</div>
+      <div class="annonce"><div class="cat">Emploi</div><p>Recherche : tisseur de nuages confirmé. Candidatures aux Serres de Nour.</p></div>
+<div class="annonce"><div class="cat">Vente</div><p>Télescope orbital occasion, peu servi. Contacter l'observatoire de Station Zineb.</p></div>
+<div class="annonce"><div class="cat">Culture</div><p>Récital de harpe éolienne ce soir à la salle des Échos, Minorea. Entrée libre.</p></div>
+<div class="annonce"><div class="cat">Avis</div><p>Perdu : un petit robot cube avec des yeux cyan. Répond au nom de Bip. Ne PAS le nourrir après minuit.</p></div>
+    </div>
+    <div class="col-center">
+      <div class="section-title">La Une</div>
+      <div class="une-headline">Tom Laperche remporte la Route du Rhum 2026 et fracasse le record</div>
+      <div class="une-text"><p>À 29 ans, le skipper de SVR-Lazartigue a rallié Pointe-à-Pitre en 6 jours, 13 heures et 27 minutes, pulvérisant d'environ six heures le record de Charles Caudrelier établi en 2022. Benjamin de la classe Ultim, Laperche s'est détaché au nord des Açores en profitant des abandons et casses de la flotte, avant de contourner une dépression tropicale avec une gestion prudente des risques. « Mon rêve était de courir dans cette catégorie reine et de jouer la victoire au scratch », a-t-il lâché à l'arrivée, sous les applaudissements d'une foule guadeloupéenne dense. Thomas Coville et Louis Burton complètent le podium Ultim. En Imoca, Corentin Horeau a remporté sa catégorie dans la nuit de mardi à mercredi, atomisant lui aussi le record de la classe.</p></div>
+      <div class="col-divider">❖</div>
+      <div class="section-title">Au Comptoir</div>
+      <div class="pharma-item"><h4>Wegovy en comprimé : disponible mais introuvable</h4><p>Commercialisé depuis le 2 novembre, le premier agoniste du GLP-1 par voie orale reste introuvable en officine. Aucune des pharmacies interrogées n'avait de stock : les officines attendent de voir la demande réelle avant de commander. Non remboursé par l'Assurance maladie (contrairement à la forme injectable, remboursée à 65% depuis juin 2025), il coûte 169 euros par mois. Le marché parallèle et les fausses ordonnances circulent déjà.</p></div>
+<div class="pharma-item"><h4>Tensions d'approvisionnement : semaine 45</h4><p>L'ANSM signale de nouvelles perturbations : furosémide 20 mg et 40 mg (tension persistante en ville, remise indéterminée), diazépam 5 mg (remise prévue fin novembre), cotrimoxazole (contingentement, remise janvier 2027). En revanche, le Kytril 3 mg et le Lonquex 6 mg sont de retour depuis le 3-4 novembre.</p></div>
+    </div>
+    <div class="col-right">
+      <div class="section-title">Vie de la Station</div>
+      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/miriam/miriam-gazette.jpg" alt="Miriam, cérémonie du café">
+      <div class="story-title">Le café de Miriam</div>
+      <div class="story-citizen">Miriam · 23 ans · Addis Abeba · Station Afrique</div>
+      <div class="story-text">Miriam a installé sa jebena sur le feu dès l'aube. Le café éthiopien ne se prépare pas en vitesse, il se respecte : les grains torréfiés, la mouture, l'infusion lente dans la poterie d'argile, puis les trois tasses qu'on offre à tour de rôle. Elle sert à qui s'arrête, sans demander si c'est le moment. La question c'est pas « tu veux un café ? » chez elle, c'est « tu t'assieds ? ». Et les gens s'assoient. Ils parlent pas forcément, elle non plus. Le silence fait partie du service. Quelqu'un a laissé un mot froissé dans sa boîte aux lettres, l'autre nuit. Pas de signature, pas d'expéditeur, juste trois lignes à l'encre brune. Miriam l'a lu, l'a plié, l'a posé sous la jebena pour le garder au chaud. Elle dira rien, elle attendra que la personne revienne le chercher elle-même.</div>
+    </div>
+    <div class="recap-full">
+      <div class="section-title">Hier en bref</div>
+      <div class="recap-item"><h3>Dernier 11-Novembre pour Macron</h3><p>Le président a présidé sa dernière commémoration de l'Armistice avant la fin de son mandat, à six mois de la présidentielle. Les premières volontaires du Service national ont pris part aux cérémonies, aux côtés des militaires et des anciens combattants.</p></div>
+      <div class="recap-item"><h3>Mobilisations lycéennes : une élue blessée à Chelles</h3><p>Angela Pascoa Dos Santos (LR) a été touchée par un jet de bouteille d'essence devant le lycée Gaston-Bachelard. Le parquet de Meaux a ouvert une enquête. Près de cinquante établissements bloqués, des violences récurrentes, mais une marche pacifique de 10 000 personnes à Paris dans le calme.</p></div>
+      <div class="recap-item"><h3>Le RN décroche un prêt de 10,6 millions d'euros</h3><p>Le Rassemblement national a obtenu un préaccord de deux banques européennes pour un prêt de 10,6 millions d'euros destiné à financer la campagne présidentielle de Marine Le Pen.</p></div>
+    </div>
+  </div>
+</div>
+<footer>La Gazette de Norée · N° 2 · Mercredi 11 novembre 2026 · Imprimée dans les Serres de Nour</footer>
+</body>
+</html>
