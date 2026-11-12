@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Gazette de Norée — N° 2</title>
+<title>La Gazette de Norée — N° 3</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
@@ -31,36 +31,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .gazette-wrap{max-width:1400px;margin:0 auto;padding:28px 28px 48px}
 .masthead{text-align:center;border-bottom:3px double var(--ink);padding-bottom:12px;margin-bottom:0}
 .masthead h1{font-family:var(--serif);font-size:3.4rem;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase}
-.masthead .meta{text-align:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
+.masthead .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
 .masthead .meta .center{color:var(--red);font-weight:500}
 .masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
 .masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
 .masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
-.weather-widget{display:flex;gap:0;margin:0;padding:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden}
-.w-card{flex:1;padding:12px 10px 14px;text-align:center;font-family:var(--sans);position:relative;min-width:0;border-right:1px solid var(--rule-soft)}
-.w-card:last-child{border-right:none}
-.w-card .w-emoji{font-size:2rem;line-height:1;margin-bottom:6px;display:block}
-.w-card .w-city{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:4px}
-.w-card .w-temp{font-family:var(--serif);font-size:1.8rem;font-weight:700;line-height:1}
-.w-card .w-desc{font-size:0.65rem;color:var(--ink-faint);margin-top:4px;text-transform:capitalize}
-.w-card .w-feels{font-size:0.6rem;color:var(--ink-faint);opacity:0.7;margin-top:2px}
-.w-sunny{background:linear-gradient(135deg,#fff9e6,#fff3d0)}
-.w-sunny .w-temp{color:#c8820a}
-.w-cloudy{background:linear-gradient(135deg,#f0f0f4,#e8e8ee)}
-.w-cloudy .w-temp{color:#5a5a6a}
-.w-overcast{background:linear-gradient(135deg,#e8e8ec,#dcdce4)}
-.w-overcast .w-temp{color:#4a4a5a}
-.w-rain{background:linear-gradient(135deg,#e0ecf5,#d4e0f0)}
-.w-rain .w-temp{color:#2a6a9a}
-.w-drizzle{background:linear-gradient(135deg,#e4ecf2,#dce4ec)}
-.w-drizzle .w-temp{color:#3a7aaa}
-.w-cold{background:linear-gradient(135deg,#e8f0f8,#dce8f4)}
-.w-cold .w-temp{color:#3a7aba}
-.w-hot{background:linear-gradient(135deg,#fff0e0,#ffe8d0)}
-.w-hot .w-temp{color:#c8500a}
-.w-minorea{background:linear-gradient(135deg,#f4ecd6,#f8f0e0);border-right:none}
-.w-minorea .w-city{color:var(--red);font-weight:600}
-.w-minorea .w-temp{color:var(--red)}
 .layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
 .col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
 .col-center{padding:18px 24px}
@@ -89,15 +64,20 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weig
 .annonce .cat{font-family:var(--sans);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:6px}
 .annonce .cat::before{content:'◆ ';color:var(--red-soft);opacity:.5}
 .annonce p{color:var(--ink-dim);font-style:italic}
+.meteo-block{margin-bottom:20px}
+.meteo-city{font-family:var(--sans);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.meteo-temp{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1}
+.meteo-line{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--rule)}
+.meteo-line:last-of-type{border-bottom:none}
+footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
+footer::before{content:'❦ · ☁ · ❦';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
 .col-divider{display:flex;align-items:center;gap:8px;margin:20px 0 14px;color:var(--red-soft);opacity:.4;font-size:0.9rem}
 .col-divider::before,.col-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
 .pharma-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
 .pharma-item:last-child{border-bottom:none}
 .pharma-item h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--red);margin-bottom:5px}
-.pharma-item h4::before{content:'\211Ee ';color:var(--red-soft);opacity:.6}
+.pharma-item h4::before{content:'℞ ';color:var(--red-soft);opacity:.6}
 .pharma-item p{font-size:0.98rem;line-height:1.6;color:var(--ink-dim)}
-footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
-footer::before{content:'\2766 \00B7 \2601 \00B7 \2766';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
 </style>
 </head>
 <body>
@@ -122,53 +102,53 @@ footer::before{content:'\2766 \00B7 \2601 \00B7 \2766';display:block;font-size:1
   <div class="masthead">
     <h1>La Gazette de Norée</h1>
     <div class="meta">
-      <span>N° 2 · Mercredi 11 novembre 2026</span>
+      <span>N° 3</span>
+      <span class="center">Jeudi 12 novembre 2026</span>
+      <span class="meta-meteo">Marseille 17°C · Minorea 24°C</span>
     </div>
     <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
     <div class="masthead-ornament">❦ ❖ ❦</div>
   </div>
-  <div class="weather-widget">
-    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Paris</div><div class="w-temp">14°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 13°</div></div>
-    <div class="w-card w-rain"><span class="w-emoji">🌧️</span><div class="w-city">Marseille</div><div class="w-temp">19°</div><div class="w-desc">Pluie</div><div class="w-feels">Ressenti 19°</div></div>
-    <div class="w-card w-drizzle"><span class="w-emoji">🌦️</span><div class="w-city">Londres</div><div class="w-temp">9°</div><div class="w-desc">Bruine</div><div class="w-feels">Ressenti 7°</div></div>
-    <div class="w-card w-cloudy"><span class="w-emoji">⛅</span><div class="w-city">Tokyo</div><div class="w-temp">16°</div><div class="w-desc">Partiellement nuageux</div><div class="w-feels">Ressenti 14°</div></div>
-    <div class="w-card w-hot"><span class="w-emoji">☁️</span><div class="w-city">Dubaï</div><div class="w-temp">30°</div><div class="w-desc">Couvert</div><div class="w-feels">Ressenti 30°</div></div>
-    <div class="w-card w-sunny"><span class="w-emoji">☀️</span><div class="w-city">Sydney</div><div class="w-temp">19°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 19°</div></div>
-    <div class="w-card w-cold"><span class="w-emoji">☀️</span><div class="w-city">Reykjavik</div><div class="w-temp">-2°</div><div class="w-desc">Ensoleillé</div><div class="w-feels">Ressenti -7°</div></div>
-    <div class="w-card w-minorea"><span class="w-emoji">☀️</span><div class="w-city">Minorea</div><div class="w-temp">29°</div><div class="w-desc">Dégagé</div><div class="w-feels">Ressenti 31°</div></div>
-  </div>
   <div class="layout">
     <div class="col-left">
       <div class="section-title">Petites Annonces</div>
-      <div class="annonce"><div class="cat">Emploi</div><p>Recherche : tisseur de nuages confirmé. Candidatures aux Serres de Nour.</p></div>
-<div class="annonce"><div class="cat">Vente</div><p>Télescope orbital occasion, peu servi. Contacter l'observatoire de Station Zineb.</p></div>
-<div class="annonce"><div class="cat">Culture</div><p>Récital de harpe éolienne ce soir à la salle des Échos, Minorea. Entrée libre.</p></div>
-<div class="annonce"><div class="cat">Avis</div><p>Perdu : un petit robot cube avec des yeux cyan. Répond au nom de Bip. Ne PAS le nourrir après minuit.</p></div>
+      <div class="annonce"><div class="cat">Emploi</div><p>Recherche : bibliothécaire de nuit pour la Tour des Silences. Le bruit dérange les livres. Postuler à l'accueil de Minorea.</p></div>
+<div class="annonce"><div class="cat">Vente</div><p>Instrument de mesure du silence, cuivre, peu servi. Contact Nima, monastère volant, Minorea.</p></div>
+<div class="annonce"><div class="cat">Culture</div><p>Projection en plein nuage ce soir : « Il faut brûler maman » d'Albert Dupontel. Couvertures fournies. Place de l'Horloge, Minorea.</p></div>
+<div class="annonce"><div class="cat">Avis</div><p>Trouvé : une tortue avec un chapeau blanc sur la carapace. Répond au nom de Mochi. Ne pas la réveiller, elle dort.</p></div>
+
     </div>
     <div class="col-center">
       <div class="section-title">La Une</div>
-      <div class="une-headline">Tom Laperche remporte la Route du Rhum 2026 et fracasse le record</div>
-      <div class="une-text"><p>À 29 ans, le skipper de SVR-Lazartigue a rallié Pointe-à-Pitre en 6 jours, 13 heures et 27 minutes, pulvérisant d'environ six heures le record de Charles Caudrelier établi en 2022. Benjamin de la classe Ultim, Laperche s'est détaché au nord des Açores en profitant des abandons et casses de la flotte, avant de contourner une dépression tropicale avec une gestion prudente des risques. « Mon rêve était de courir dans cette catégorie reine et de jouer la victoire au scratch », a-t-il lâché à l'arrivée, sous les applaudissements d'une foule guadeloupéenne dense. Thomas Coville et Louis Burton complètent le podium Ultim. En Imoca, Corentin Horeau a remporté sa catégorie dans la nuit de mardi à mercredi, atomisant lui aussi le record de la classe.</p></div>
+      <div class="une-headline">35 heures sous la neige : un skieur miraculé en Savoie</div>
+      <div class="une-text"><p>Emeric Ossatte, 39 ans, a survécu 35 heures enseveli dans une crevasse du massif du Mont-Cenis après avoir été pris dans une avalanche le 8 novembre. Une jambe libérée, mais fracturée, aucun téléphone pour appeler au secours. Les secouristes l'ont localisé le lendemain après cinq heures de recherche. Fracture du fémur, gelures, mais vivant. Les équipes du PGHM de Modane parlent d'un miracle de résistance et de sang-froid.</p></div>
       <div class="col-divider">❖</div>
       <div class="section-title">Au Comptoir</div>
-      <div class="pharma-item"><h4>Wegovy en comprimé : disponible mais introuvable</h4><p>Commercialisé depuis le 2 novembre, le premier agoniste du GLP-1 par voie orale reste introuvable en officine. Aucune des pharmacies interrogées n'avait de stock : les officines attendent de voir la demande réelle avant de commander. Non remboursé par l'Assurance maladie (contrairement à la forme injectable, remboursée à 65% depuis juin 2025), il coûte 169 euros par mois. Le marché parallèle et les fausses ordonnances circulent déjà.</p></div>
-<div class="pharma-item"><h4>Tensions d'approvisionnement : semaine 45</h4><p>L'ANSM signale de nouvelles perturbations : furosémide 20 mg et 40 mg (tension persistante en ville, remise indéterminée), diazépam 5 mg (remise prévue fin novembre), cotrimoxazole (contingentement, remise janvier 2027). En revanche, le Kytril 3 mg et le Lonquex 6 mg sont de retour depuis le 3-4 novembre.</p></div>
+      <div class="pharma-item"><h4>℞ Faux médicaments maigrir : l'ANSM tire la sonnette</h4><p>L'ANSM a recensé au moins 2 801 cas d'effets indésirables entre 2025 et 2026 liés à des injections amaigrissantes contrefaites vendues en ligne. Des substances nocives ont été identifiées en laboratoire. Les pharmaciens sont invités à sensibiliser les patients sur les risques des produits achetés sans ordonnance via les réseaux sociaux.</p></div>
+<div class="pharma-item"><h4>℞ Mélenchon propose des pharmacies publiques</h4><p>Dans son programme santé, Jean-Luc Mélenchon propose la création de pharmacies publiques, le contrôle des prix et la production nationale de médicaments. Une mesure qui divise la profession pharmaceutique, entre rejet frontal et débats sur la sécurité d'approvisionnement.</p></div>
+
     </div>
     <div class="col-right">
       <div class="section-title">Vie de la Station</div>
-      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/miriam/miriam-gazette.jpg" alt="Miriam, cérémonie du café">
-      <div class="story-title">Le café de Miriam</div>
-      <div class="story-citizen">Miriam · 23 ans · Addis Abeba · Station Afrique</div>
-      <div class="story-text">Miriam a installé sa jebena sur le feu dès l'aube. Le café éthiopien ne se prépare pas en vitesse, il se respecte : les grains torréfiés, la mouture, l'infusion lente dans la poterie d'argile, puis les trois tasses qu'on offre à tour de rôle. Elle sert à qui s'arrête, sans demander si c'est le moment. La question c'est pas « tu veux un café ? » chez elle, c'est « tu t'assieds ? ». Et les gens s'assoient. Ils parlent pas forcément, elle non plus. Le silence fait partie du service. Quelqu'un a laissé un mot froissé dans sa boîte aux lettres, l'autre nuit. Pas de signature, pas d'expéditeur, juste trois lignes à l'encre brune. Miriam l'a lu, l'a plié, l'a posé sous la jebena pour le garder au chaud. Elle dira rien, elle attendra que la personne revienne le chercher elle-même.</div>
+      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/gazette/gazette-3-nima.jpg" alt="Nima, l'aube sur Paro">
+
+      <div class="story-title">Nima et le poids des nuages</div>
+      <div class="story-citizen">Nima — minorea</div>
+      <div class="story-text">Nima est arrivée à Minorea avec un instrument que personne n'avait vu : un petit boîtier de cuivre, léger, sans écran, qui émet un son grave quand on le pose sur une surface stable. « Il mesure le silence », a-t-elle dit aux ingénieurs de la station, qui ne savaient pas s'il fallait rire. Elle l'a posé sur le balcon des Serres, face à la mer de nuages. Le boîtier a chanté pendant quatre minutes. Les ingénieurs ont noté. Nima a souri, a rangé son instrument, et est repartie vers le monastère volant sans rien ajouter.</div>
+      <div class="col-divider">❖</div>
     </div>
     <div class="recap-full">
       <div class="section-title">Hier en bref</div>
-      <div class="recap-item"><h3>Dernier 11-Novembre pour Macron</h3><p>Le président a présidé sa dernière commémoration de l'Armistice avant la fin de son mandat, à six mois de la présidentielle. Les premières volontaires du Service national ont pris part aux cérémonies, aux côtés des militaires et des anciens combattants.</p></div>
-      <div class="recap-item"><h3>Mobilisations lycéennes : une élue blessée à Chelles</h3><p>Angela Pascoa Dos Santos (LR) a été touchée par un jet de bouteille d'essence devant le lycée Gaston-Bachelard. Le parquet de Meaux a ouvert une enquête. Près de cinquante établissements bloqués, des violences récurrentes, mais une marche pacifique de 10 000 personnes à Paris dans le calme.</p></div>
-      <div class="recap-item"><h3>Le RN décroche un prêt de 10,6 millions d'euros</h3><p>Le Rassemblement national a obtenu un préaccord de deux banques européennes pour un prêt de 10,6 millions d'euros destiné à financer la campagne présidentielle de Marine Le Pen.</p></div>
+      <div class="recap-section" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;border-top:none;padding-top:0">
+        <div class="recap-item"><h3>Guy Marchand, agent secret ?</h3><p>Trois journalistes révèlent dans « La Nouvelle Armée des ombres » que l'acteur aurait appartenu à un réseau de renseignement français pendant la Guerre froide, hébergeant des agents opérationnels dans sa résidence du Sud-Est.</p></div>
+<div class="recap-item"><h3>Antarctic Ice Ultra</h3><p>Stephanie Case est devenue la première femme de l'histoire à terminer les 100 miles de l'Antarctic Ice Ultra, l'ultra-trail le plus extrême du continent austral.</p></div>
+<div class="recap-item"><h3>Dimanches à Nantes</h3><p>Les commerçants du centre-ville de Nantes ont obtenu l'autorisation d'ouvrir deux dimanches supplémentaires en novembre, une « petite victoire » saluée par les commerçants.</p></div>
+<div class="recap-item"><h3>Il faut brûler maman</h3><p>Le nouveau film d'Albert Dupontel sort en salles. Julia Piaton y incarne l'une des trois enfants chargés des funérailles de leur mère. Comédie noire et famille, en salles depuis mercredi.</p></div>
+
+      </div>
     </div>
   </div>
 </div>
-<footer>La Gazette de Norée · N° 2 · Mercredi 11 novembre 2026 · Imprimée dans les Serres de Nour</footer>
+<footer>La Gazette de Norée — édition quotidienne · Garde les nuages.</footer>
 </body>
 </html>
