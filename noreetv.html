@@ -97,6 +97,7 @@ nav ul li a.active{color:var(--gold);font-weight:500}
 .tv-wrap{
   max-width:1100px;margin:0 auto;padding:32px 24px 64px;
 }
+body{padding-bottom:34px}
 
 /* === HEADER === */
 .tv-header{text-align:center;margin-bottom:20px}
@@ -229,6 +230,52 @@ nav ul li a.active{color:var(--gold);font-weight:500}
   text-transform:uppercase;
 }
 .tv-footer a{color:var(--gold-deep);text-decoration:none}
+
+/* === TICKER === */
+.ticker{
+  position:fixed;left:0;right:0;bottom:0;z-index:200;
+  display:flex;align-items:center;
+  background:rgba(20,28,32,0.96);
+  border-top:1px solid var(--glass-border);
+  backdrop-filter:blur(10px);
+  height:34px;
+}
+.ticker-label{
+  flex:none;display:flex;align-items:center;gap:7px;
+  padding:0 16px;height:100%;
+  background:linear-gradient(90deg,rgba(216,128,104,0.25),rgba(216,128,104,0.05));
+  border-right:1px solid var(--glass-border);
+  font-family:var(--mono);font-size:0.62rem;
+  letter-spacing:0.14em;color:var(--rose);
+  text-transform:uppercase;white-space:nowrap;
+}
+.ticker-label::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--rose);animation:pulse 1.6s ease-in-out infinite;
+}
+.ticker-view{flex:1;overflow:hidden;position:relative;height:100%}
+.ticker-track{
+  display:flex;align-items:center;gap:0;
+  white-space:nowrap;height:100%;
+  animation:ticker-scroll 90s linear infinite;
+}
+.ticker-view:hover .ticker-track{animation-play-state:paused}
+.ticker-item{
+  font-family:var(--mono);font-size:0.72rem;
+  letter-spacing:0.05em;color:var(--ink-dim);
+  padding:0 28px;position:relative;
+}
+.ticker-item.hot{color:var(--gold-light)}
+.ticker-item.space{color:var(--cyan)}
+.ticker-item::after{
+  content:'◆';position:absolute;right:-5px;
+  color:var(--ink-faint);font-size:0.5rem;
+}
+@keyframes ticker-scroll{
+  from{transform:translateX(100vw)}
+  to{transform:translateX(-100%)}
+}
+@media(max-width:768px){.ticker-label{padding:0 10px}}
 </style>
 </head>
 <body>
@@ -312,6 +359,25 @@ nav ul li a.active{color:var(--gold);font-weight:500}
 
 <div class="tv-footer">
   NoréeTV · Diffusion publique de l'État de Norée · <a href="index.html">Retour au portail</a>
+</div>
+
+<div class="ticker">
+  <div class="ticker-label">Fil info</div>
+  <div class="ticker-view">
+    <div class="ticker-track">
+      <span class="ticker-item hot">Acte V : 106 000 manifestants en France selon l'Intérieur, 200 000 selon l'intersyndicale</span>
+      <span class="ticker-item hot">Heurts en fin de cortège à Lyon, quartier de la Guillotière — 219 interpellations, 10 policiers blessés</span>
+      <span class="ticker-item space">Indice Kp à 1 · aucune tempête géomagnétique en 48 h</span>
+      <span class="ticker-item">Iran : deux pétroliers heurtent des mines dans le détroit d'Ormuz</span>
+      <span class="ticker-item space">Coronal hole face à la Terre · vent solaire renforcé attendu le 17 nov</span>
+      <span class="ticker-item">Mississippi : collision de navires, 32 blessés hospitalisés</span>
+      <span class="ticker-item">ASEAN : sommet préparé à Manille, énergie et sécurité alimentaire en priorité</span>
+      <span class="ticker-item space">Ceintures de radiation nominales · dernière éruption M1.78 le 11 nov</span>
+      <span class="ticker-item">Rougeole : l'OPS retire aux États-Unis le statut d'élimination, 5 400 cas en 2026</span>
+      <span class="ticker-item space">Station Zineb : ciel dégagé sur l'hémisphère nocturne, aurores improbables cette semaine</span>
+      <span class="ticker-item">Minorea : éclaircies au-dessus de la capitale, trafic des couloirs fluide en soirée</span>
+    </div>
+  </div>
 </div>
 
 
