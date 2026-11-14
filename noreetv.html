@@ -131,70 +131,38 @@ nav ul li a.active{color:var(--gold);font-weight:500}
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
-/* === SLIDER === */
-.slider-container{
-  position:relative;
-  border-radius:16px;overflow:hidden;
+/* === PRESENTERS GRID === */
+.presenters{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.presenter-card{
+  border-radius:14px;overflow:hidden;
   border:1px solid var(--glass-border);
   background:rgba(255,240,220,0.03);
 }
-.slider-track{
-  display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+.presenter-photo{
+  width:100%;display:block;object-fit:cover;
+  aspect-ratio:3/4;
 }
-.slide{
-  min-width:100%;display:flex;flex-direction:column;
+.presenter-info{
+  padding:16px 20px 18px;
 }
-.slide-photo{
-  width:100%;max-height:70vh;object-fit:contain;
-  display:block;background:rgba(10,8,24,0.6);
-}
-.slide-overlay{
-  position:relative;bottom:auto;left:auto;right:auto;
-  padding:16px 32px 20px;
-  background:linear-gradient(0deg,rgba(16,12,36,0.92) 0%,rgba(16,12,36,0.6) 100%);
-}
-.slide-name{
-  font-family:var(--serif);font-size:1.8rem;font-weight:500;
+.presenter-name{
+  font-family:var(--serif);font-size:1.5rem;font-weight:500;
   color:var(--ink);
 }
-.slide-role{
-  font-family:var(--mono);font-size:0.72rem;
+.presenter-role{
+  font-family:var(--mono);font-size:0.68rem;
   letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--cyan);margin-top:2px;
+  color:var(--cyan);margin-top:4px;
 }
-.slide-station{
-  font-family:var(--sans);font-size:0.8rem;
+.presenter-station{
+  font-family:var(--sans);font-size:0.78rem;
   color:var(--ink-faint);margin-top:4px;
 }
-
-/* === SLIDER NAV === */
-.slider-nav{
-  display:flex;justify-content:center;gap:8px;
-  margin-top:16px;
+@media(max-width:768px){
+  .presenters{grid-template-columns:1fr}
 }
-.slider-dot{
-  width:32px;height:4px;border-radius:2px;
-  background:var(--glass-border);border:none;
-  cursor:pointer;transition:background .3s;
-  padding:0;
-}
-.slider-dot.active{background:var(--gold)}
-.slider-dot:hover{background:var(--ink-faint)}
-
-.slider-labels{
-  display:flex;justify-content:center;gap:24px;
-  margin-top:12px;
-  font-family:var(--mono);font-size:0.7rem;
-  letter-spacing:0.1em;text-transform:uppercase;
-}
-.slider-label{
-  color:var(--ink-faint);cursor:pointer;
-  transition:color .2s;background:none;border:none;
-  font-family:inherit;font-size:inherit;letter-spacing:inherit;
-  text-transform:inherit;padding:4px 8px;
-}
-.slider-label.active{color:var(--gold)}
-.slider-label:hover{color:var(--ink-dim)}
 
 /* === AUDIO PLAYER === */
 .player-section{
@@ -292,38 +260,23 @@ nav ul li a.active{color:var(--gold);font-weight:500}
     <div class="live-badge">EN DIRECT</div>
   </div>
 
-  <div class="slider-container" id="slider">
-    <div class="slider-track" id="track">
-
-      <div class="slide" style="position:relative">
-        <img class="slide-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/kesi-anchor-jt.png" alt="Kesi, présentatrice JT">
-        <div class="slide-overlay">
-          <div class="slide-name">Kesi</div>
-          <div class="slide-role">Présentatrice — Édition du soir</div>
-          <div class="slide-station">Station Minorea · Capitale</div>
-        </div>
+  <div class="presenters">
+    <div class="presenter-card">
+      <img class="presenter-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/kesi-anchor-jt.png" alt="Kesi, présentatrice JT">
+      <div class="presenter-info">
+        <div class="presenter-name">Kesi</div>
+        <div class="presenter-role">Présentatrice — Édition du soir</div>
+        <div class="presenter-station">Station Minorea · Capitale</div>
       </div>
-
-      <div class="slide" style="position:relative">
-        <img class="slide-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/thao-meteo-jt.png" alt="Thao, présentatrice météo">
-        <div class="slide-overlay">
-          <div class="slide-name">Thao</div>
-          <div class="slide-role">Météo spatiale — Vents solaires & ceintures de radiation</div>
-          <div class="slide-station">Station Zineb · Orbite</div>
-        </div>
-      </div>
-
     </div>
-  </div>
-
-  <div class="slider-labels">
-    <button class="slider-label active" onclick="goSlide(0)">Kesi · JT</button>
-    <button class="slider-label" onclick="goSlide(1)">Thao · Météo</button>
-  </div>
-
-  <div class="slider-nav">
-    <button class="slider-dot active" onclick="goSlide(0)"></button>
-    <button class="slider-dot" onclick="goSlide(1)"></button>
+    <div class="presenter-card">
+      <img class="presenter-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/thao-meteo-jt.png" alt="Thao, présentatrice météo">
+      <div class="presenter-info">
+        <div class="presenter-name">Thao</div>
+        <div class="presenter-role">Météo spatiale — Vents solaires & ceintures de radiation</div>
+        <div class="presenter-station">Station Zineb · Orbite</div>
+      </div>
+    </div>
   </div>
 
   <div class="player-section">
@@ -355,36 +308,7 @@ nav ul li a.active{color:var(--gold);font-weight:500}
   NoréeTV · Diffusion publique de l'État de Norée · <a href="index.html">Retour au portail</a>
 </div>
 
-<script>
-var currentSlide = 0;
-var totalSlides = 2;
 
-function goSlide(n){
-  currentSlide = n;
-  document.getElementById('track').style.transform = 'translateX(-' + (n * 100) + '%)';
-  document.querySelectorAll('.slider-dot').forEach(function(d,i){
-    d.classList.toggle('active', i === n);
-  });
-  document.querySelectorAll('.slider-label').forEach(function(d,i){
-    d.classList.toggle('active', i === n);
-  });
-}
-
-// Auto-advance every 8 seconds
-var autoSlide = setInterval(function(){
-  goSlide((currentSlide + 1) % totalSlides);
-}, 8000);
-
-// Pause on interaction
-document.getElementById('slider').addEventListener('mouseenter', function(){
-  clearInterval(autoSlide);
-});
-document.getElementById('slider').addEventListener('mouseleave', function(){
-  autoSlide = setInterval(function(){
-    goSlide((currentSlide + 1) % totalSlides);
-  }, 8000);
-});
-</script>
 
 </body>
 </html>
