@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoréeTV — La cité des nuages</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
+:root{
+  --bg:#1a1430;
+  --bg-2:#181430;
+  --ink:#f0eee8;
+  --ink-dim:#c0b8a8;
+  --ink-faint:#807868;
+  --cyan:#7fd9c8;
+  --violet:#c4a7ff;
+  --gold:#e8c878;
+  --gold-light:#f0d890;
+  --gold-deep:#c89848;
+  --rose:#d88068;
+  --glass:rgba(255,240,220,0.08);
+  --glass-border:rgba(200,170,100,0.25);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  position:relative;
+  min-height:100vh;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(232,200,120,0.04) 0%,transparent 40%);
+}
+
+/* === NAV === */
+nav{
+  display:flex;align-items:center;gap:1rem;
+  padding:12px 24px;
+  border-bottom:1px solid var(--glass-border);
+  background:rgba(24,20,48,0.85);
+  backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:100;
+}
+nav .wordmark{
+  font-family:var(--mono);font-size:0.78rem;
+  letter-spacing:0.1em;color:var(--gold);
+  text-decoration:none;white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+}
+nav .wordmark img{height:28px;border-radius:2px}
+nav .nav-toggle{
+  display:none;background:none;border:none;color:var(--ink-dim);
+  font-size:1.4rem;cursor:pointer;margin-left:auto;
+}
+nav ul{display:flex;list-style:none;gap:0;margin-left:auto;flex-wrap:wrap}
+nav ul li a{
+  display:block;padding:6px 14px;
+  font-family:var(--sans);font-size:0.8rem;font-weight:400;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink-faint);text-decoration:none;
+  transition:color .2s;
+}
+nav ul li a:hover{color:var(--cyan)}
+nav ul li a.active{color:var(--gold);font-weight:500}
+
+@media(max-width:768px){
+  nav .nav-toggle{display:block}
+  nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:rgba(24,20,48,0.95);padding:8px 24px 16px;border-bottom:1px solid var(--glass-border)}
+  nav ul.open{display:flex}
+  nav ul li a{padding:8px 0}
+}
+
+/* === STATUS BAR === */
+.status{
+  display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+  padding:8px 24px;
+  font-family:var(--mono);font-size:0.7rem;
+  letter-spacing:0.08em;color:var(--ink-faint);
+}
+.status span{display:flex;align-items:center;gap:6px}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);display:inline-block}
+.status .dot.gold{background:var(--gold)}
+.status .dot.rose{background:var(--rose)}
+
+/* === LAYOUT === */
+.tv-wrap{
+  max-width:1100px;margin:0 auto;padding:32px 24px 64px;
+}
+
+/* === HEADER === */
+.tv-header{text-align:center;margin-bottom:32px}
+.tv-logo{
+  font-family:var(--serif);font-size:3rem;font-weight:600;
+  letter-spacing:6px;color:var(--gold);text-transform:uppercase;
+}
+.tv-logo .accent{color:var(--cyan)}
+.tv-subtitle{
+  font-family:var(--mono);font-size:0.75rem;
+  letter-spacing:0.15em;color:var(--ink-faint);
+  text-transform:uppercase;margin-top:4px;
+}
+.tv-date{
+  font-family:var(--sans);font-size:0.85rem;
+  color:var(--ink-dim);margin-top:8px;
+}
+
+/* === LIVE BADGE === */
+.live-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(127,217,200,0.12);
+  border:1px solid rgba(127,217,200,0.3);
+  border-radius:20px;padding:4px 12px;
+  font-family:var(--mono);font-size:0.7rem;
+  letter-spacing:0.1em;color:var(--cyan);
+  margin-top:12px;
+}
+.live-badge::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--cyan);animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* === SLIDER === */
+.slider-container{
+  position:relative;
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--glass-border);
+  background:rgba(255,240,220,0.03);
+}
+.slider-track{
+  display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.slide{
+  min-width:100%;display:flex;flex-direction:column;
+}
+.slide-photo{
+  width:100%;aspect-ratio:16/10;object-fit:cover;
+  display:block;
+}
+.slide-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 32px 20px;
+  background:linear-gradient(0deg,rgba(16,12,36,0.92) 0%,rgba(16,12,36,0.6) 60%,transparent 100%);
+}
+.slide-name{
+  font-family:var(--serif);font-size:1.8rem;font-weight:500;
+  color:var(--ink);
+}
+.slide-role{
+  font-family:var(--mono);font-size:0.72rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--cyan);margin-top:2px;
+}
+.slide-station{
+  font-family:var(--sans);font-size:0.8rem;
+  color:var(--ink-faint);margin-top:4px;
+}
+
+/* === SLIDER NAV === */
+.slider-nav{
+  display:flex;justify-content:center;gap:8px;
+  margin-top:16px;
+}
+.slider-dot{
+  width:32px;height:4px;border-radius:2px;
+  background:var(--glass-border);border:none;
+  cursor:pointer;transition:background .3s;
+  padding:0;
+}
+.slider-dot.active{background:var(--gold)}
+.slider-dot:hover{background:var(--ink-faint)}
+
+.slider-labels{
+  display:flex;justify-content:center;gap:24px;
+  margin-top:12px;
+  font-family:var(--mono);font-size:0.7rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+.slider-label{
+  color:var(--ink-faint);cursor:pointer;
+  transition:color .2s;background:none;border:none;
+  font-family:inherit;font-size:inherit;letter-spacing:inherit;
+  text-transform:inherit;padding:4px 8px;
+}
+.slider-label.active{color:var(--gold)}
+.slider-label:hover{color:var(--ink-dim)}
+
+/* === AUDIO PLAYER === */
+.player-section{
+  margin-top:32px;
+  border-radius:12px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,240,220,0.04);
+  padding:24px 28px;
+}
+.player-title{
+  font-family:var(--serif);font-size:1.3rem;font-weight:500;
+  color:var(--gold);margin-bottom:4px;
+}
+.player-meta{
+  font-family:var(--mono);font-size:0.7rem;
+  letter-spacing:0.1em;color:var(--ink-faint);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.audio-player{
+  width:100%;
+}
+.audio-player audio{
+  width:100%;height:42px;
+  filter:sepia(0.2) hue-rotate(150deg) saturate(0.6);
+}
+
+/* === WEATHER CARD === */
+.weather-card{
+  margin-top:20px;
+  padding:20px 24px;
+  border-radius:12px;
+  border:1px solid rgba(127,217,200,0.2);
+  background:rgba(127,217,200,0.05);
+}
+.weather-card h3{
+  font-family:var(--serif);font-size:1.1rem;font-weight:500;
+  color:var(--cyan);margin-bottom:12px;
+}
+.weather-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+}
+.weather-item{
+  display:flex;flex-direction:column;gap:2px;
+}
+.weather-item .label{
+  font-family:var(--mono);font-size:0.65rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.weather-item .val{
+  font-family:var(--sans);font-size:0.95rem;
+  color:var(--ink-dim);
+}
+
+/* === FOOTER === */
+.tv-footer{
+  text-align:center;padding:32px 24px;
+  font-family:var(--mono);font-size:0.65rem;
+  letter-spacing:0.1em;color:var(--ink-faint);
+  text-transform:uppercase;
+}
+.tv-footer a{color:var(--gold-deep);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="wordmark"><img src="favicon.svg" style="height:28px;vertical-align:middle;margin-right:8px;border-radius:2px;" alt="Drapeau de Norée">// LAYLA OS :: NORÉE, CITÉ DES NUAGES</a>
+  <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="noree.html">Lore</a></li>
+    <li><a href="bip.html">Bip</a></li>
+    <li><a href="gouvernement.html">Gouvernement</a></li>
+    <li><a href="population-terrienne.html">Population</a></li>
+    <li><a href="population-spatiale.html">Stations</a></li>
+    <li><a href="recherche.html">Recherche</a></li>
+    <li><a href="gazette.html">Gazette</a></li>
+    <li><a href="noreetv.html" class="active">NoréeTV</a></li>
+  </ul>
+</nav>
+
+<div class="status">
+  <span><span class="dot"></span>CITÉ EN LIGNE</span>
+  <span><span class="dot gold"></span>NORÉETV EN DIRECT</span>
+  <span><span class="dot rose"></span>BIP NATIONAL ACTIF</span>
+</div>
+
+<div class="tv-wrap">
+
+  <div class="tv-header">
+    <div class="tv-logo">Norée<span class="accent">TV</span></div>
+    <div class="tv-subtitle">Journal de la cité des nuages</div>
+    <div class="tv-date">Édition du 14 novembre 2026</div>
+    <div class="live-badge">EN DIRECT</div>
+  </div>
+
+  <div class="slider-container" id="slider">
+    <div class="slider-track" id="track">
+
+      <div class="slide" style="position:relative">
+        <img class="slide-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/kesi-anchor-jt.png" alt="Kesi, présentatrice JT">
+        <div class="slide-overlay">
+          <div class="slide-name">Kesi</div>
+          <div class="slide-role">Présentatrice — Édition du soir</div>
+          <div class="slide-station">Station Minorea · Capitale</div>
+        </div>
+      </div>
+
+      <div class="slide" style="position:relative">
+        <img class="slide-photo" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/noree/thao-meteo-jt.png" alt="Thao, présentatrice météo">
+        <div class="slide-overlay">
+          <div class="slide-name">Thao</div>
+          <div class="slide-role">Météo spatiale — Vents solaires & ceintures de radiation</div>
+          <div class="slide-station">Station Zineb · Orbite</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="slider-labels">
+    <button class="slider-label active" onclick="goSlide(0)">Kesi · JT</button>
+    <button class="slider-label" onclick="goSlide(1)">Thao · Météo</button>
+  </div>
+
+  <div class="slider-nav">
+    <button class="slider-dot active" onclick="goSlide(0)"></button>
+    <button class="slider-dot" onclick="goSlide(1)"></button>
+  </div>
+
+  <div class="player-section">
+    <div class="player-title">Journal de Norée — Édition du 14 nov</div>
+    <div class="player-meta">Kesi · Présentatrice · 6 min 42</div>
+    <div class="audio-player">
+      <audio controls preload="none">
+        <source src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/audio/noree-tv-jt-complet.wav" type="audio/wav">
+        Votre navigateur ne supporte pas l'audio.
+      </audio>
+    </div>
+  </div>
+
+  <div class="weather-card">
+    <h3>Météo spatiale — Station Zineb</h3>
+    <div class="weather-grid">
+      <div class="weather-item"><span class="label">Vent solaire</span><span class="val">Modéré — 420 km/s</span></div>
+      <div class="weather-item"><span class="label">Densité proton</span><span class="val">6.2 p/cm³</span></div>
+      <div class="weather-item"><span class="label">Indice Kp</span><span class="val">3 — Stable</span></div>
+      <div class="weather-item"><span class="label">Ceinture int.</span><span class="val">Nominale</span></div>
+      <div class="weather-item"><span class="label">Ceinture ext.</span><span class="val">Légère fluctuation</span></div>
+      <div class="weather-item"><span class="label">Tempête géomag.</span><span class="val">Aucune prévue 48h</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tv-footer">
+  NoréeTV · Diffusion publique de l'État de Norée · <a href="index.html">Retour au portail</a>
+</div>
+
+<script>
+var currentSlide = 0;
+var totalSlides = 2;
+
+function goSlide(n){
+  currentSlide = n;
+  document.getElementById('track').style.transform = 'translateX(-' + (n * 100) + '%)';
+  document.querySelectorAll('.slider-dot').forEach(function(d,i){
+    d.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.slider-label').forEach(function(d,i){
+    d.classList.toggle('active', i === n);
+  });
+}
+
+// Auto-advance every 8 seconds
+var autoSlide = setInterval(function(){
+  goSlide((currentSlide + 1) % totalSlides);
+}, 8000);
+
+// Pause on interaction
+document.getElementById('slider').addEventListener('mouseenter', function(){
+  clearInterval(autoSlide);
+});
+document.getElementById('slider').addEventListener('mouseleave', function(){
+  autoSlide = setInterval(function(){
+    goSlide((currentSlide + 1) % totalSlides);
+  }, 8000);
+});
+</script>
+
+</body>
+</html>
