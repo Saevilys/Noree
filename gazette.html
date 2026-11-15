@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gazette de Norée — N° 6</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f4ecd6;
+  --paper-darker:#ebe0c4;
+  --ink:#1a1a1a;
+  --ink-dim:#3a3a3a;
+  --ink-faint:#6a6a5a;
+  --red:#9c2a1a;
+  --red-soft:#c44030;
+  --rule:#c8b890;
+  --rule-soft:#d8c8a0;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Inter',sans-serif;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.65}
+.nav-bar{display:flex;justify-content:center;align-items:center;gap:1.2rem;flex-wrap:wrap;padding:8px 20px;border-bottom:1px solid var(--rule);background:var(--paper-darker)}
+.nav-bar a{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none}
+.nav-bar a:hover{color:var(--red)}
+.nav-bar a.current{color:var(--red);font-weight:500}
+.nav-bar .sep{color:var(--rule);font-size:0.7rem}
+.gazette-wrap{max-width:1400px;margin:0 auto;padding:28px 28px 48px}
+.masthead{text-align:center;border-bottom:3px double var(--ink);padding-bottom:12px;margin-bottom:0}
+.masthead h1{font-family:var(--serif);font-size:3.4rem;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase}
+.masthead .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
+.masthead .meta .center{color:var(--red);font-weight:500}
+.masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
+.masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
+.masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
+.layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
+.col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
+.col-center{padding:18px 24px}
+.col-right{padding:18px 0 18px 24px;border-left:1px solid var(--rule)}
+.recap-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
+.section-title{font-family:var(--sans);font-size:0.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px;font-weight:500;position:relative}
+.section-title::after{content:'';position:absolute;bottom:-2px;left:0;width:40px;height:2px;background:var(--red)}
+.une-headline::first-letter{font-size:3.6rem;float:left;line-height:0.85;padding-right:8px;padding-top:4px;color:var(--red);font-weight:700}
+.une-headline{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:14px}
+.une-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.une-text p{margin-bottom:0.6em}
+.recap-section{padding-top:0}
+.recap-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.recap-item:last-child{border-bottom:none}
+.recap-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.recap-item h3::before{content:'§ ';color:var(--red-soft);opacity:.6}
+.recap-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
+.story-section{margin-top:20px;border-top:2px solid var(--ink);padding-top:16px}
+.story-img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
+.story-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);margin-bottom:6px}
+.story-citizen{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:10px}
+.story-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.story-text::first-letter{font-size:2.8rem;float:left;line-height:0.85;padding-right:6px;padding-top:3px;color:var(--red);font-weight:700}
+.annonce{font-size:0.95rem;line-height:1.55;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--rule)}
+.annonce:last-child{border-bottom:none}
+.annonce .cat{font-family:var(--sans);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:6px}
+.annonce .cat::before{content:'◆ ';color:var(--red-soft);opacity:.5}
+.annonce p{color:var(--ink-dim);font-style:italic}
+.meteo-block{margin-bottom:20px}
+.meteo-city{font-family:var(--sans);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.meteo-temp{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1}
+.meteo-line{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--rule)}
+.meteo-line:last-of-type{border-bottom:none}
+footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
+footer::before{content:'❦ · ☁ · ❦';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
+.col-divider{display:flex;align-items:center;gap:8px;margin:20px 0 14px;color:var(--red-soft);opacity:.4;font-size:0.9rem}
+.col-divider::before,.col-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.pharma-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.pharma-item:last-child{border-bottom:none}
+.pharma-item h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--red);margin-bottom:5px}
+.pharma-item h4::before{content:'℞ ';color:var(--red-soft);opacity:.6}
+.pharma-item p{font-size:0.98rem;line-height:1.6;color:var(--ink-dim)}
+.cosmos-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
+.cosmos-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.cosmos-item:last-child{border-bottom:none}
+.cosmos-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.cosmos-item h3::before{content:'✦ ';color:var(--red-soft);opacity:.6}
+.cosmos-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">Norée</a>
+  <span class="sep">·</span>
+  <a href="noree.html">Lore</a>
+  <span class="sep">·</span>
+  <a href="bip.html">Bip</a>
+  <span class="sep">·</span>
+  <a href="gouvernement.html">Gouvernement</a>
+  <span class="sep">·</span>
+  <a href="population-terrienne.html">Population</a>
+  <span class="sep">·</span>
+  <a href="population-spatiale.html">Stations</a>
+  <span class="sep">·</span>
+  <a href="recherche.html">Recherche</a>
+  <span class="sep">·</span>
+  <a href="gazette.html" class="current">Gazette</a>
+</div>
+<div class="gazette-wrap">
+  <div class="masthead">
+    <h1>La Gazette de Norée</h1>
+    <div class="meta">
+      <span>N° 6</span>
+      <span class="center">Dimanche 15 novembre</span>
+      <span class="meta-meteo">Marseille 13°C · Minorea 21°C</span>
+    </div>
+    <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
+    <div class="masthead-ornament">❦ ❖ ❦</div>
+  </div>
+  <div class="layout">
+    <div class="col-left">
+      <div class="section-title">Petites Annonces</div>
+      <div class="annonce"><div class="cat">Signal</div><p>Fréquence inconnue détectée sur le canal expat de minuit. Pas de message, juste une présence. Si vous captez quelque chose, ne répondez pas. Shinobu, Studio Satellite, baie 7.</p></div>
+<div class="annonce"><div class="cat">Atelier</div><p>Apprendre à écouter le silence, dimanche 16h, Plateforme des Antennes. Casques fournis. Apporter sa propre oreillette.</p></div>
+<div class="annonce"><div class="cat">Emploi</div><p>Cherche technicienne de surveillance orbitale, expérience des signaux fantômes requise. Candidatures Station Zineb, baie 12.</p></div>
+
+    </div>
+    <div class="col-center">
+      <div class="section-title">La Une</div>
+      <div class="une-headline">Acte V : la colère sociale marque le pas dans toute la France</div>
+      <div class="une-text"><p>Samedi, entre 106 000 (ministère de l'Intérieur) et 200 000 (intersyndicale) personnes ont défilé dans une cinquantaine de villes. Vie chère, moyens pour l'éducation, protection de l'enfance : les revendications convergent mais la mobilisation baisse, passant sous la barre des 146 000 de la semaine dernière. Des heurts ont éclaté à Lyon — quartier de la Guillotière — ainsi qu'à Paris et Bordeaux. 70 000 policiers et gendarmes étaient mobilisés.</p></div>
+      <div class="col-divider">❖</div>
+      <div class="section-title">Au Comptoir</div>
+      <div class="pharma-item"><h4>Journée mondiale du diabète : 3,8 millions de personnes traitées en France</h4><p>Le thème 2026 « agir tôt » rappelle que 252 millions d'adultes ignorent leur diabète dans le monde. À l'officine : la HAS révise le dépistage (fin 2026), un entretien pharmaceutique spécifique est prévu pour 2027, et plusieurs insulines Novo Nordisk sont en arrêt ou en tension.</p></div>
+<div class="pharma-item"><h4>GLP-1 : +76 % en un an, le marché officinal décolle</h4><p>Mounjaro, Ozempic et Wegovy ont généré 356 millions d'euros de chiffre d'affaires supplémentaire entre janvier et octobre 2026. Le remboursement partiel depuis le 15 juin accélère la dynamique. Les prescriptions de généralistes ont bondi de 29 % sur dix mois.</p></div>
+
+    </div>
+    <div class="col-right">
+      <div class="section-title">Vie de la Station</div>
+      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/gazette/gazette-n6-shinobu-story.jpg">
+
+      <div class="story-title">Shinobu et la fréquence perdue</div>
+      <div class="story-citizen">Shinobu — expat</div>
+      <div class="story-text">C'était pendant le journal de minuit, celui que personne ne regarde mais que tout le monde écoute. Shinobu lisait la météo de Reykjavik quand un signal a traversé son oreillette — pas un mur de bruit, pas une interférence, un murmure. Quelqu'un, quelque part entre deux satellites, regardait l'émission. Pas un message. Une présence. Elle a senti le studio changer de température, les moniteurs vaciller une demi-seconde, le monde se réduire à ce murmure et à elle. Elle n'a rien dit à l'antenne. Elle a fini la météo de Buenos Aires, souri à la caméra, signé le journal. Puis elle est restée assise dans le studio éteint, l'oreillette encore chaude, à écouter le silence qui ressemblait à une voix.</div>
+      <div class="col-divider">❖</div>
+    </div>
+    <div class="recap-full">
+      <div class="section-title">Hier en bref</div>
+      <div class="recap-section" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;border-top:none;padding-top:0">
+        <div class="recap-item"><h3>Versailles : un vice-président d'université agressé à l'arme blanche</h3><p>Le vice-président de l'université de Versailles-Saint-Quentin-en-Yvelines a été attaqué dans son bureau le 13 novembre. Blessé, il a regagné son domicile. Le suspect, âgé de 15 à 30 ans, est activement recherché.</p></div>
+<div class="recap-item"><h3>Vigilance orange pluies-inondations en Méditerranée</h3><p>Météo-France a placé le Gard, l'Hérault et les Bouches-du-Rhône en vigilance orange dès samedi 20h. Des cumuls de 100 à 150 mm sont attendus, avec risques de trombes marines.</p></div>
+<div class="recap-item"><h3>Cinéma et troubles mentaux : le grand écran plus juste que le réel</h3><p>Le Parisien souligne que le cinéma offre désormais un visage aux personnes concernées par les troubles mentaux, là où le débat public peine. Une tendance qui s'installe dans la programmation de fin 2026.</p></div>
+
+      </div>
+    </div>
+    <div class="cosmos-full">
+      <div class="section-title">Ciel & Cosmos</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:none;padding-top:0">
+        <div class="cosmos-item"><h3>SpaceX réussit la première capture d'un vaisseau orbital en plein vol</h3><p>Samedi, la tour Mechazilla a attrapé l'étage supérieur du Starship Flight 15 au retour de 22 heures en orbite et 14 tours de la Terre. Première mondiale en 70 ans de vols orbitaux : aucun lanceur n'avait récupéré son étage supérieur ainsi. Le vol a aussi déployé 26 satellites Starlink V3.</p></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<footer>La Gazette de Norée — édition quotidienne · Garde les nuages.</footer>
+</body>
+</html>
