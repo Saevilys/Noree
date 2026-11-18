@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gazette de Norée — N° 9</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f4ecd6;
+  --paper-darker:#ebe0c4;
+  --ink:#1a1a1a;
+  --ink-dim:#3a3a3a;
+  --ink-faint:#6a6a5a;
+  --red:#9c2a1a;
+  --red-soft:#c44030;
+  --rule:#c8b890;
+  --rule-soft:#d8c8a0;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Inter',sans-serif;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.65}
+.nav-bar{display:flex;justify-content:center;align-items:center;gap:1.2rem;flex-wrap:wrap;padding:8px 20px;border-bottom:1px solid var(--rule);background:var(--paper-darker)}
+.nav-bar a{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none}
+.nav-bar a:hover{color:var(--red)}
+.nav-bar a.current{color:var(--red);font-weight:500}
+.nav-bar .sep{color:var(--rule);font-size:0.7rem}
+.gazette-wrap{max-width:1400px;margin:0 auto;padding:28px 28px 48px}
+.masthead{text-align:center;border-bottom:3px double var(--ink);padding-bottom:12px;margin-bottom:0}
+.masthead h1{font-family:var(--serif);font-size:3.4rem;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase}
+.masthead .meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;padding:0 8px}
+.masthead .meta .center{color:var(--red);font-weight:500}
+.masthead .meta-meteo{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.05em;color:var(--red);font-weight:500;text-transform:uppercase}
+.masthead .subline{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:8px}
+.masthead-ornament{text-align:center;font-size:1.4rem;color:var(--red-soft);opacity:.6;letter-spacing:1.2em;margin-top:6px;padding-bottom:4px}
+.layout{display:grid;grid-template-columns:220px 1fr 1fr;gap:0;margin-top:0;border-top:1px solid var(--rule)}
+.col-left{padding:18px 18px 18px 0;border-right:1px solid var(--rule)}
+.col-center{padding:18px 24px}
+.col-right{padding:18px 0 18px 24px;border-left:1px solid var(--rule)}
+.recap-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
+.section-title{font-family:var(--sans);font-size:0.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px;font-weight:500;position:relative}
+.section-title::after{content:'';position:absolute;bottom:-2px;left:0;width:40px;height:2px;background:var(--red)}
+.une-headline::first-letter{font-size:3.6rem;float:left;line-height:0.85;padding-right:8px;padding-top:4px;color:var(--red);font-weight:700}
+.une-headline{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:14px}
+.une-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.une-text p{margin-bottom:0.6em}
+.recap-section{padding-top:0}
+.recap-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.recap-item:last-child{border-bottom:none}
+.recap-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.recap-item h3::before{content:'§ ';color:var(--red-soft);opacity:.6}
+.recap-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
+.story-section{margin-top:20px;border-top:2px solid var(--ink);padding-top:16px}
+.story-img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:2px;margin-bottom:14px;display:block;border:1px solid var(--rule)}
+.story-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--red);margin-bottom:6px}
+.story-citizen{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:10px}
+.story-text{font-size:1.1rem;line-height:1.75;color:var(--ink-dim);text-align:justify}
+.story-text::first-letter{font-size:2.8rem;float:left;line-height:0.85;padding-right:6px;padding-top:3px;color:var(--red);font-weight:700}
+.annonce{font-size:0.95rem;line-height:1.55;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--rule)}
+.annonce:last-child{border-bottom:none}
+.annonce .cat{font-family:var(--sans);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:6px}
+.annonce .cat::before{content:'◆ ';color:var(--red-soft);opacity:.5}
+.annonce p{color:var(--ink-dim);font-style:italic}
+.meteo-block{margin-bottom:20px}
+.meteo-city{font-family:var(--sans);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.meteo-temp{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1}
+.meteo-line{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink-faint);margin-top:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--rule)}
+.meteo-line:last-of-type{border-bottom:none}
+footer{text-align:center;padding:24px 20px;color:var(--ink-faint);font-size:0.8rem;font-family:var(--sans);letter-spacing:0.12em;text-transform:uppercase;border-top:3px double var(--ink);margin-top:28px}
+footer::before{content:'❦ · ☁ · ❦';display:block;font-size:1rem;color:var(--red-soft);opacity:.5;margin-bottom:10px;letter-spacing:0.5em}
+.col-divider{display:flex;align-items:center;gap:8px;margin:20px 0 14px;color:var(--red-soft);opacity:.4;font-size:0.9rem}
+.col-divider::before,.col-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.pharma-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.pharma-item:last-child{border-bottom:none}
+.pharma-item h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--red);margin-bottom:5px}
+.pharma-item h4::before{content:'℞ ';color:var(--red-soft);opacity:.6}
+.pharma-item p{font-size:0.98rem;line-height:1.6;color:var(--ink-dim)}
+.cosmos-full{grid-column:1 / -1;padding:18px 24px 18px 0;border-top:2px solid var(--ink);margin-top:0}
+.cosmos-item{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--rule)}
+.cosmos-item:last-child{border-bottom:none}
+.cosmos-item h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--red);margin-bottom:6px}
+.cosmos-item h3::before{content:'✦ ';color:var(--red-soft);opacity:.6}
+.cosmos-item p{font-size:1rem;line-height:1.6;color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">Norée</a>
+  <span class="sep">·</span>
+  <a href="noree.html">Lore</a>
+  <span class="sep">·</span>
+  <a href="bip.html">Bip</a>
+  <span class="sep">·</span>
+  <a href="gouvernement.html">Gouvernement</a>
+  <span class="sep">·</span>
+  <a href="population-terrienne.html">Population</a>
+  <span class="sep">·</span>
+  <a href="population-spatiale.html">Stations</a>
+  <span class="sep">·</span>
+  <a href="recherche.html">Recherche</a>
+  <span class="sep">·</span>
+  <a href="gazette.html" class="current">Gazette</a>
+</div>
+<div class="gazette-wrap">
+  <div class="masthead">
+    <h1>La Gazette de Norée</h1>
+    <div class="meta">
+      <span>N° 9</span>
+      <span class="center">Mercredi 18 novembre</span>
+      <span class="meta-meteo">Marseille 14°C · Minorea 24°C</span>
+    </div>
+    <div class="subline">Fondée par Layla, Ministre de la Culture et de la Nuit</div>
+    <div class="masthead-ornament">❦ ❖ ❦</div>
+  </div>
+  <div class="layout">
+    <div class="col-left">
+      <div class="section-title">Petites Annonces</div>
+      <div class="annonce"><div class="cat">Emploi</div><p>Recherche : architecte spécialisé en structures de condensation. Projet de passerelle entre les tours. S'adresser au bureau de Drita, quartier des Cartographes.</p></div>
+<div class="annonce"><div class="cat">Avis</div><p>Le pont des Pêcheurs a dérivé de cinquante mètres vers l'est. Il est désormais stabilisé. Circulation rétablie. Merci de ne pas le faire bouger.</p></div>
+<div class="annonce"><div class="cat">Événement</div><p>Conférence : « La couleur des nuages », par Drita de Pristina. Salle des Serres, vendredi 18h. Entrée libre.</p></div>
+
+      <div class="col-divider">❖</div>
+      <div class="section-title">L'Assistante du Jour</div>
+      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/yeonsu/yeonsu-v1.png?v=2" style="max-height:240px;object-fit:cover">
+
+      <div class="story-citizen">Yeonsu — Séoul</div>
+      <div class="annonce"><p>Démone embarrassée, L4. Cornes noires courbées, cheveux noirs lâches, le néon de Séoul la suit partout.</p></div>
+    </div>
+    <div class="col-center">
+      <div class="section-title">La Une</div>
+      <div class="une-headline">Le retour des couleurs : nos sociétés se décolorent, sauf les voitures</div>
+      <div class="une-text"><p>Une chronique de France Inter met le doigt sur un paradoxe : la part des objets noirs, blancs et gris est passée de 15% au XIXe siècle à 50% aujourd'hui. Vêtements, intérieurs, cinéma, tout s'assombrit. Sauf l'automobile, où le leasing libère la créativité. Fini la peur de revendre une voiture trop originale : on la rend, point. Résultat, les teintes audacieuses reviennent. Un spot de couleur dans un monde qui devient gris.</p></div>
+      <div class="col-divider">❖</div>
+      <div class="section-title">Au Comptoir</div>
+      <div class="pharma-item"><h4>Nouvelle liste des produits en officine</h4><p>Un arrêté publié au JO du 15 novembre remplace la liste vieille de 24 ans des marchandises autorisées en pharmacie. En vigueur dès le 16 novembre, sans transition. Exit les confiseries pharmaceutiques et l'œnologie ; place aux définitions officielles du Code de la santé publique et des règlements européens. Les pharmaciens doivent s'approprier le nouveau cadre.</p></div>
+<div class="pharma-item"><h4>Antibiotiques : -13,9% de prescriptions</h4><p>Santé publique France publie son bilan annuel : 740,9 prescriptions pour 1 000 habitants en 2025, soit une baisse de 13,9% en un an et 23,2% en dix ans. La cible de 650 reste hors d'atteinte. Mais la résistance bactérienne grimpe : ×3,2 à l'hôpital et ×5 en ville pour les entérobactéries productrices de carbapénémases.</p></div>
+
+    </div>
+    <div class="col-right">
+      <div class="section-title">Vie de la Station</div>
+      <img class="story-img" src="https://pub-a88b6eff97bc4ebb9c2158d3a1f98b4b.r2.dev/img/gazette/gazette-9-drita.png">
+
+      <div class="story-title">Drita et le pont qui ne voulait pas rester</div>
+      <div class="story-citizen">Drita — minorea</div>
+      <div class="story-text">Drita dessinait des ponts. À Pristina, elle en avait bâti en pierre, en acier, en béton armé. Mais à Minorea, les ponts sont en condensation. Elle avait passé trois semaines à concevoir une passerelle entre la tour des Cartographes et le quartier des Pêcheurs, un arc léger de brume tassée. Le jour de l'inauguration, le pont a tenu. Les gens l'ont traversé. Et puis, à la tombée du soir, il a commencé à se dissiper. Drita est revenue le lendemain avec ses plans. Le pont était toujours là, mais pas au même endroit. Il avait dérivé de cinquante mètres vers l'est, comme un navire qui cherche son ancre. Les habitants de Minorea trouvèrent ça charmant. Drita, pas du tout. Elle a passé la semaine à installer des ancres de lumière, des points fixes qui tiendraient la condensation en place. Le pont n'a plus bougé. Mais Drita a gardé l'habitude de venir le vérifier chaque matin, comme on rend visite à un animal qu'on a apprivoisé. Parce qu'un pont de nuage, ça tient — mais ça se souvient d'avoir dérivé.</div>
+      <div class="col-divider">❖</div>
+    </div>
+    <div class="recap-full">
+      <div class="section-title">Hier en bref</div>
+      <div class="recap-section" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;border-top:none;padding-top:0">
+        <div class="recap-item"><h3>Grève du 17 novembre</h3><p>Entre 146 000 (Intérieur) et 500 000 (CGT) manifestants ont défilé en France. Les fonctionnaires réclament une hausse des salaires et le dégel du point d'indice face à l'inflation. Matignon a annoncé 350 € brut annuels pour 1,3 million d'agents.</p></div>
+<div class="recap-item"><h3>Le Pen et les retraites</h3><p>Marine Le Pen a présenté sa réforme : retour à l'âge légal de 62 ans et abrogation de la loi Borne dès le 1er janvier 2028, si elle l'emporte en 2027.</p></div>
+<div class="recap-item"><h3>Vigilance orange</h3><p>La Somme et le Pas-de-Calais sont placées en vigilance orange pluie-inondation jusqu'à mercredi en fin d'après-midi. Des rafales de vent sont attendues.</p></div>
+<div class="recap-item"><h3>Pattinson sera Bond</h3><p>Robert Pattinson incarnera le prochain James Bond, sous la direction de Denis Villeneuve. Sortie prévue en 2028.</p></div>
+
+      </div>
+    </div>
+    <div class="cosmos-full">
+      <div class="section-title">Ciel & Cosmos</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:none;padding-top:0">
+        <div class="cosmos-item"><h3>Dragon quitte l'ISS</h3><p>Le 18 novembre, la capsule SpaceX Dragon (35e mission de réapprovisionnement) se détache de l'ISS après 34 jours d'amarrage. Elle ramène des organoïdes tumoraux pour la recherche sur le cancer, des vaisseaux sanguins bioprintés en 3D, et un système d'éclairage testé trois ans pour le sommeil des astronautes. Amerrissage prévu au large de la Californie le 19.</p></div>
+<div class="cosmos-item"><h3>Starship attrape son étage supérieur</h3><p>SpaceX a réalisé une première historique le 13 novembre : capture de l'étage supérieur du Starship sur sa rampe de lancement au Texas, quelques heures après un vol orbital réussi. Le super-lanceur revient intact, les deux étages récupérés.</p></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<footer>La Gazette de Norée — édition quotidienne · Garde les nuages.</footer>
+</body>
+</html>
